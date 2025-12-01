@@ -45,5 +45,7 @@ Dentro de la carpeta Fronted ejecutar el comando desde la consola de visual stud
 npm install --force
 #
 una vez instalada ejecutar ng serve -o 
+#
+Los archivos excel y txt estan listos para cargarse y hacer el respectivo registro.
 
 
