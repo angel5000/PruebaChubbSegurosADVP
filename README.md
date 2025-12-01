@@ -6,6 +6,8 @@
 | .NET SDK                            | >= 8.0              | [https://dotnet.microsoft.com](https://dotnet.microsoft.com)                 |
 | SQL Server                          | 2019 o superior     | [https://www.microsoft.com/sql-server](https://www.microsoft.com/sql-server) |
 | SQL Server Management Studio (SSMS) | —                   | [https://aka.ms/ssms](https://aka.ms/ssms)                                   |
+
+#
 Configuración de la Base de Datos (SQL Server)
 Ejecutar los scripts puesto en el repositorio
 Primer script - Crea la base de datos y las tablas con datos
