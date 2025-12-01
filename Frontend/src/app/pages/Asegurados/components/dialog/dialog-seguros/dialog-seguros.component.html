@@ -1,0 +1,28 @@
+<div class="card w-full h-full flex flex-col mb-0 sizecard">
+    <div class="dialog-header">
+        <button mat-dialog-close mat-icon-button>
+            <mat-icon class="mb-5"><i class="bi bi-x-lg fs-5"></i></mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-title class="flex justify-center">
+        <h2 class="headline mr-5 mt-0 text-xl  text-accent">
+            <strong>
+                OTROS SEGUROS DEL CLIENTE
+            </strong>
+        </h2>
+    </div>
+    
+    <div class="mt-14 pt-1 overflow-hidden flex divtb ">
+        <mat-drawer-container class="bg-transparent flex-auto flex">
+            <mat-drawer-content class="p-gutter pt-0 flex-auto flex items-start">
+                <div class="card h-full overflow-hidden flex-auto">
+                    <app-list-table [manualData]="detalleSeguros" [colums]="component.tableColumns"
+                        [getInputs]="component.getInputs" (rowClick)="rowClick($event)">
+
+                    </app-list-table>
+                </div>
+            </mat-drawer-content>
+        </mat-drawer-container>
+    </div>
+
+</div>

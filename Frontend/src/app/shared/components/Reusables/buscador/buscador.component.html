@@ -1,0 +1,29 @@
+<ng-container>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="flex items-center bg-white border boder-am-main-blue-light rounded-lg overflow-hidden 
+    w-full mx-auto h-11">
+    <button type="button" *ngIf="searchOptions.length>1" [matMenuTriggerFor]="menu"
+        class="flex items-center p-2 text-am-main-blue bg-white">
+    </button>
+    <button type="submit" [disabled]="form.invalid" class="bg-white rounded-sm text-am-purple-dark p-2">
+        <i class="bi bi-search"></i>
+    </button>
+    <input type="text" class="desktop border-0 h-11 outline-none placeholder:text-secondary bg-card flex-auto " 
+    matInput formControlName="searchData" matTooltip="{{labelSelection.validation_desc}}"
+     placeholder="{{labelSelection.placeholder}}">
+    <button (click)="reset()" *ngIf="form.valid" @scaleInOut class="mr-4" type="button" >
+        <i class="bi bi-x-lg"></i>
+    </button>
+    <mat-menu #menu class="shado-2xl  ">
+    <button mat-menu-item *ngFor=" let option of searchOptions" (click)="changeSelection(option)">
+  
+    <span [ngClass]="{'font-bold text-am-main-blue':option==labelSelection}">
+    {{option.label}}
+    </span>
+    </button>
+    </mat-menu>
+    
+    </div>
+    </form>
+    </ng-container>
+    

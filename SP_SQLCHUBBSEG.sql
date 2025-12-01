@@ -1,0 +1,420 @@
+USE chubbseguros;--usa la base datos
+
+--CREACION DE SP-----
+
+CREATE PROCEDURE CONSULTASEGUROS
+AS
+BEGIN
+ SET NOCOUNT ON;
+ SELECT
+		IDSEGURO,
+        NMBRSEGURO,
+        CODSEGURO,
+        SUMASEGURADA,
+        PRIMA,
+        EDADMIN,
+        EDADMAX
+    FROM SEGUROS
+	END;
+GO
+
+CREATE PROCEDURE CONSULSEGID
+(
+    @IDSEGURO  INT
+)
+AS
+BEGIN
+ SET NOCOUNT ON;
+ SELECT
+		IDSEGURO,
+        NMBRSEGURO,
+        CODSEGURO,
+        SUMASEGURADA,
+        PRIMA,
+        EDADMIN,
+        EDADMAX
+		FROM SEGUROS
+		WHERE IDSEGURO = @IDSEGURO
+	END;
+GO
+
+
+------------
+-------------
+
+CREATE PROCEDURE CONSULTAASEGURADOS
+AS
+BEGIN
+ SET NOCOUNT ON;
+ SELECT
+	IDASEGURADOS,
+    CEDULA,
+    NMBRCOMPLETO,
+    TELEFONO,
+    EDAD
+    FROM ASEGURADOS
+	END;
+GO
+EXEC CONSULTAASEGURADOS;
+
+--------------
+----------------
+
+CREATE PROCEDURE REGITSSEGUROS(
+  @NMBRSEGURO     VARCHAR(75),
+    @CODSEGURO      VARCHAR(10),
+    @SUMASEGURADA   DECIMAL(10,2),
+    @PRIMA          DECIMAL(10,2),
+    @EDADMIN        INT,
+    @EDADMAX        INT
+)
+AS
+BEGIN
+  SET NOCOUNT OFF;
+  IF EXISTS (SELECT 1 FROM SEGUROS WHERE CODSEGURO = @CODSEGURO)
+  BEGIN
+     RAISERROR ('El código del seguro ya existe.', 16, 1);
+	RETURN -1; 
+	END
+	INSERT INTO SEGUROS
+	    (
+        NMBRSEGURO,
+        CODSEGURO,
+        SUMASEGURADA,
+        PRIMA,
+        EDADMIN,
+        EDADMAX
+    )   VALUES
+    (
+        @NMBRSEGURO,
+        @CODSEGURO,
+        @SUMASEGURADA,
+        @PRIMA,
+        @EDADMIN,
+        @EDADMAX
+     );
+	RETURN 1; 
+END;
+
+
+-----------------------------------
+-----------------------------------
+
+
+CREATE PROCEDURE EDITARSEGUROS
+(
+    @IDSEGURO       INT,
+    @NMBRSEGURO     VARCHAR(75),
+    @CODSEGURO      VARCHAR(10),
+    @SUMASEGURADA   DECIMAL(10,2),
+    @PRIMA          DECIMAL(10,2),
+    @EDADMIN        INT,
+    @EDADMAX        INT
+)
+AS
+BEGIN
+  SET NOCOUNT ON;
+
+  IF NOT EXISTS (SELECT 1 FROM SEGUROS WHERE IDSEGURO =@IDSEGURO)
+  BEGIN
+     RAISERROR('El seguro especificado no existe.', 16, 1);
+        RETURN -1;  -- ID no encontrado
+    END
+	IF EXISTS (SELECT 1 FROM SEGUROS WHERE CODSEGURO =@CODSEGURO AND IDSEGURO <> @IDSEGURO)
+	BEGIN
+	RAISERROR('El código del seguro ya está asignado a otro registro.', 16, 1);
+        RETURN -2;  -- duplicado
+    END
+
+	UPDATE SEGUROS
+	SET
+	  NMBRSEGURO   = @NMBRSEGURO,
+        CODSEGURO    = @CODSEGURO,
+        SUMASEGURADA = @SUMASEGURADA,
+        PRIMA        = @PRIMA,
+        EDADMIN      = @EDADMIN,
+        EDADMAX      = @EDADMAX
+    WHERE IDSEGURO = @IDSEGURO;
+	RETURN 1; -- éxito
+END;
+
+
+---------------------------
+-------------------------------
+
+CREATE PROCEDURE ELIMINARSEGURO(
+		@IDSEGURO INT
+)
+AS 
+BEGIN
+	SET NOCOUNT ON;
+
+	IF NOT EXISTS (SELECT 1 FROM SEGUROS WHERE IDSEGURO =@IDSEGURO)
+	BEGIN
+	 RAISERROR('Seguro no existe para eliminar', 16, 1);
+        RETURN -1;   -- Registro no encontrado
+    END
+	DELETE FROM SEGUROS
+	WHERE IDSEGURO =@IDSEGURO;
+	
+	RETURN 1;
+
+END;
+
+------------------------------------
+		--ASEGURADOS--
+------------------------------------
+
+CREATE PROCEDURE CONSULASGURADOSEGID
+(
+    @IDASEGURADOS  INT
+)
+AS
+BEGIN
+ SET NOCOUNT ON;
+ SELECT
+		IDASEGURADOS,
+		CEDULA,
+        NMBRCOMPLETO,
+        TELEFONO,
+        EDAD
+		FROM ASEGURADOS
+		WHERE IDASEGURADOS = @IDASEGURADOS
+	END;
+GO
+
+
+CREATE PROCEDURE REGSTASEGURADOS(
+    @CEDULA        VARCHAR(10),
+    @NMBRCOMPLETO  VARCHAR(75),
+    @TELEFONO      VARCHAR(10),
+    @EDAD          INT
+)
+AS
+BEGIN
+  SET NOCOUNT ON;
+
+  IF EXISTS (SELECT 1 FROM ASEGURADOS WHERE CEDULA = @CEDULA)
+  BEGIN
+   RAISERROR('Usuario ya se encuentra registrado', 16, 1);
+        RETURN -1;   -- Cedula duplicada
+    END
+
+	INSERT INTO ASEGURADOS
+	(
+	    CEDULA,
+        NMBRCOMPLETO,
+        TELEFONO,
+        EDAD
+    )
+    VALUES
+    (
+        @CEDULA,
+        @NMBRCOMPLETO,
+        @TELEFONO,
+        @EDAD
+    );
+	RETURN 1;
+END;
+
+CREATE PROCEDURE EDITARASEGURADOS
+(
+    @IDASEGURADOS       INT,
+    @CEDULA        VARCHAR(10),
+    @NMBRCOMPLETO  VARCHAR(75),
+    @TELEFONO      VARCHAR(10),
+    @EDAD          INT
+)
+AS
+BEGIN
+  SET NOCOUNT ON;
+
+  IF NOT EXISTS (SELECT 1 FROM ASEGURADOS WHERE IDASEGURADOS =@IDASEGURADOS)
+  BEGIN
+     RAISERROR('El cliente a modificar no existe', 16, 1);
+        RETURN -1;  -- ID no encontrado
+    END
+	IF EXISTS (SELECT 1 FROM ASEGURADOS WHERE CEDULA =@CEDULA AND IDASEGURADOS <> @IDASEGURADOS)
+	BEGIN
+	RAISERROR('Cedula ingresada ya esta registrada en el sistema', 16, 1);
+        RETURN -2;  -- duplicado
+    END
+
+	UPDATE ASEGURADOS
+	SET
+		CEDULA        =  @CEDULA,
+		NMBRCOMPLETO  =  @NMBRCOMPLETO,
+		TELEFONO      =	 @TELEFONO,
+		EDAD		  =	 @EDAD
+	
+    WHERE IDASEGURADOS = @IDASEGURADOS;
+	RETURN 1; -- éxito
+END;
+
+
+CREATE PROCEDURE ELIMINARASEGURADO(
+		@IDASEGURADOS INT
+)
+AS 
+BEGIN
+	SET NOCOUNT ON;
+
+	IF NOT EXISTS (SELECT 1 FROM ASEGURADOS WHERE IDASEGURADOS =@IDASEGURADOS)
+	BEGIN
+	 RAISERROR('Cliente no existe para eliminar', 16, 1);
+        RETURN -1;   -- Registro no encontrado
+    END
+	DELETE FROM ASEGURADOS
+	WHERE IDASEGURADOS =@IDASEGURADOS;
+	
+	RETURN 1;
+
+END;
+-------------------------
+------ASEGURAMIENTOS-------
+----------------------------
+
+
+CREATE PROCEDURE CONSULTASEGURAMIENTO
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+     SELECT 
+        A.IDASEGURADOS,
+        A.CEDULA,
+        A.NMBRCOMPLETO,
+        A.EDAD,
+		 CASE 
+            WHEN U.IDUSRSEGUROS IS NULL THEN 0
+            ELSE U.IDUSRSEGUROS
+        END AS IDUSRSEGUROS,
+    CASE 
+            WHEN S.NMBRSEGURO IS NULL THEN 'SIN SEGURO ASIGNADO'
+            ELSE S.NMBRSEGURO
+        END AS NMBRSEGURO,
+
+        CASE 
+            WHEN S.CODSEGURO IS NULL THEN '0'
+            ELSE S.CODSEGURO
+        END AS CODSEGURO,
+
+        CASE 
+            WHEN S.SUMASEGURADA IS NULL THEN 0
+            ELSE S.SUMASEGURADA
+        END AS SUMASEGURADA,
+
+        CASE 
+            WHEN S.PRIMA IS NULL THEN 0
+            ELSE S.PRIMA
+        END AS PRIMA,
+
+        CASE 
+            WHEN U.FECHACONTRATASEGURO IS NULL THEN '1990-01-01'
+			  ELSE U.FECHACONTRATASEGURO
+        END AS FECHACONTRATASEGURO
+
+    FROM 
+      ASEGURADOS A
+        LEFT JOIN USRASEGURADOS U ON A.CEDULA = U.CEDULAFK
+        LEFT JOIN SEGUROS S ON S.CODSEGURO = U.CODSEGUROFK;;
+   
+END;
+GO
+
+
+CREATE PROCEDURE REGASEGURAMIENTO(
+		@CEDULA VARCHAR(10),
+		@CODSEGURO VARCHAR(10) 
+)
+AS
+BEGIN
+   SET NOCOUNT ON;
+   IF NOT EXISTS (SELECT 1 FROM ASEGURADOS WHERE CEDULA =@CEDULA)
+   BEGIN
+   RAISERROR('El asegurado no existe.', 16, 1);
+        RETURN -1;
+    END
+
+    -- Validar que el seguro exista
+    IF NOT EXISTS (SELECT 1 FROM SEGUROS WHERE CODSEGURO = @CODSEGURO)
+    BEGIN
+        RAISERROR('El seguro no existe.', 16, 1);
+        RETURN -2;
+    END
+
+	 IF EXISTS (
+        SELECT 1 
+        FROM USRASEGURADOS 
+        WHERE CEDULAFK = @CEDULA 
+          AND CODSEGUROFK = @CODSEGURO
+    )
+    BEGIN
+        RAISERROR('El cliente ya tiene registrado este seguro.', 16, 1);
+        RETURN -3;
+    END
+
+	INSERT INTO USRASEGURADOS (
+        CEDULAFK,
+        CODSEGUROFK,
+        FECHACONTRATASEGURO
+    )
+    VALUES (
+        @CEDULA,
+        @CODSEGURO,
+        GETDATE()
+    );
+	RETURN 1; 
+END;
+
+
+CREATE PROCEDURE SEGUR0SDISPO
+    @EDAD INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF NOT EXISTS (
+        SELECT 1 FROM SEGUROS WHERE @EDAD BETWEEN EDADMIN AND EDADMAX
+    )
+    BEGIN
+        SELECT 
+            'SIN_DATOS' AS CODSEGURO,
+            'No hay seguros disponibles' AS NMBRSEGURO,
+            0 AS EDADMIN,
+            0 AS EDADMAX,
+            CAST(0 AS DECIMAL(18,2)) AS SUMASEGURADA,
+			CAST(0 AS DECIMAL(18,2)) AS PRIMA;
+        RETURN;
+    END
+
+    SELECT 
+        CODSEGURO,
+        NMBRSEGURO,
+        EDADMIN,
+        EDADMAX,
+        SUMASEGURADA,
+        PRIMA
+    FROM SEGUROS
+    WHERE @EDAD BETWEEN EDADMIN AND EDADMAX;
+END
+GO
+
+CREATE PROCEDURE ELIMINARASEGURAMIENTO(
+		@IDUSRSEGUROS INT
+)
+AS 
+BEGIN
+	SET NOCOUNT ON;
+
+	IF NOT EXISTS (SELECT 1 FROM USRASEGURADOS WHERE IDUSRSEGUROS = @IDUSRSEGUROS)
+	BEGIN
+	 RAISERROR('Aseguramiento no existe para eliminar', 16, 1);
+        RETURN -1;   -- Registro no encontrado
+    END
+	DELETE FROM USRASEGURADOS
+	WHERE IDUSRSEGUROS = @IDUSRSEGUROS;
+	
+	RETURN 1;
+
+END;

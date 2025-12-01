@@ -1,0 +1,81 @@
+<div class="overflow-hidden flex-auto titulo">
+    <div class="dialog-header">
+        <button mat-dialog-close mat-icon-button>
+            <mat-icon class="mb-5"><i class="bi bi-x-lg fs-5"></i></mat-icon>
+        </button>
+    </div>
+</div>
+<form (ngSubmit)="GuardarSeguro()" [formGroup]="form">
+    <div mat-dialog-title class="flex justify-center">
+        <h2 class="headline mr-5 mt-3 text-xl  text-accent">
+            <strong>
+                {{data.mode == 'actualizar' ? 'ACTUALIZAR SEGURO': 'REGISTRAR SEGURO'}}
+            </strong>
+        </h2>
+    </div>
+    <mat-dialog-content>
+
+        <mat-form-field *ngIf="!ocultar" class="w-full mb-4" [hidden]="ocultar">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id" readonly="true" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full mb-4">
+            <mat-label>Nombre Seguro</mat-label>
+            <input matInput formControlName="nmbrseguro" maxlength="75" minlength="1" />
+            <mat-error *ngIf="form?.get('nmbrseguro')?.hasError('required')">
+                El campo Usuario es requerido
+            </mat-error>
+            <mat-error *ngIf="form?.get('nmbrseguro')?.hasError('invalidUsername')">
+                El usuario debe contener entre 8 y 20 caracteres alfanumericos, sin signos, almenos una mayuscula
+                y un numero
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>CodigoSeguro</mat-label>
+            <input matInput formControlName="codseguro" maxlength="10">
+            <mat-error *ngIf="form?.get('codseguro')?.hasError('required')">
+                El campo Codigo Seguro  es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Suma del Seguro</mat-label>
+            <input matInput formControlName="sumasegurada" (input)="onInput($event)" maxlength="9" />
+            <mat-error *ngIf="form?.get('sumasegurada')?.hasError('required')">
+                El campo Suma del Seguro es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Prima</mat-label>
+            <input matInput formControlName="prima" (input)="onInput($event)"maxlength="10" />
+            <mat-error *ngIf="form?.get('prima')?.hasError('required')">
+                El campo Prima es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Edad minima</mat-label>
+            <input matInput formControlName="edadmin" (input)="onInputnumbsimple($event)"maxlength="2" />
+            <mat-error *ngIf="form?.get('edadmin')?.hasError('required')">
+                El campo Edad minima es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Edad maxima</mat-label>
+            <input matInput formControlName="edadmax" (input)="onInputnumbsimple($event)" maxlength="2"/>
+            <mat-error *ngIf="form?.get('edadmax')?.hasError('required')">
+                El campo Edad maxima es requerido
+            </mat-error>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close type="button">CANCELAR</button>
+        <button color="purple" class="bg-accent text-accent-contrast" mat-button type="submit"
+            [disabled]="!form.valid">GUARDAR</button>
+    </mat-dialog-actions>
+</form>

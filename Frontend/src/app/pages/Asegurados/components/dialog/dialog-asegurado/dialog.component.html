@@ -1,0 +1,74 @@
+<div class="overflow-hidden flex-auto titulo end">
+    <div class="dialog-header">
+        <button mat-dialog-close mat-icon-button >
+            <mat-icon class="mb-5"><i class="bi bi-x-lg fs-5" ></i></mat-icon>
+        </button>
+    </div>
+</div>
+<form (ngSubmit)="GuardarAsegurado()" [formGroup]="form">
+    <div mat-dialog-title class="flex justify-center">
+        <h2 class="headline mr-5 mt-3 text-xl  text-accent">
+            <strong>
+                {{data.mode == 'actualizar' ? 'ACTUALIZAR ASEGURADO': 'REGISTRAR ASEGURADO'}}
+            </strong>
+        </h2>
+    </div>
+    <mat-dialog-content>
+        <mat-form-field *ngIf="!ocultar" class="w-full mb-4" [hidden]="ocultar">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id" readonly="true" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full mb-4">
+            <mat-label>Cedula</mat-label>
+            <input matInput formControlName="cedula" maxlength="10" (input)="onInput($event)" />
+            <mat-error *ngIf="form?.get('cedula')?.hasError('required')">
+                El campo Cedula es requerido
+            </mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Nombre Completo</mat-label>
+            <input matInput formControlName="nmbrcompleto" maxlength="75" />
+            <mat-error *ngIf="form?.get('nmbrcompleto')?.hasError('required')">
+                El campo Nombre es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono" maxlength="10" (input)="onInput($event)" />
+            <mat-error *ngIf="form?.get('telefono')?.hasError('required')">
+                El campo Telefono es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Edad </mat-label>
+            <input matInput formControlName="edad" maxlength="2" (input)="onInput($event)" />
+            <mat-error *ngIf="form?.get('edad')?.hasError('required')">
+                El campo Edad es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full" [hidden]="ocultarseg">
+            <mat-label>Seguros Disponibles</mat-label>
+        
+            <mat-select formControlName="segdisponibles">
+                <mat-option *ngFor="let estado of getseguros" [value]="estado.value">
+                  {{ estado.label }}
+                </mat-option>
+              </mat-select>
+          
+            <mat-error *ngIf="form?.get('segdisponibles')?.hasError('required')">
+                El campo Sesión Activa es requerido
+            </mat-error>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close type="button">CANCELAR</button>
+        <button color="purple" class="bg-accent text-accent-contrast" mat-button type="submit"
+            [disabled]="!form.valid">GUARDAR</button>
+    </mat-dialog-actions>
+</form>

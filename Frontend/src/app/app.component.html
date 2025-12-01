@@ -1,0 +1,35 @@
+<mat-sidenav-container *ngIf="showSidenav" class="example-container">
+  <mat-sidenav #sidenav [mode]="mode.value || 'over'">
+    <div class="background">
+      <div class="divh2">
+        <h1
+          class="headline  text-2xl font-bold bg-red-100     text-primary-contrast m-0 flex items-center w-full max-w-xxxl mr-6">
+          <span class="mr-4">Aseguradora</span>
+          <i class=" bi bi-clipboard2-pulse"></i>
+        </h1>
+        <button class="position-absolute  end-0 translate-middle-y mx-2
+                  " type="button" (click)="sidenav.toggle()">
+          <span class="bi bi-back"></span>
+        </button>
+      </div>
+    </div>
+    <div class="contenedor-item">
+      <div>
+        <app-itemsidenav *ngFor="let item of items;" [item]="item"></app-itemsidenav>
+      </div>
+    </div>
+    
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <nav id="navb" class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <button class="boton" type="button" (click)="sidenav.toggle()">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<router-outlet *ngIf="!showSidenav"></router-outlet>

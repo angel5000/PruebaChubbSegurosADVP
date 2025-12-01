@@ -1,0 +1,234 @@
+[
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AseguradosController",
+    "Method": "AseguradoporId",
+    "RelativePath": "api/Asegurados/AseguradoID/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AseguradosController",
+    "Method": "ListCliente",
+    "RelativePath": "api/Asegurados/ConsultaAsegurados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AseguradosController",
+    "Method": "EditarAsegurado",
+    "RelativePath": "api/Asegurados/EditarAsegurado/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "requestDTO",
+        "Type": "Chubbseg.Application.DTOS.AseguradosRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AseguradosController",
+    "Method": "EliminarAsegurado",
+    "RelativePath": "api/Asegurados/EliminarAsegurado/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AseguradosController",
+    "Method": "RegistrarAsegurado",
+    "RelativePath": "api/Asegurados/RegistrarAsegurado",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestDTO",
+        "Type": "Chubbseg.Application.DTOS.AseguradosRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AseguramientosController",
+    "Method": "ConsultaAseguramientos",
+    "RelativePath": "api/Aseguramientos/ConsultaAseguramientos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AseguramientosController",
+    "Method": "EliminarAseguramiento",
+    "RelativePath": "api/Aseguramientos/EliminarAseguramiento/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AseguramientosController",
+    "Method": "RegistrarSeguramiento",
+    "RelativePath": "api/Aseguramientos/RegistrarAseguramiento",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestDTO",
+        "Type": "Chubbseg.Application.DTOS.AseguramientoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AseguramientosController",
+    "Method": "RegistrarSeguramientomasivo",
+    "RelativePath": "api/Aseguramientos/RegistrarAseguramientoMasivo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "archivo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.SegurosController",
+    "Method": "ConsultaSeguros",
+    "RelativePath": "api/Seguros/ConsultaSeguros",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.SegurosController",
+    "Method": "EditarSeguro",
+    "RelativePath": "api/Seguros/EditarSeguro/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "requestDTO",
+        "Type": "Chubbseg.Application.DTOS.SegurosRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.SegurosController",
+    "Method": "EliminarSeguro",
+    "RelativePath": "api/Seguros/EliminarSeguro/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.SegurosController",
+    "Method": "RegistrarSeguro",
+    "RelativePath": "api/Seguros/RegistrarSeguro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestDTO",
+        "Type": "Chubbseg.Application.DTOS.SegurosRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.SegurosController",
+    "Method": "SegurosDisponibles",
+    "RelativePath": "api/Seguros/SegurosDisponibles/{edad}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "edad",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.SegurosController",
+    "Method": "SegurosPorid",
+    "RelativePath": "api/Seguros/SegurosID/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
