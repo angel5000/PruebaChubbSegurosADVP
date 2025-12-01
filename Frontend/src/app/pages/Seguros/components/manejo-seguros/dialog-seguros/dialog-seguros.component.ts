@@ -42,9 +42,27 @@ export class DialogSegurosComponent implements OnInit {
       prima: ['', [Validators.required]],
       edadmin: ['', [Validators.required]],
       edadmax: ['', [Validators.required]]
-
+     
+     
+    }, {
+      validators: this.validarRangoEdad
     });
   }
+
+  validarRangoEdad(form: FormGroup) {
+    const min = Number(form.get('edadmin')?.value);
+    const max = Number(form.get('edadmax')?.value);
+  
+    if (min !== null && max !== null && max < min) {
+      return { rangoInvalido: true };
+    }
+  
+    return null;
+  }
+
+  
+  
+
   onInputnumbsimple(event: Event): void {
   const input = event.target as HTMLInputElement;
   let value = input.value.replace(/[^0-9]/g, '')
@@ -114,6 +132,7 @@ export class DialogSegurosComponent implements OnInit {
               control.markAsPristine();
               control.markAsUntouched();
             });
+            this._dialogRef.close();
           }
           else {
             this.toastr.warning(response.message, 'Advertencia');

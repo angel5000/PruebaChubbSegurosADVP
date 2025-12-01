@@ -36,7 +36,7 @@
             <mat-label>CodigoSeguro</mat-label>
             <input matInput formControlName="codseguro" maxlength="10">
             <mat-error *ngIf="form?.get('codseguro')?.hasError('required')">
-                El campo Codigo Seguro  es requerido
+                El campo Codigo Seguro es requerido
             </mat-error>
         </mat-form-field>
 
@@ -50,7 +50,7 @@
 
         <mat-form-field class="w-full">
             <mat-label>Prima</mat-label>
-            <input matInput formControlName="prima" (input)="onInput($event)"maxlength="10" />
+            <input matInput formControlName="prima" (input)="onInput($event)" maxlength="10" />
             <mat-error *ngIf="form?.get('prima')?.hasError('required')">
                 El campo Prima es requerido
             </mat-error>
@@ -58,7 +58,7 @@
 
         <mat-form-field class="w-full">
             <mat-label>Edad minima</mat-label>
-            <input matInput formControlName="edadmin" (input)="onInputnumbsimple($event)"maxlength="2" />
+            <input matInput formControlName="edadmin" (input)="onInputnumbsimple($event)" maxlength="2" />
             <mat-error *ngIf="form?.get('edadmin')?.hasError('required')">
                 El campo Edad minima es requerido
             </mat-error>
@@ -66,9 +66,12 @@
 
         <mat-form-field class="w-full">
             <mat-label>Edad maxima</mat-label>
-            <input matInput formControlName="edadmax" (input)="onInputnumbsimple($event)" maxlength="2"/>
+            <input matInput formControlName="edadmax" (input)="onInputnumbsimple($event)" maxlength="2" />
             <mat-error *ngIf="form?.get('edadmax')?.hasError('required')">
                 El campo Edad maxima es requerido
+            </mat-error>
+            <mat-error *ngIf="form?.errors?.['rangoInvalido']">
+                La edad máxima no puede ser menor que la edad mínima
             </mat-error>
         </mat-form-field>
     </mat-dialog-content>
