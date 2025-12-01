@@ -29,3 +29,4 @@ C:\Users\angeldvvp\Desktop\prueba_chubb_AngelVergaraParedes_Viamatica\Backend_Ch
 C:\Users\angeldvvp\Desktop\prueba_chubb_AngelVergaraParedes_Viamatica\Backend_ChubbSeg\Chubbseg.Infrastructure\obj\Debug\net8.0\refint\Chubbseg.Infrastructure.dll
 C:\Users\angeldvvp\Desktop\prueba_chubb_AngelVergaraParedes_Viamatica\Backend_ChubbSeg\Chubbseg.Infrastructure\obj\Debug\net8.0\Chubbseg.Infrastructure.pdb
 C:\Users\angeldvvp\Desktop\prueba_chubb_AngelVergaraParedes_Viamatica\Backend_ChubbSeg\Chubbseg.Infrastructure\obj\Debug\net8.0\ref\Chubbseg.Infrastructure.dll
+C:\Users\angeldvvp\Desktop\prueba_chubb_AngelVergaraParedes_Viamatica\Backend_ChubbSeg\Chubbseg.Infrastructure\obj\Debug\net8.0\Chubbseg.Infrastructure.sourcelink.json

@@ -1,0 +1,79 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 223,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Program.cs",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\Program.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Program.cs",
+              "RelativeToolTip": "Backend_ChubbSeg\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T07:41:24.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\appsettings.json",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\appsettings.json",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\appsettings.json",
+              "RelativeToolTip": "Backend_ChubbSeg\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-01T07:40:21.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\appsettings.Development.json",
+              "RelativeToolTip": "Backend_ChubbSeg\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-01T07:39:44.144Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

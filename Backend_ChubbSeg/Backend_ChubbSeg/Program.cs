@@ -24,8 +24,8 @@ public class Program
         {
             option.AddPolicy(name: Cors, builder => { builder.WithOrigins("http://localhost:4200"); builder.AllowAnyMethod(); builder.AllowAnyHeader(); });
         });
-      
 
+        builder.WebHost.UseKestrel();
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
