@@ -15,6 +15,7 @@ export class DialogComponent implements OnInit {
   ocultar: boolean = false;
   ocultarseg: boolean = false;
   getseguros: any[] = [];
+isLoading: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, private _fb: FormBuilder,
     public _dialogRef: MatDialogRef<DialogComponent>,
@@ -58,6 +59,7 @@ export class DialogComponent implements OnInit {
   }
 
   GuardarAsegurado() {
+    this.isLoading = true
     if (this.data.accion == 'edit') {
       const form = this.form.getRawValue();
       const idseg = form.id;
@@ -76,12 +78,15 @@ export class DialogComponent implements OnInit {
             this.form.markAsPristine();
             this.form.markAsUntouched();
             this._dialogRef.close(response.isSucces);
+            this.isLoading = false
           }
           else {
+            this.isLoading = false
             this.toastr.warning(response.message, 'Advertencia');
           }
         },
         error: (err) => {
+          this.isLoading = false
           this.toastr.error(err, 'Error');
 
         }
@@ -110,13 +115,16 @@ export class DialogComponent implements OnInit {
             this.form.reset({}, { emitEvent: false });
             this.form.markAsPristine();
             this.form.markAsUntouched();
+            this.isLoading = false
             this._dialogRef.close(response.isSucces);
           }
           else {
+            this.isLoading = false
             this.toastr.warning(response.message, 'Advertencia');
           }
         },
         error: (err) => {
+          this.isLoading = false
           this.toastr.error(err, 'Error');
 
         }

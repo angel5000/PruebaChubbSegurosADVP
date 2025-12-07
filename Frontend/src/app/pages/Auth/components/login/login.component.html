@@ -1,0 +1,55 @@
+<div class="w-full h-full login-wrapper header-card-animated ">
+  
+    <div class="login-card shadow-effect">
+      
+      <div class="login-banner">
+         <img src="assets/img/demo/banner.svg" alt="Illustration" class="banner-img">
+         <div class="banner-overlay">
+           </div>
+      </div>
+  
+      <div class="login-form-container">
+        
+        <div class="form-header">
+          <h2>Iniciar Sesión</h2>
+          <h3>Bienvenido</h3>
+        </div>
+  
+        <form [formGroup]="form" class="login-form" (ngSubmit)="Login()">
+          
+          <mat-form-field appearance="fill" class="rounded-input w-full">
+            <mat-label>Credenciales</mat-label>
+            <input matInput formControlName="credenciales" placeholder="Usuario o Correo">
+            <mat-icon matSuffix class="text-gray-400">person</mat-icon>
+            <mat-error *ngIf="form.get('credenciales')?.hasError('required')">
+              Requerido
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="rounded-input w-full">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="contrasena" [type]="inputType">
+            <mat-error *ngIf="form.get('password')?.hasError('required')">
+               Requerido
+            </mat-error>
+            <button (click)="toggleVisibility()" mat-icon-button matSuffix type="button">
+              <mat-icon>{{ visible ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </button>
+          </mat-form-field>
+  
+          <div class="action-area">
+              <button type="submit" color="primary" mat-flat-button class="btn-login">
+                INGRESAR
+              </button>
+          </div>
+  
+        </form>
+  
+        <div class="login-footer">
+           <p>© 2025 Chubb Seguros</p>
+        </div>
+  
+      </div>
+    </div>
+  
+  </div>

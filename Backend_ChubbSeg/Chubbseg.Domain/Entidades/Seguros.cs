@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chubbseg.Domain.Entidades
 {
-    public class Seguros
+    public class Seguros : Auditoria
     {
         public int IDSEGURO { get; set; }
         public string NMBRSEGURO { get; set; }=null!;

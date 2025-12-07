@@ -51,14 +51,17 @@ export class SegurosService {
       }));
   }
 
-  EliminarSeguro(id: Number): Observable<BaseResponse> {
+  EliminarSeguro(id: Number, request: SegurosRequest): Observable<BaseResponse> {
     const requestURL = `${env.apiseguros}${end.ELIMINARSEGURO}${id}`;
-    return this.http.delete(requestURL).pipe(map((res) => res),
-      catchError((error) => {
-        this.showError(error);
-        return of(error);  
-      }));
 
+    return this.http.request('DELETE', requestURL, { body: request })
+      .pipe(
+        map(res => res as BaseResponse),
+        catchError(err => {
+          this.showError(err);
+          return of(err);
+        })
+      );
   }
 
 }

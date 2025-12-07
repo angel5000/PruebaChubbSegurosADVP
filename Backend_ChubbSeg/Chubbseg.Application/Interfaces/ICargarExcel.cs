@@ -11,5 +11,6 @@ namespace Chubbseg.Application.Interfaces
     public interface ICargarExcel
     {
         Task<BaseResponse<bool>> ProcesarArchivo<T> (IFormFile archivo) where T : class, new();
+        Task<BaseResponse<bool>> RegistMasvSeguros<T>(IFormFile archivo, HttpContext context) where T : class, new();
     }
 }

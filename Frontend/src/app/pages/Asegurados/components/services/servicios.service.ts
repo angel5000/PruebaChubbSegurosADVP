@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
@@ -10,7 +10,7 @@ import { Asegurados, AseguradosRequest, Aseguramiento } from '../../Model/asegur
   providedIn: 'root'
 })
 export class AseguradosService {
-
+  
   constructor(private http: HttpClient,private toastr: ToastrService) { }
 
   showSuccess(mensaje: string) {
@@ -21,15 +21,27 @@ export class AseguradosService {
     this.toastr.error(mensaje, 'Error');
   }
 
-  Obtenerdatos(): Observable<BaseResponse[]> {
-    return this.http.get<any>(env.apiseguros+end.CONSULTAASEGURAMIENTO).pipe(
-      map((res) => res), 
-      catchError((error) => {
-        this.toastr.error('Error al obtener los seguros');
-        return throwError(() => error);
-      })
-    );
+
+  Obtenerdatos(): Observable<BaseResponse> {
+    const token = localStorage.getItem("token")?.replace(/"/g, '');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.get<BaseResponse>(env.apiseguros + end.CONSULTAASEGURAMIENTO, { headers })
+      .pipe(
+        map(res => res),
+        catchError(error => {
+
+          if(error.status===401||error.status===403){
+            this.toastr.error('Acceso no Autorizado');
+          }else{
+            this.toastr.error('Error al obtener los seguros');
+          }
+          return throwError(() => error);
+        })
+      );
   }
+  
 
   ObtenerSegdisponibles(edad:number): Observable<BaseResponse> {
     return this.http.get<any>(`${env.apiseguros}${end.SEGUROSDISPONIBLES}${edad}`).pipe(

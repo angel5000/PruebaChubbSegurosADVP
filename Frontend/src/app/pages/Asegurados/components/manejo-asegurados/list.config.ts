@@ -125,7 +125,7 @@ function getTableColumns() {
     {
       label: "Fecha de Contrato",
       property: "fechacontrataseguro",
-      type: "date",
+      type: "text",
       csslabel: ["font-bold", "text-sm"],
       cssProperty: ["font-semibold", "text-sm", "text-left"],
       sticky: false,

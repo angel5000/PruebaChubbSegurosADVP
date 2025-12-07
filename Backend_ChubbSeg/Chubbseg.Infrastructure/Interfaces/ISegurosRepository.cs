@@ -1,4 +1,5 @@
 ﻿using Chubbseg.Domain.Entidades;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace Chubbseg.Infrastructure.Interfaces
     {
         Task<List<Seguros>> GetAllAsync();
         Task<List<Seguros>> GetSelectlistAsync(int value);
+        Task<Aseguramiento> GetSelectASegAsync(int value);
         Task<Seguros> GetByIdAsync(int id);
-        Task<int> CreateAsync(Seguros seguro);
-        Task<int> UpdateAsync(int id,Seguros seguro);
-        Task<int> DeleteAsync(int id);
+        Task<int> CreateAsync(Seguros seguro, HttpContext context);
+        Task<int> UpdateAsync(int id,Seguros seguro, HttpContext context);
+        Task<int> DeleteAsync(int id, Seguros seguro, HttpContext context);
     }
 }

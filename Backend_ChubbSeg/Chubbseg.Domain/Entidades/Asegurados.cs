@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chubbseg.Domain.Entidades
 {
-    public class Asegurados
+    public class Asegurados:Auditoria
     {
         public int IDASEGURADOS { get; set; }
         public string CEDULA { get; set; } = null!;

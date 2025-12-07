@@ -1,6 +1,7 @@
 ﻿using Chubbseg.Application.DTOS;
 using Chubbseg.Application.Interfaces;
 using Chubbseg.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -19,6 +20,8 @@ namespace Backend_ChubbSeg.Controllers
             CARGAexcel = cARGAexcel;
         }
 
+        [Authorize]
+        [Authorize(Roles = "100")]
         [HttpGet("ConsultaAseguramientos")]
         public async Task<IActionResult> ConsultaAseguramientos()
         {
@@ -27,6 +30,8 @@ namespace Backend_ChubbSeg.Controllers
             return Ok(response);
         }
 
+        [Authorize]
+        [Authorize(Roles = "100")]
         [HttpPost("RegistrarAseguramiento")]
         public async Task<IActionResult> RegistrarSeguramiento([FromBody] AseguramientoRequestDTO requestDTO)
         {
@@ -35,6 +40,8 @@ namespace Backend_ChubbSeg.Controllers
             return Ok(response);
         }
 
+        [Authorize]
+        [Authorize(Roles = "100")]
         [HttpPost("RegistrarAseguramientoMasivo")]
         [Consumes("multipart/form-data")]
   
@@ -45,6 +52,8 @@ namespace Backend_ChubbSeg.Controllers
             return Ok(response);
         }
 
+        [Authorize]
+        [Authorize(Roles = "100")]
         [HttpDelete("EliminarAseguramiento/{Id:int}")]
         public async Task<IActionResult> EliminarAseguramiento(int Id)
         {

@@ -1,6 +1,8 @@
 
 export const endpoint = {
-   
+   /*--------------------------*/
+   AUTH:'Login/IniciarSesion',
+   /*---------------------------------*/
     CONSULTASEGUROS: 'Seguros/ConsultaSeguros',
     CONSULTASEGUROSID: 'Seguros/SegurosID/',
     REGISTRARASEGURO: 'Seguros/RegistrarSeguro',

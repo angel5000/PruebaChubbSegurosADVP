@@ -8,6 +8,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { ListTableComponent } from '../../../shared/components/Reusables/list-table/list-table.component';
 import { DialogSegurosComponent } from './manejo-seguros/dialog-seguros/dialog-seguros.component';
 import { BuscadorComponent } from '../../../shared/components/Reusables/buscador/buscador.component';
+import { SubirArchivosComponent } from '../../../shared/components/Reusables/subir-archivos/subir-archivos.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { BuscadorComponent } from '../../../shared/components/Reusables/buscador
     ToastrModule,
     FormsModule,
     BuscadorComponent,
-    ReplacePointWithCommaPipe
+    ReplacePointWithCommaPipe,
+    SubirArchivosComponent
 ]
 })
 export class SegurosModule { }

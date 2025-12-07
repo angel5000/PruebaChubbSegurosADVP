@@ -1,99 +1,205 @@
-:host {
-    bottom: 0;
-    display: block;
-    width: 100%;
-    z-index: var(--footer-z-index);
-  }
-
-  .footer {
-    background: var(--footer-background, #2c3e50); /* Fondo por defecto */
-    color: var(--footer-color, #ecf0f1); /* Color de texto por defecto */
-    height: auto; /* Permitir que el footer se ajuste al contenido */
-    padding: 10px 20px; /* Padding ajustado */
-    position: relative;
-    bottom:0 ;
-    margin: 0;
-    z-index: var(--footer-z-index);
-    text-align: center;
-  }
-
-  .footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-.size
-{
-  place-items: center;
-    width: 90%;
-    height: 100%;
-
-    padding-bottom: 1%;
-}
-.itemslieal{
+/* --- Layout General --- */
+.dashboard-wrapper {
   display: flex;
-justify-content:space-between;
-
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  background-color: #f8f9fa; /* Fondo gris muy suave para que resalte el blanco */
 }
 
-.sizecard
-{
-  overflow-y: auto;
-  padding-bottom: 5%;
-    width: 85%;
-    place-items: center;
-    height: 100%;
-    max-height: 100%;
-    bottom: 0;
-  margin-left: 8%;
-  margin-top: 2%;
-  box-shadow:rgba(0, 0, 0, 0.04) 15px 5px 11px;
-}
-.sizeborder{
-  overflow-y: auto;
-    width: 98%;
-max-width: 100%;
-  max-height: 100%;
-   padding-bottom: 2%;
-   margin-bottom: 1%;
-margin-top: 4%;
-
-
-}
-.items{
-  max-width: 100%;
-  place-items: end;
-  height: 50%;
+.dashboard-container {
+  width: 90%;
+  max-width: 1200px; /* Ancho máximo para que no se estire demasiado */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Espacio entre la cabecera azul y la tabla blanca */
 }
 
-
-.divtb{
-  place-items: center;
-    margin-top: 0%;
-    
-    overflow-y: auto;
-     /* Asegura que esté encima de otros elementos */
-  
+/* --- 1. Header Card (Azul) --- */
+.header-card {
+  width: 100%;
+  background-color: #1b395a; /* Azul fuerte tipo referencia */
+  background: linear-gradient(135deg, #191a1a 0%, #808891 100%); /* Degradado sutil */
+  border-radius: 12px;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-span{
+
+/* Sección del buscador (ocupa todo el ancho arriba) */
+.search-section {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 5px 10px; /* Ajuste interno para el input */
+}
+
+/* Sección inferior (Título a izq, Botones a der) */
+.title-action-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Para móviles */
+  gap: 15px;
+}
+
+.actions-block {
+  display: flex;
+  align-items: flex-end; /* Alinea los botones abajo */
+  gap: 20px;
+}
+
+.upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.upload-label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Botón verde personalizado */
+.btn-custom-green {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+  height: 45px; /* Altura fija para alinear con el subir archivo */
+}
+.btn-custom-green:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* --- 2. Table Card (Efecto Cristal) --- */
+.table-card {
+  width: 100%; /* Un poco más angosta que la azul para efecto estético, o poner 100% */
+  min-height: 400px;
+  padding: 20px;
+  margin-top: -10px; /* Opcional: si quieres que se vea muy pegada */
+}
+
+/* CLASE MAGICA: Efecto Cristal Blanco */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.95); /* Blanco casi sólido */
+  backdrop-filter: blur(10px); /* Desenfoque de lo que haya atrás */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Borde sutil */
+  border-radius: 12px;
+}
+
+/* Sombreado elegante (Elevation) */
+.elevation-shadow {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* --- Footer --- */
+.footer {
+  background: #101011;
   color: #ecf0f1;
-  place-items: start;
-
+  padding: 15px;
+  text-align: center;
+  margin-top: 40px;
 }
-  .footer-text {
-    margin: 0;
-    font-size: 14px;
-    font-weight: normal;
-    color: inherit;
-  }
 
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .footer {
-      padding: 10px;
-    }
-
-    .footer-text {
-      font-size: 12px;
-    }
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .title-action-section {
+    flex-direction: column;
+    align-items: flex-start;
   }
+  .actions-block {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+  .btn-custom-green {
+    justify-content: center;
+  }
+}
+
+
+/* --- Animación del Fondo Oscuro --- */
+
+/* Definimos la secuencia de movimiento */
+@keyframes subtle-shift {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  75% {
+    background-position: 75% 50%;
+}
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+.header-card-animated {
+  /* 1. Definimos el gradiente.
+     Usamos tonos oscuros (carbón, pizarra, azul noche muy oscuro)
+     para que combine con la imagen que mostraste. */
+  background: linear-gradient(
+      270deg,
+      #222324, /* Negro suave */
+      #39393a, /* Gris medio oscuro */
+      #070808, /* Azul noche desaturado para profundidad */
+      #1b1b1b  /* Vuelta al negro suave */
+  );
+
+  /* 2. Hacemos el fondo mucho más grande que el contenedor
+     para poder moverlo */
+  background-size: 400% 400%;
+
+  /* 3. Aplicamos la animación:
+     Nombre: subtle-shift
+     Duración: 25s (muy lento para que sea elegante)
+     Tipo: ease (suave al inicio y final)
+     Repetición: infinite (bucle) */
+  animation: subtle-shift 20s ease infinite;
+
+  /* --- Estilos base del contenedor (Bordes, Sombra, Texto) --- */
+  border-radius: 12px;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Sombra un poco más oscura para resaltar sobre fondos claros */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  /* Un borde sutil para definirlo mejor si el fondo de la página es oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Aseguramos que los elementos internos se vean bien */
+.header-card-animated .title-block h2 {
+  color: #ffffff !important; /* Forzar blanco puro */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Pequeña sombra al texto para leerse mejor */
+}
+
+/* Ajuste del label "REGISTRO MASIVO..." para que se lea bien */
+.upload-label {
+color: rgba(255, 255, 255, 0.8);
+}

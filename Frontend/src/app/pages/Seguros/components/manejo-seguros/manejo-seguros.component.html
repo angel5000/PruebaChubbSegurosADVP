@@ -1,49 +1,54 @@
-<div class="card w-full h-full flex flex-col mb-5 sizecard">
-    <div class="px-2 pt-1  bg-primary h-full  flex-auto rounded sizeborder">
-        <div class="flex justify-between">
+<div class="dashboard-wrapper">
+  
+    <div class="dashboard-container">
+
+        <div class="header-card-animated mb-4">
+    
+          <div class="search-section bg-white rounded p-2">
             <app-buscador class="w-100 mt-4" [searchOptions]="component.searchOptions" (search)="search($event)">
             </app-buscador>
-        </div>
-        <h2
-            class="headline   text-2xl font-bold bg-red-100     text-primary-contrast m-0 flex items-center w-full max-w-xxl mr-6">
-            <span class="ml-4 block mt-3">CONTROL DE SEGUROS</span>
-        </h2>
-        <div class="itemslieal">
-            <div class="mt-5">
-                <button matTooltip="Registrar usuario" type="button" class="btn btn-success mx-5 sizebt"
-                    (click)="openDialogRegister(true)">
-                    Registrar Seguro
-                    <i class="bi bi-person-add"></i>
-                </button>
+          </div>
+  
+          <div class="title-action-section flex justify-between items-end mt-4">
+            <div class="title-block">
+              <h2 class="text-white font-bold text-2xl m-0">
+                CONTROL DE SEGUROS
+              </h2>
             </div>
-
+  
+            <div class="actions-block flex gap-4 items-end">
+              <button matTooltip="Registrar usuario" type="button" class="btn-custom-green" (click)="openDialogRegister(true)">
+                Registrar Seguro
+                <i class="bi bi-person-add ml-2"></i>
+              </button>
+  
+              <div class="upload-wrapper">
+                <app-subir-archivos></app-subir-archivos>
+              </div>
+          </div>
+  
         </div>
-        <div class=" justify-end w-full  itemsspan">
-
-            <div class="flex items-center justify-end w-full items">
-            </div>
+      </div>
+  
+      <div class="table-card glass-effect elevation-shadow">
+        <div class="table-responsive">
+          <app-list-table 
+              [service]="seguroserv" 
+              [colums]="component.tableColumns"
+              [getInputs]="component.getInputs" 
+              (rowClick)="rowClick($event)" 
+              [filtros]="component.filters">
+          </app-list-table>
         </div>
+      </div>
+  
     </div>
-
-    <div class="mt-14 pt-0 overflow-hidden flex divtb ">
-        <mat-drawer-container class="bg-transparent flex-auto flex">
-            <mat-drawer-content class="p-gutter pt-0 flex-auto flex items-start">
-                <div class="card h-full overflow-hidden flex-auto">
-                    <app-list-table [service]="seguroserv" [colums]="component.tableColumns"
-                        [getInputs]="component.getInputs" (rowClick)="rowClick($event)" [filtros]="component.filters">
-
-                    </app-list-table>
-                </div>
-            </mat-drawer-content>
-        </mat-drawer-container>
-    </div>
-
-</div>
-
-<div class="footer">
-    <div fxLayoutAlign="center center" class="footer-content">
-        <div class="footer-text">
-            PRUEBA CHUBB SEGUROS
-        </div>
-    </div>
-</div>
+  </div>
+  
+  <div class="footer">
+      <div fxLayoutAlign="center center" class="footer-content">
+          <div class="footer-text">
+              PRUEBA CHUBB SEGUROS
+          </div>
+      </div>
+  </div>

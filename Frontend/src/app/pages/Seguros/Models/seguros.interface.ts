@@ -18,10 +18,16 @@ export interface SegurosResponseID {
   edadmax: number;
 }
 export interface SegurosRequest {
-  nmbrseguro: string;
-  codseguro: string;
-  sumasegurada: number;
-  prima: number;
-  edadmin: number;
-  edadmax: number;
+  nmbrseguro?: string;
+  codseguro?: string;
+  sumasegurada?: number;
+  prima?: number;
+  edadmin?: number;
+  edadmax?: number;
+  usrCreacion?: string,
+  usrActualizacion?: string,
+  fechaActualizacion?: Date
+  usuarioIP?: string,
+  estado?: number
+  estadoDt?:string
 }

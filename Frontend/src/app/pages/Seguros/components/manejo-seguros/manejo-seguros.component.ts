@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { RowClick } from '../../../../shared/models/RowClick.interface';
-import { SegurosResponse } from '../../Models/seguros.interface';
+import { SegurosRequest, SegurosResponse } from '../../Models/seguros.interface';
 import { SegurosService } from '../../Servicios/seguros.service';
 import { DialogSegurosComponent } from './dialog-seguros/dialog-seguros.component';
 import { ComponentSettings } from './list.config';
@@ -81,7 +81,11 @@ export class ManejoSegurosComponent implements OnInit {
 
 
   EliminarSeguro(id: number, seg: SegurosResponse) {
-
+    const request: SegurosRequest = {
+      usrActualizacion:'angel',
+      estadoDt:'Eliminado'
+    };
+    
     Swal.fire({
       title: `¿Esta seguro que desea eliminar el seguro: ${seg.nmbrseguro}? `,
       text: "Se borrara permanentemente",
@@ -96,7 +100,7 @@ export class ManejoSegurosComponent implements OnInit {
 
     }).then((result) => {
       if (result.isConfirmed) {
-        this.seguroserv.EliminarSeguro(id).subscribe({
+        this.seguroserv.EliminarSeguro(id,request).subscribe({
           next: (response) => {
             if (response.isSucces) {
               this.toastr.success(response.message, 'Éxito');

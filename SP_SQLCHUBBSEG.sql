@@ -2,21 +2,31 @@ USE chubbseguros;--usa la base datos
 
 --CREACION DE SP-----
 
+exec CONSULTASEGUROS
 CREATE PROCEDURE CONSULTASEGUROS
 AS
 BEGIN
- SET NOCOUNT ON;
- SELECT
-		IDSEGURO,
+    SET NOCOUNT ON;
+
+    SELECT
+        IDSEGURO,
         NMBRSEGURO,
         CODSEGURO,
         SUMASEGURADA,
         PRIMA,
         EDADMIN,
-        EDADMAX
-    FROM SEGUROS
-	END;
+        EDADMAX,
+        FechaCreacion,
+        USRCreacion,
+        FechaActualizacion,
+        USRActualizacion,
+		UsuarioIP,
+		Estado
+    FROM SEGUROS;
+END;
 GO
+
+
 
 CREATE PROCEDURE CONSULSEGID
 (
@@ -59,42 +69,64 @@ EXEC CONSULTAASEGURADOS;
 
 --------------
 ----------------
-
 CREATE PROCEDURE REGITSSEGUROS(
-  @NMBRSEGURO     VARCHAR(75),
-    @CODSEGURO      VARCHAR(10),
-    @SUMASEGURADA   DECIMAL(10,2),
-    @PRIMA          DECIMAL(10,2),
-    @EDADMIN        INT,
-    @EDADMAX        INT
+    @NMBRSEGURO        VARCHAR(75),
+    @CODSEGURO         VARCHAR(10),
+    @SUMASEGURADA      DECIMAL(10,2),
+    @PRIMA             DECIMAL(10,2),
+    @EDADMIN           INT,
+    @EDADMAX           INT,
+    @USRCreacion          VARCHAR(50),
+    @UsuarioIP            VARCHAR(50),
+    @Estado               INT
 )
 AS
 BEGIN
-  SET NOCOUNT OFF;
-  IF EXISTS (SELECT 1 FROM SEGUROS WHERE CODSEGURO = @CODSEGURO)
-  BEGIN
-     RAISERROR ('El código del seguro ya existe.', 16, 1);
-	RETURN -1; 
-	END
-	INSERT INTO SEGUROS
-	    (
+    SET NOCOUNT ON;
+
+    -- VALIDACIÓN: Código de seguro duplicado
+    IF EXISTS (SELECT 1 FROM SEGUROS WHERE CODSEGURO = @CODSEGURO)
+    BEGIN
+        RAISERROR ('El código del seguro ya existe.', 16, 1);
+        RETURN -1; 
+    END
+
+    -- INSERT
+    INSERT INTO SEGUROS
+    (
         NMBRSEGURO,
         CODSEGURO,
         SUMASEGURADA,
         PRIMA,
         EDADMIN,
-        EDADMAX
-    )   VALUES
+        EDADMAX,
+        FechaCreacion,
+        USRCreacion,
+        FechaActualizacion,
+        USRActualizacion,
+        UsuarioIP,
+        Estado
+    )
+    VALUES
     (
         @NMBRSEGURO,
         @CODSEGURO,
         @SUMASEGURADA,
         @PRIMA,
         @EDADMIN,
-        @EDADMAX
-     );
-	RETURN 1; 
+        @EDADMAX,
+        GETDATE(),
+        @USRCreacion,
+        NULL,
+        '',
+        @UsuarioIP,
+        @Estado
+    );
+
+    RETURN 1; 
 END;
+GO
+
 
 
 -----------------------------------
@@ -109,7 +141,10 @@ CREATE PROCEDURE EDITARSEGUROS
     @SUMASEGURADA   DECIMAL(10,2),
     @PRIMA          DECIMAL(10,2),
     @EDADMIN        INT,
-    @EDADMAX        INT
+    @EDADMAX        INT,
+	@USRActualizacion   VARCHAR(50),
+    @UsuarioIP      VARCHAR(50),
+    @Estado         INT
 )
 AS
 BEGIN
@@ -133,7 +168,11 @@ BEGIN
         SUMASEGURADA = @SUMASEGURADA,
         PRIMA        = @PRIMA,
         EDADMIN      = @EDADMIN,
-        EDADMAX      = @EDADMAX
+        EDADMAX      = @EDADMAX,
+		USRActualizacion=@USRActualizacion,
+		FechaActualizacion=GETDATE(),
+		UsuarioIP=@UsuarioIP,
+		Estado =@Estado
     WHERE IDSEGURO = @IDSEGURO;
 	RETURN 1; -- éxito
 END;
@@ -143,7 +182,10 @@ END;
 -------------------------------
 
 CREATE PROCEDURE ELIMINARSEGURO(
-		@IDSEGURO INT
+		@IDSEGURO INT,
+		@USRActualizacion   VARCHAR(50),
+        @UsuarioIP      VARCHAR(50),
+        @EstadoDT         VARCHAR(15)
 )
 AS 
 BEGIN
@@ -154,6 +196,34 @@ BEGIN
 	 RAISERROR('Seguro no existe para eliminar', 16, 1);
         RETURN -1;   -- Registro no encontrado
     END
+	  INSERT INTO SEGUROS_HISTORICO (
+        IDSEGURO,
+        NMBRSEGURO,
+        CODSEGURO,
+        SUMASEGURADA,
+        PRIMA,
+        EDADMIN,
+        EDADMAX,
+        EstadoDT,
+        FechaModElim,
+        UsuarioIP,
+        USRActualizacion
+    )
+    SELECT 
+        IDSEGURO,
+        NMBRSEGURO,
+        CODSEGURO,
+        SUMASEGURADA,
+        PRIMA,
+        EDADMIN,
+        EDADMAX,
+        @EstadoDT,
+        GETDATE(),   
+		@UsuarioIP,
+        @USRActualizacion
+    FROM SEGUROS
+    WHERE IDSEGURO = @IDSEGURO;
+
 	DELETE FROM SEGUROS
 	WHERE IDSEGURO =@IDSEGURO;
 	
@@ -274,7 +344,7 @@ END;
 ------ASEGURAMIENTOS-------
 ----------------------------
 
-
+exec CONSULTASEGURAMIENTO
 CREATE PROCEDURE CONSULTASEGURAMIENTO
 AS
 BEGIN
@@ -309,10 +379,11 @@ BEGIN
             ELSE S.PRIMA
         END AS PRIMA,
 
-        CASE 
-            WHEN U.FECHACONTRATASEGURO IS NULL THEN '1990-01-01'
-			  ELSE U.FECHACONTRATASEGURO
-        END AS FECHACONTRATASEGURO
+       CASE 
+			WHEN U.FECHACONTRATASEGURO IS NULL THEN 'N/A'
+			ELSE CONVERT(VARCHAR(10), U.FECHACONTRATASEGURO, 120)
+			END AS FECHACONTRATASEGURO
+
 
     FROM 
       ASEGURADOS A
@@ -418,3 +489,144 @@ BEGIN
 	RETURN 1;
 
 END;
+
+
+
+CREATE PROCEDURE ConsulAseguradosPorSeguros
+    @IDSEGURO INT = NULL 
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Si no se envía IDSEGURO, mostrar cantidad de asegurados por seguro
+    IF @IDSEGURO IS NULL
+    BEGIN
+        SELECT 
+            s.IDSEGURO,
+            s.NMBRSEGURO,
+            s.CODSEGURO,
+            COUNT(u.CEDULAFK) AS CantidadAsegurados
+        FROM SEGUROS s
+        LEFT JOIN USRASEGURADOS u
+            ON s.CODSEGURO = u.CODSEGUROFK
+        WHERE s.Estado = 1
+        GROUP BY s.IDSEGURO, s.NMBRSEGURO, s.CODSEGURO
+        ORDER BY s.NMBRSEGURO;
+    END
+    ELSE
+    BEGIN
+        -- Mostrar la lista de asegurados de un seguro específico
+        SELECT 
+            a.IDASEGURADOS,
+            a.CEDULA,
+            a.NMBRCOMPLETO,
+            a.TELEFONO,
+            a.EDAD,
+            u.FECHACONTRATASEGURO
+        FROM ASEGURADOS a
+        INNER JOIN USRASEGURADOS u
+            ON a.CEDULA = u.CEDULAFK
+        INNER JOIN SEGUROS s
+            ON s.CODSEGURO = u.CODSEGUROFK
+        WHERE s.IDSEGURO = @IDSEGURO
+            AND a.Estado = 1
+            AND s.Estado = 1
+            AND u.Estado = 1
+        ORDER BY a.NMBRCOMPLETO;
+    END
+END
+GO
+
+EXEC ConsulAseguradosPorSeguros @IDSEGURO = 5;
+
+
+
+
+
+
+----------------------------------------
+------------LOGIN---------------
+----------------------------------------
+
+CREATE PROCEDURE LoginUsuario
+    @Credenciales       VARCHAR(100), 
+    @Contraseña         NVARCHAR(200)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE 
+        @IdUsuario INT,
+        @NombreUsuario VARCHAR(50),
+        @Correo VARCHAR(100),
+        @PasswordHash VARBINARY(64),
+        @PasswordSalt VARBINARY(64),
+        @Estado INT,
+        @IdRol INT,
+        @NombreRol VARCHAR(100);
+
+    -- 1️⃣ Obtener datos del usuario
+    SELECT TOP 1
+        @IdUsuario = U.IdUsuario,
+        @NombreUsuario = U.NombreUsuario,
+        @Correo = U.Correo,
+        @PasswordHash = U.PasswordHash,
+        @PasswordSalt = U.PasswordSalt,
+        @Estado = U.Estado
+    FROM Usuarios U
+    WHERE (U.NombreUsuario = @Credenciales OR U.Correo = @Credenciales);
+
+    -- 2️⃣ Validar existencia
+    IF @IdUsuario IS NULL
+    BEGIN
+        RAISERROR('El usuario o correo no existe.', 16, 1);
+        RETURN -1;
+    END
+
+    -- 3️⃣ Validar estado activo
+    IF @Estado <> 1
+    BEGIN
+        RAISERROR('El usuario está inactivo.', 16, 1);
+        RETURN -3;
+    END
+
+    -- 4️⃣ Validar contraseña → HASH(SALT + CONTRASEÑAINGRESADA)
+    DECLARE @HashIngresado VARBINARY(64);
+    SET @HashIngresado = HASHBYTES('SHA2_512', @PasswordSalt + CONVERT(VARBINARY(200), @Contraseña));
+
+    IF @HashIngresado <> @PasswordHash
+    BEGIN
+        RAISERROR('Contraseña incorrecta.', 16, 1);
+        RETURN -2;
+    END
+
+    -- 5️⃣ Obtener Rol principal del usuario
+    SELECT TOP 1
+        @IdRol = R.IdRol,
+        @NombreRol = R.NombreRol
+    FROM UsuarioRoles UR
+        INNER JOIN Roles R ON UR.IdRol = R.IdRol
+    WHERE UR.IdUsuario = @IdUsuario
+    ORDER BY R.IdRol;  -- opcional: primer rol asignado
+
+    -- 6️⃣ Retornar los datos completos
+    SELECT 
+        @IdUsuario     AS IdUsuario,
+        @NombreUsuario AS NombreUsuario,
+        @Correo        AS Correo,
+        @IdRol         AS IdRol,
+        @NombreRol     AS NombreRol,
+        @Estado        AS Estado;
+
+    RETURN 1; -- login exitoso
+END;
+GO
+
+
+DECLARE @Resultado INT;
+
+EXEC @Resultado = LoginUsuario 
+    @Credenciales = 'admin@aseguradora.com',
+    @Contraseña = '123456';
+
+SELECT @Resultado AS Resultado;

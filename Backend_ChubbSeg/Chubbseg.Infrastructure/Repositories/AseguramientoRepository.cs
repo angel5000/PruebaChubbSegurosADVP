@@ -90,7 +90,8 @@ namespace Chubbseg.Infrastructure.Repositories
                         CEDULA = (string)reader["CEDULA"],
                         NMBRCOMPLETO = (string)reader["NMBRCOMPLETO"],
                         EDAD = (int)reader["EDAD"],
-                        FECHACONTRATASEGURO = (DateTime)reader["FECHACONTRATASEGURO"]
+                        FECHACONTRATASEGURO = (string)reader["FECHACONTRATASEGURO"] 
+
                     });
                 }
             }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { Navigationitem } from './commons/sidenav/itemsidenav/navigations';
@@ -9,6 +9,7 @@ import { Navigationitem } from './commons/sidenav/itemsidenav/navigations';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   title = ""
   showSidenav = true;
   NombreUsuario: any;
@@ -23,11 +24,27 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const hiddenRoutes = ['/login'];
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Oculta el sidenav si la URL está en las rutas ocultas
+        this.showSidenav = !hiddenRoutes.includes(this.router.url);
+      }
+    });
+    setTimeout(() => {
+      const user = (localStorage.getItem('usuario') ?? '').replace(/"/g, '');
+      this.NombreUsuario =user;
+    }, 0);
+   
   }
 
   Perfil() {
     this.router.navigate(["/perfil"]);
   }
-
+  Cerrarsesion() {
+    this.router.navigate(['/login']);
+    this.showSidenav=false
+    localStorage.clear();
+    }
 
 }

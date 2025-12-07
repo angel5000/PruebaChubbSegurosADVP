@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
+  <defs>
+    <!-- Gradiente para el fondo -->
+  <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" style="stop-color:#000000;stop-opacity:1"/>
+  <stop offset="100%" style="stop-color:#000000;stop-opacity:1"/>
+</linearGradient>
+    
+    <!-- Gradiente para el brillo -->
+    <linearGradient id="shineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0);stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:0"/>
+    </linearGradient>
+    
+    <!-- Filtro de sombra suave -->
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Filtro para la estrella -->
+    <filter id="starGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Fondo gradiente -->
+  <rect width="1200" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Partículas decorativas de fondo -->
+  <circle cx="150" cy="100" r="3" fill="white" opacity="0.3">
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="100;90;100" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="1050" cy="500" r="2.5" fill="white" opacity="0.25">
+    <animate attributeName="opacity" values="0.25;0.5;0.25" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="500;490;500" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="200" cy="450" r="2" fill="white" opacity="0.2">
+    <animate attributeName="opacity" values="0.2;0.4;0.2" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="1000" cy="150" r="3.5" fill="white" opacity="0.3">
+    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Grupo principal del logo CHUBB -->
+  <g transform="translate(600, 300)" filter="url(#softGlow)">
+    
+    <!-- Letra C -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="0s" fill="freeze"/>
+      <path d="M -380,-80 L -380,80 L -280,80 L -280,50 L -340,50 L -340,-50 L -280,-50 L -280,-80 Z" 
+            fill="white" stroke="white" stroke-width="2"/>
+      <animate attributeName="transform" type="translate" values="0,-10;0,0" dur="0.6s" begin="0s" fill="freeze"/>
+    </g>
+    
+    <!-- Letra H -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="0.15s" fill="freeze"/>
+      <path d="M -240,-80 L -240,80 L -200,80 L -200,10 L -140,10 L -140,80 L -100,80 L -100,-80 L -140,-80 L -140,-20 L -200,-20 L -200,-80 Z" 
+            fill="white" stroke="white" stroke-width="2"/>
+      <animate attributeName="transform" type="translate" values="0,-10;0,0" dur="0.6s" begin="0.15s" fill="freeze"/>
+    </g>
+    
+    <!-- Letra U -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="0.3s" fill="freeze"/>
+      <path d="M -60,-80 L -60,50 L 0,50 L 0,-80 L 40,-80 L 40,60 C 40,75 30,85 15,85 L -45,85 C -60,85 -70,75 -70,60 L -70,-80 Z" 
+            fill="white" stroke="white" stroke-width="2"/>
+      <animate attributeName="transform" type="translate" values="0,-10;0,0" dur="0.6s" begin="0.3s" fill="freeze"/>
+    </g>
+    
+    <!-- Letra B (primera) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="0.45s" fill="freeze"/>
+      <path d="M 80,-80 L 80,80 L 170,80 C 185,80 195,70 195,55 L 195,35 C 195,25 190,17 180,15 C 190,13 195,5 195,-5 L 195,-55 C 195,-70 185,-80 170,-80 Z M 120,-50 L 155,-50 L 155,-15 L 120,-15 Z M 120,15 L 155,15 L 155,50 L 120,50 Z" 
+            fill="white" stroke="white" stroke-width="2"/>
+      <animate attributeName="transform" type="translate" values="0,-10;0,0" dur="0.6s" begin="0.45s" fill="freeze"/>
+    </g>
+    
+    <!-- Letra B (segunda) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="0.6s" fill="freeze"/>
+      <path d="M 235,-80 L 235,80 L 325,80 C 340,80 350,70 350,55 L 350,35 C 350,25 345,17 335,15 C 345,13 350,5 350,-5 L 350,-55 C 350,-70 340,-80 325,-80 Z M 275,-50 L 310,-50 L 310,-15 L 275,-15 Z M 275,15 L 310,15 L 310,50 L 275,50 Z" 
+            fill="white" stroke="white" stroke-width="2"/>
+      <animate attributeName="transform" type="translate" values="0,-10;0,0" dur="0.6s" begin="0.6s" fill="freeze"/>
+    </g>
+    
+    <!-- Símbolo ® -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.4s" begin="0.8s" fill="freeze"/>
+      <circle cx="400" cy="-50" r="20" fill="none" stroke="white" stroke-width="3"/>
+      <text x="400" y="-40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
+            fill="white" text-anchor="middle">®</text>
+    </g>
+    
+    <!-- Efecto de brillo que pasa por el texto -->
+    <rect x="-450" y="-100" width="100" height="200" fill="url(#shineGradient)" opacity="0.6">
+      <animate attributeName="x" values="-450;500" dur="3s" begin="1.2s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  
+  <!-- Estrella decorativa (estilo Chubb) -->
+  <g transform="translate(1320, 710)" filter="url(#starGlow)" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.8s" begin="1s" fill="freeze"/>
+    <path d="M 0,-15 L 4,-4 L 15,-4 L 6,3 L 10,14 L 0,7 L -10,14 L -6,3 L -15,-4 L -4,-4 Z" 
+          fill="white" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="rotate" 
+                        values="0 0 0;360 0 0" dur="20s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Línea decorativa inferior -->
+  <line x1="300" y1="480" x2="900" y2="480" stroke="white" stroke-width="1" opacity="0.4">
+    <animate attributeName="opacity" values="0;0.4" dur="1s" begin="1s" fill="freeze"/>
+  </line>
+</svg>

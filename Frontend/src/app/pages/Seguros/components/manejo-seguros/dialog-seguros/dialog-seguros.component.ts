@@ -1,9 +1,11 @@
+import { getLocaleDateFormat } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { SegurosRequest } from '../../../Models/seguros.interface';
 import { SegurosService } from '../../../Servicios/seguros.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dialog-seguros',
@@ -14,10 +16,11 @@ export class DialogSegurosComponent implements OnInit {
 
   form: FormGroup
   ocultar: boolean = false;
+  isLoading: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, private _fb: FormBuilder,
     public _dialogRef: MatDialogRef<DialogSegurosComponent>,
-    private toastr: ToastrService, private seguroserv: SegurosService
+    private toastr: ToastrService, private seguroserv: SegurosService,private http: HttpClient
   ) {
     this.initForm();
     if (data.id) {
@@ -82,6 +85,8 @@ export class DialogSegurosComponent implements OnInit {
   }
 
   GuardarSeguro() {
+
+    this.isLoading = true;
     if (this.data.accion == 'edit') {
       const form = this.form.getRawValue();
       const idseg = form.id;
@@ -92,19 +97,24 @@ export class DialogSegurosComponent implements OnInit {
         prima: Number(form.prima),
         edadmin: Number(form.edadmin),
         edadmax: Number(form.edadmax),
+        usrActualizacion:'david',
+        estado:1
       };
       this.seguroserv.ActualizarSeguro(idseg, request).subscribe({
         next: (response) => {
           if (response.isSucces) {
             this.toastr.success(response.message, 'Éxito');
+            this.isLoading = false
             this._dialogRef.close();
           }
           else {
+            this.isLoading = false
             this.toastr.warning(response.message, 'Advertencia');
           }
         },
         error: (err) => {
-          this.toastr.error(err, 'Error');
+          this.isLoading = false
+          this.toastr.error(err.message);
 
         }
       });
@@ -112,6 +122,7 @@ export class DialogSegurosComponent implements OnInit {
 
     else {
       const form = this.form.value;
+      
       const request: SegurosRequest = {
         nmbrseguro: form.nmbrseguro,
         codseguro: form.codseguro,
@@ -119,7 +130,10 @@ export class DialogSegurosComponent implements OnInit {
         prima: Number(form.prima),
         edadmin: Number(form.edadmin),
         edadmax: Number(form.edadmax),
+        usrCreacion:'angel',
+        estado:1
       };
+this.getClientIp()
 
       this.seguroserv.RegistrarSeguro(request).subscribe({
         next: (response) => {
@@ -132,20 +146,30 @@ export class DialogSegurosComponent implements OnInit {
               control.markAsPristine();
               control.markAsUntouched();
             });
+            this.isLoading = false
             this._dialogRef.close();
           }
           else {
+            this.isLoading = false
             this.toastr.warning(response.message, 'Advertencia');
           }
         },
         error: (err) => {
-          this.toastr.error(err, 'Error');
+          this.isLoading = false
+          this.toastr.error(err.message);
         }
       });
     }
 
   }
-
+  getClientIp() {
+    this.http.get<{ip: string}>('https://api.ipify.org?format=json')
+      .subscribe(resp => {
+        console.log("IP del cliente: ", resp.ip);
+      });
+  }
+  
+  
   Segurosporid(id: number) {
     this.seguroserv.SeguroPorId(id).subscribe({
       next: (response) => {

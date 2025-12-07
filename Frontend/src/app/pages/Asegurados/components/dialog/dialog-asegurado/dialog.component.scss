@@ -1,5 +1,76 @@
-.dialog-header {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;     
-  }
+/* Contenedor principal sin bordes extraños */
+.corporate-dialog-container {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Evita scrollbars dobles */
+}
+
+/* Ajustes finos para los inputs outline de Material */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #cbd5e1; /* Gris suave para el borde inactivo (slate-300) */
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #1e3a8a; /* Azul corporativo al enfocar (blue-900) */
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+  font-size: 0.9rem; /* Etiquetas un poco más pequeñas y elegantes */
+}
+
+/* Botón de Guardar Corporativo Personalizado */
+.btn-save-corporate {
+  background-color: #1e40af !important; /* Blue-800 */
+  color: white !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 24px !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-save-corporate:hover {
+  background-color: #1e3a8a !important; /* Blue-900 */
+  box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3);
+}
+
+.btn-save-corporate:disabled {
+  background-color: #94a3b8 !important; /* Slate-400 */
+  color: #e2e8f0 !important;
+}
+
+/* Ajuste para iconos dentro de los inputs */
+mat-icon {
+  vertical-align: middle;
+}
+/* Contenedor para asegurar que el spinner no empuje el texto bruscamente */
+.loader-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Spinner pequeño y elegante */
+.spinner-mini {
+animation: rotate 2s linear infinite;
+width: 18px;  /* Tamaño controlado (aprox el mismo tamaño que un mat-icon) */
+height: 18px;
+}
+
+.spinner-mini .path {
+stroke: #ffffff; /* Blanco para resaltar sobre el azul */
+stroke-linecap: round;
+animation: dash 1.5s ease-in-out infinite;
+}
+
+/* Las animaciones siguen igual */
+@keyframes rotate {
+100% { transform: rotate(360deg); }
+}
+
+@keyframes dash {
+0% { stroke-dasharray: 1, 150; stroke-dashoffset: 0; }
+50% { stroke-dasharray: 90, 150; stroke-dashoffset: -35; }
+100% { stroke-dasharray: 90, 150; stroke-dashoffset: -124; }
+}

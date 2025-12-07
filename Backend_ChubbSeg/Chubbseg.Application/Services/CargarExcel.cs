@@ -1,4 +1,6 @@
-﻿using Chubbseg.Application.DTOS;
+﻿using AutoMapper;
+using Azure.Core;
+using Chubbseg.Application.DTOS;
 using Chubbseg.Application.Interfaces;
 using Chubbseg.Domain.Entidades;
 using Chubbseg.Infrastructure.FileExcel;
@@ -19,16 +21,17 @@ namespace Chubbseg.Application.Services
         private readonly ICargaTXT cargatxt;
         private readonly ISegurosApplication _seguros;
         private readonly IAseguradosApplication _asegurados;
-
+        private readonly IMapper _mapper;
         private readonly IAseguramientosApplication _asegurmiento;
 
-        public CargarExcel(ICargaExcel upexcel, ISegurosApplication seguros, IAseguramientosApplication asegurmiento, IAseguradosApplication asegurados, ICargaTXT cargatxt)
+        public CargarExcel(ICargaExcel upexcel, ISegurosApplication seguros, IAseguramientosApplication asegurmiento, IAseguradosApplication asegurados, ICargaTXT cargatxt, IMapper mapper)
         {
             cargaexcel = upexcel;
             _seguros = seguros;
             _asegurmiento = asegurmiento;
             _asegurados = asegurados;
             this.cargatxt = cargatxt;
+            _mapper = mapper;
         }
 
         async public Task<BaseResponse<bool>> ProcesarArchivo<T> (IFormFile archivo) where T : class, new()
@@ -112,7 +115,66 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-        
-       
+        async public Task<BaseResponse<bool>> RegistMasvSeguros<T>(IFormFile archivo, HttpContext context) where T : class, new()
+        {
+            var response = new BaseResponse<bool>();
+            try
+            {
+                var extension = Path.GetExtension(archivo.FileName).ToLower();
+                List<T> usuarios = new List<T>();
+                if (extension == ".xlsx")
+                {
+
+                    usuarios = cargaexcel.SubirExcel<T>(archivo);
+                }
+                else if (extension == ".txt")
+                {
+                    usuarios = cargatxt.ImportarTxt<T>(archivo);
+
+                }
+                else
+                {
+                    response.Message = "Formato no soportado. Use .xlsx o .txt";
+                    return response;
+                }
+                var SegurosMapeados = usuarios.Cast<SegurosRequestDTO>().ToList();
+            
+
+                foreach (var seguros in SegurosMapeados)
+                {
+                    var seguroAsignado = seguros;
+
+                    var entidad = _mapper.Map<SegurosRequestDTO>(seguroAsignado);
+
+                  
+
+                    var resp = await _seguros.RegistrarSeguro(entidad, context);
+                    if (!resp.IsSucces)
+                    {
+
+                        response.Messagemultiple.Add(resp.Message);
+
+                    }
+
+                   
+                    else
+                    {
+                        response.Data = true;
+                        response.IsSucces = true;
+                        response.Message = "Aseguramient registrado correctamente.";
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
+
     }
 }

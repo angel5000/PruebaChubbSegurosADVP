@@ -4,6 +4,7 @@ using Chubbseg.Application.DTOS;
 using Chubbseg.Application.Interfaces;
 using Chubbseg.Domain.Entidades;
 using Chubbseg.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,30 @@ namespace Chubbseg.Application.Services
             _mapper = mapper;
         }
 
-       async public Task<BaseResponse<bool>> EditarSeguros(int SeguroID, SegurosRequestDTO request)
+       async public Task<BaseResponse<AseguradosporSeguraresponseDTO>> AseguradosPorSeguros(int id)
+        {
+            var response = new BaseResponse<AseguradosporSeguraresponseDTO>();
+            try
+            {
+                // Obtener datos del repositorio (ADO.NET)
+                var listaasegurados = await _repo.GetSelectASegAsync(id);
+
+                var listaDto = _mapper.Map<AseguradosporSeguraresponseDTO>(listaasegurados);
+
+                response.Data = listaDto;
+                response.IsSucces = true;
+                response.Message = "Consulta realizada correctamente";
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        async public Task<BaseResponse<bool>> EditarSeguros(int SeguroID, SegurosRequesteditDTO request, HttpContext context)
         {
             var response = new BaseResponse<bool>();
             try
@@ -31,7 +55,7 @@ namespace Chubbseg.Application.Services
                 var entidad = _mapper.Map<Seguros>(request);
 
                 // Llamada al repositorio (SP)
-                int result = await _repo.UpdateAsync(SeguroID,entidad);
+                int result = await _repo.UpdateAsync(SeguroID,entidad,context);
 
                 if (result > 0)
                 {
@@ -56,13 +80,14 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-       async public Task<BaseResponse<bool>> EliminarSeguros(int SeguroID)
+       async public Task<BaseResponse<bool>> EliminarSeguros(int SeguroID, SegurosRequestDeleteDTO request, HttpContext context)
         {
 
             var response = new BaseResponse<bool>();
             try
             {
-                int result = await _repo.DeleteAsync(SeguroID);
+                var entidad = _mapper.Map<Seguros>(request);
+                int result = await _repo.DeleteAsync(SeguroID, entidad, context);
 
                 if (result > 0)
                 {
@@ -96,18 +121,7 @@ namespace Chubbseg.Application.Services
                 // Obtener datos del repositorio (ADO.NET)
                 var listaSeguros = await _repo.GetAllAsync();
 
-                // Mapear entidad → DTO
-                var listaDto = listaSeguros.Select(x => new SegurosResponseDTO
-                {
-                    IDSEGURO=x.IDSEGURO,
-                    NMBRSEGURO = x.NMBRSEGURO,
-                    CODSEGURO = x.CODSEGURO,
-                    SUMASEGURADA = x.SUMASEGURADA,
-                    PRIMA = x.PRIMA,
-                    EDADMIN = x.EDADMIN,
-                    EDADMAX = x.EDADMAX
-
-                });
+                var listaDto = _mapper.Map<List<SegurosResponseDTO>>(listaSeguros);
 
                 response.Data = listaDto;
                 response.IsSucces = true;
@@ -122,7 +136,7 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-       async public Task<BaseResponse<bool>> RegistrarSeguro(SegurosRequestDTO request)
+       async public Task<BaseResponse<bool>> RegistrarSeguro(SegurosRequestDTO request, HttpContext context)
         {
             var response = new BaseResponse<bool>();
             try
@@ -131,7 +145,7 @@ namespace Chubbseg.Application.Services
                 var entidad = _mapper.Map<Seguros>(request);
 
                 // Llamada al repositorio (SP)
-                int result = await _repo.CreateAsync(entidad);
+                int result = await _repo.CreateAsync(entidad,context);
 
                 if (result > 0)
                 {

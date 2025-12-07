@@ -17,6 +17,6 @@ namespace Chubbseg.Application.DTOS
         public string CODSEGURO { get; set; } = null!;
         public decimal SUMASEGURADA { get; set; }
         public decimal PRIMA { get; set; }
-        public DateTime FECHACONTRATASEGURO { get; set; }
+        public string FECHACONTRATASEGURO { get; set; }
     }
 }

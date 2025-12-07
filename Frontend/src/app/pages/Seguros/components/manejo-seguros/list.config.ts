@@ -99,6 +99,20 @@ const searchOptions: SearchOptions[] =[
     
     },
     {
+      label: "",
+      csslabel: [],
+      cssProperty: [''],
+      property: "eye",
+      cssSubProperty: ["bi bi-eye fs-5"],
+      type: "icon",
+      action: "ver",
+      visible: true,
+      tooltip: "ver Asegurados",
+      sticky: false,
+      sort: false,
+      download: false
+    },
+    {
         label:"",
         csslabel:[],
         cssProperty:[''],

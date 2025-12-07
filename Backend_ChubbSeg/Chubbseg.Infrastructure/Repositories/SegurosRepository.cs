@@ -1,11 +1,14 @@
 ﻿using Chubbseg.Domain.Entidades;
 using Chubbseg.Infrastructure.Data;
 using Chubbseg.Infrastructure.Interfaces;
+using Chubbseg.Utilities.Helpers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -16,12 +19,14 @@ namespace Chubbseg.Infrastructure.Repositories
     {
 
         private readonly DbContextADO _context;
+        private readonly IPTransform _ipt;
 
-        public SegurosRepository(DbContextADO context) 
+        public SegurosRepository(DbContextADO context, IPTransform ipt)
         {
             _context = context;
+            _ipt = ipt;
         }
-      async  public Task<int> CreateAsync(Seguros seguro)
+        async  public Task<int> CreateAsync(Seguros seguro, HttpContext context)
         {
             using (SqlConnection con = _context.CreateConnection())
             {
@@ -37,13 +42,23 @@ namespace Chubbseg.Infrastructure.Repositories
                     cmd.Parameters.AddWithValue("@PRIMA", seguro.PRIMA);
                     cmd.Parameters.AddWithValue("@EDADMIN", seguro.EDADMIN);
                     cmd.Parameters.AddWithValue("@EDADMAX", seguro.EDADMAX);
+                    //auditoria
+                    cmd.Parameters.AddWithValue("@USRCreacion", seguro.USRCreacion ?? "SYSTEM");
+                    string? rawIp = context.Connection.RemoteIpAddress?.ToString();
 
-                    var returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
+                    if (context.Request.Headers.ContainsKey("X-Forwarded-For"))
+                        rawIp = context.Request.Headers["X-Forwarded-For"].ToString();
+                    string ipv4 = _ipt.NormalizeIp(rawIp);
+
+                    cmd.Parameters.AddWithValue("@UsuarioIP", ipv4 ?? "0.0.0.0");
+                    cmd.Parameters.AddWithValue("@Estado", seguro.Estado);
+                    SqlParameter returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
-                
+
                     await cmd.ExecuteNonQueryAsync();
 
                     return (int)returnParameter.Value;
+
                 }
             }
         }
@@ -69,7 +84,19 @@ namespace Chubbseg.Infrastructure.Repositories
                         SUMASEGURADA = reader.GetDecimal(reader.GetOrdinal("SUMASEGURADA")),
                         PRIMA = reader.GetDecimal(reader.GetOrdinal("PRIMA")),
                         EDADMIN = reader.GetInt32(reader.GetOrdinal("EDADMIN")),
-                        EDADMAX = reader.GetInt32(reader.GetOrdinal("EDADMAX"))
+                        EDADMAX = reader.GetInt32(reader.GetOrdinal("EDADMAX")),
+                        FechaCreacion = reader.GetDateTime(reader.GetOrdinal("FechaCreacion")),
+                        USRCreacion = reader.GetString(reader.GetOrdinal("USRCreacion")),
+                        FechaActualizacion = reader.IsDBNull(reader.GetOrdinal("FechaActualizacion"))
+                            ? (DateTime?)null
+                            : reader.GetDateTime(reader.GetOrdinal("FechaActualizacion")),
+                        USRActualizacion = reader.IsDBNull(reader.GetOrdinal("USRActualizacion"))
+                            ? null
+                            : reader.GetString(reader.GetOrdinal("USRActualizacion")),
+                        UsuarioIP = reader.IsDBNull(reader.GetOrdinal("UsuarioIP"))
+                            ? null
+                            : reader.GetString(reader.GetOrdinal("UsuarioIP")),
+                        Estado = reader.GetBoolean(reader.GetOrdinal("Estado"))
 
                     });
                 }
@@ -109,7 +136,7 @@ namespace Chubbseg.Infrastructure.Repositories
                 return null;
             }
 
-      async public Task<int> UpdateAsync(int id, Seguros seguro)
+      async public Task<int> UpdateAsync(int id, Seguros seguro, HttpContext context)
         {
             using (SqlConnection con = _context.CreateConnection())
             {
@@ -127,17 +154,27 @@ namespace Chubbseg.Infrastructure.Repositories
                     cmd.Parameters.AddWithValue("@EDADMIN", seguro.EDADMIN);
                     cmd.Parameters.AddWithValue("@EDADMAX", seguro.EDADMAX);
 
-                    var returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
+                    //auditoria
+                    cmd.Parameters.AddWithValue("@USRActualizacion", seguro.USRActualizacion ?? "SYSTEM");
+                    string? rawIp = context.Connection.RemoteIpAddress?.ToString();
+
+                    if (context.Request.Headers.ContainsKey("X-Forwarded-For"))
+                        rawIp = context.Request.Headers["X-Forwarded-For"].ToString();
+                    string ipv4 = _ipt.NormalizeIp(rawIp);
+
+                    cmd.Parameters.AddWithValue("@UsuarioIP", ipv4 ?? "0.0.0.0");
+                    cmd.Parameters.AddWithValue("@Estado", seguro.Estado);
+                    SqlParameter returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
 
                     await cmd.ExecuteNonQueryAsync();
 
-                    return (int)returnParameter.Value;
+                    return (int)returnParameter.Value; ;
                 }
             }
         }
 
-       async public Task<int> DeleteAsync(int id)
+       async public Task<int> DeleteAsync(int id, Seguros seguro, HttpContext context)
         {
             using (SqlConnection con = _context.CreateConnection())
             {
@@ -148,13 +185,24 @@ namespace Chubbseg.Infrastructure.Repositories
 
                     // Parámetros del SP
                     cmd.Parameters.AddWithValue("@IDSEGURO", id);
-                   
-                    var returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
+                    cmd.Parameters.AddWithValue("@USRActualizacion", seguro.USRActualizacion ?? "SYSTEM");
+                    string? rawIp = context.Connection.RemoteIpAddress?.ToString();
+
+                    if (context.Request.Headers.ContainsKey("X-Forwarded-For"))
+                        rawIp = context.Request.Headers["X-Forwarded-For"].ToString();
+                    string ipv4 = _ipt.NormalizeIp(rawIp);
+
+                    cmd.Parameters.AddWithValue("@UsuarioIP", ipv4 ?? "0.0.0.0");
+                    cmd.Parameters.AddWithValue("@EstadoDT", seguro.EstadoDT);
+
+
+                    SqlParameter returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
 
+                    
                     await cmd.ExecuteNonQueryAsync();
 
-                    return (int)returnParameter.Value;
+                    return (int)returnParameter.Value; ;
                 }
             }
         }
@@ -213,6 +261,36 @@ namespace Chubbseg.Infrastructure.Repositories
                 Console.WriteLine(e);
             }
             return lista;
+        }
+
+       async public Task<Aseguramiento> GetSelectASegAsync(int value)
+        {
+            var lista = new Aseguramiento();
+            using (SqlConnection con = _context.CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("ConsulAseguradosPorSeguros", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IDSEGURO", value);
+                await con.OpenAsync();
+
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        return new Aseguramiento
+                        {
+                            IDASEGURADOS = (int)reader["IDASEGURADOS"],
+                            CEDULA = (string)reader["CEDULA"],
+                            NMBRCOMPLETO = (string)reader["NMBRCOMPLETO"],
+                            TELEFONO = (string)reader["TELEFONO"],
+                            EDAD = (int)reader["EDAD"],
+                            FECHACONTRATASEGURO = (string)reader["FECHACONTRATASEGURO"]
+
+                        };
+                    }
+                }
+            }
+            return null;
         }
     }
 }

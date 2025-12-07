@@ -1,6 +1,7 @@
 ﻿using Chubbseg.Application.DTOS;
 using Chubbseg.Application.Interfaces;
 using Chubbseg.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,8 @@ namespace Backend_ChubbSeg.Controllers
             _Asegurados = ConsultAsegurados;
 
         }
-
+        [Authorize]
+        [Authorize(Roles = "100")]
         [HttpGet("ConsultaAsegurados")]
         public async Task<IActionResult> ListCliente()
         {

@@ -58,21 +58,8 @@ namespace Chubbseg.Application.Services
             {
   
                 var listaAseguramientos = await _repo.GetAllAsync();
-
-                var listaDto = listaAseguramientos.Select(x => new AseguramientoResponseDTO
-                {
-                    IDASEGURADOS = x.IDASEGURADOS,
-                    CEDULA = x.CEDULA ,
-                    NMBRCOMPLETO = x.NMBRCOMPLETO,
-                    EDAD = x.EDAD,
-                    IDUSRSEGUROS = x.IDUSRSEGUROS,
-                    NMBRSEGURO = x.NMBRSEGURO,
-                    CODSEGURO = x.CODSEGURO,
-                    SUMASEGURADA = x.SUMASEGURADA,
-                    PRIMA = x.PRIMA,
-                    FECHACONTRATASEGURO=x.FECHACONTRATASEGURO
-
-                });
+                var listaDto = _mapper.Map<List<AseguramientoResponseDTO>>(listaAseguramientos);
+              
 
                 response.Data = listaDto;
                 response.IsSucces = true;
