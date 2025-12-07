@@ -4,6 +4,7 @@ export interface Asegurados{
     nmbrcompleto: string;
     telefono: number;
     edad: number;
+    fechacontrataseguro?:string
   }
   export interface AseguradosRequest {
     cedula: string;

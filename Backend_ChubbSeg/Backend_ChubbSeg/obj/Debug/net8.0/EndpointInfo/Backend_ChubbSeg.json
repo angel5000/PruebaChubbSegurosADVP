@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Backend_ChubbSeg",
-    "version": "1.0"
+    "title": "Mi API",
+    "version": "v1"
   },
   "paths": {
     "/api/Asegurados/ConsultaAsegurados": {
@@ -234,6 +234,37 @@
         }
       }
     },
+    "/api/Login/IniciarSesion": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Seguros/ConsultaSeguros": {
       "get": {
         "tags": [
@@ -254,6 +285,29 @@
         "parameters": [
           {
             "name": "edad",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Seguros/CantAsegurados/{id}": {
+      "get": {
+        "tags": [
+          "Seguros"
+        ],
+        "parameters": [
+          {
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -323,6 +377,38 @@
         }
       }
     },
+    "/api/Seguros/RegistrarSegurosMasivo": {
+      "post": {
+        "tags": [
+          "Seguros"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "archivo": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "archivo": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Seguros/EditarSeguro/{Id}": {
       "put": {
         "tags": [
@@ -343,17 +429,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SegurosRequestDTO"
+                "$ref": "#/components/schemas/SegurosRequesteditDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/SegurosRequestDTO"
+                "$ref": "#/components/schemas/SegurosRequesteditDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/SegurosRequestDTO"
+                "$ref": "#/components/schemas/SegurosRequesteditDTO"
               }
             }
           }
@@ -381,6 +467,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SegurosRequestDeleteDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SegurosRequestDeleteDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SegurosRequestDeleteDTO"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -409,6 +514,10 @@
           "edad": {
             "type": "integer",
             "format": "int32"
+          },
+          "codseguro": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -421,6 +530,20 @@
             "nullable": true
           },
           "codseguro": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginDTO": {
+        "type": "object",
+        "properties": {
+          "credenciales": {
+            "type": "string",
+            "nullable": true
+          },
+          "contrasena": {
             "type": "string",
             "nullable": true
           }
@@ -453,10 +576,88 @@
           "edadmax": {
             "type": "integer",
             "format": "int32"
+          },
+          "usrCreacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuarioIP": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SegurosRequestDeleteDTO": {
+        "type": "object",
+        "properties": {
+          "usrActualizacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "estadoDT": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SegurosRequesteditDTO": {
+        "type": "object",
+        "properties": {
+          "nmbrseguro": {
+            "type": "string",
+            "nullable": true
+          },
+          "codseguro": {
+            "type": "string",
+            "nullable": true
+          },
+          "sumasegurada": {
+            "type": "number",
+            "format": "double"
+          },
+          "prima": {
+            "type": "number",
+            "format": "double"
+          },
+          "edadmin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "edadmax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "usrActualizacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Ingrese 'Bearer' seguido de un espacio y su token JWT",
+        "name": "Authorization",
+        "in": "header"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

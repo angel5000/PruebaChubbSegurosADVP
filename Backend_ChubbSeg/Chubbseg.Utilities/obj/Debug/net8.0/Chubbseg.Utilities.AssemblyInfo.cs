@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Chubbseg.Utilities")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c3ef9a233e7b78aee390f3427ef8c2ad07628b5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf242eabada6a3bc3fef0df516c55825bf11d1d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Chubbseg.Utilities")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Chubbseg.Utilities")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

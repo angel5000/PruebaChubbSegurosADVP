@@ -2,14 +2,14 @@ import { SearchOptions } from "../../../../shared/models/SearchOptions.interface
 import { GenericValidators } from "../../../../shared/validators/generic-validators";
 
 const searchOptions: SearchOptions[] =[
-    {
-        label:"Codigo del Seguro",
-        value:1,
-        placeholder: "Buscar por codigo del seguro",
-        validation:[GenericValidators.alphanumeric],
-        validation_desc:"",
-        min_lenght:1,
-    },
+  {
+    label: "Buscador avanzado",
+    value: 1,
+    placeholder: "Buscar por ID, Nombre, cod.seg, etc",
+    validation: [GenericValidators.alphanumeric],
+    validation_desc: "",
+    min_lenght: 1,
+  }
 ]
 
   function getTableColumns() {
@@ -78,6 +78,17 @@ const searchOptions: SearchOptions[] =[
         type: "text",
         csslabel: ["font-bold", "text-sm"],
         cssProperty: ["font-semibold", "text-sm", "text-left"],
+        sticky: false,
+        sort: true,
+        visible: true,
+        download: true,
+      },
+      {
+        label: "Estado",
+        property: "estado",
+        type: "badge",
+        csslabel: ["font-bold", "text-sm"],
+        cssProperty: [""],
         sticky: false,
         sort: true,
         visible: true,

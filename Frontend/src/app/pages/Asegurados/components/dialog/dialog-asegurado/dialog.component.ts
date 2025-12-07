@@ -16,6 +16,7 @@ export class DialogComponent implements OnInit {
   ocultarseg: boolean = false;
   getseguros: any[] = [];
 isLoading: any;
+mostrar: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, private _fb: FormBuilder,
     public _dialogRef: MatDialogRef<DialogComponent>,
@@ -39,6 +40,18 @@ isLoading: any;
         this.ConsultaSegurosDisponibles(edad);
       }
     });
+    this.form.get('segdisponibles')?.valueChanges.subscribe(value => {
+     console.log(value);
+     
+      if (value!==null) {
+      this.mostrar=true
+      }else{
+        this.mostrar=false
+      }
+    });
+    if (this.data.accion == 'edit') {
+      this.form.get('cedula')?.disable();
+    }
   }
 
   initForm(): void {
@@ -58,6 +71,10 @@ isLoading: any;
     input.value = value;
   }
 
+  clearSeguro() {
+    this.form.get('segdisponibles')?.setValue(null); // borra la selección
+  }
+  
   GuardarAsegurado() {
     this.isLoading = true
     if (this.data.accion == 'edit') {

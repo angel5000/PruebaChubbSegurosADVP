@@ -9,6 +9,7 @@ export const endpoint = {
     ACTUALIZARASEGURO: 'Seguros/EditarSeguro/',
     ELIMINARSEGURO: 'Seguros/EliminarSeguro/',
     SEGUROSDISPONIBLES: 'Seguros/SegurosDisponibles/',
+    ASEGURADOSPORSEGUDOR: 'Seguros/CantAsegurados/',
     /*--------------------------*/
     CONSULTAASEGURAMIENTO:'Aseguramientos/ConsultaAseguramientos',
     CONSULTAASEGURADOS:'Asegurados/ConsultaAsegurados',

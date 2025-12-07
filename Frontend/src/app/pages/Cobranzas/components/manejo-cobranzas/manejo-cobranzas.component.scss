@@ -1,0 +1,50 @@
+/* --- Estilos Específicos para Cobranzas --- */
+
+/* KPIs Cards */
+.kpi-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Badges (Etiquetas de estado) */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-critical {
+    background-color: #fee2e2; /* Rojo suave fondo */
+    color: #ef4444; /* Rojo texto */
+    border: 1px solid #fecaca;
+}
+
+.badge-warning {
+    background-color: #ffedd5; /* Naranja suave */
+    color: #f97316; /* Naranja texto */
+    border: 1px solid #fed7aa;
+}
+
+.badge-success {
+    background-color: #dcfce7;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+}
+
+/* Botones pequeños en tabla */
+.mat-flat-button.h-8 {
+    height: 32px !important;
+    line-height: 32px !important;
+    padding: 0 16px !important;
+}

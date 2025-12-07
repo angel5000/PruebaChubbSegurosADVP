@@ -62,48 +62,54 @@ namespace Chubbseg.Application.Services
 
                 foreach (var usuario in usuariosMapeados)
                 {
-                    var seguroAsignado = seguros
-                        .FirstOrDefault(s =>
-                            usuario.EDAD >= s.EDADMIN &&
-                            usuario.EDAD <= s.EDADMAX
-                        );
-
-                    if (seguroAsignado == null)
+                    if (string.IsNullOrWhiteSpace(usuario.CODSEGURO))
                     {
-                        // Si no se encuentra seguro según la edad
-                        response.Messagemultiple.Add($"usuario {usuario.NMBRCOMPLETO} no aplica a seguros");
-                        continue; // lo saltamos o puedes marcarlo como error
+                        response.Messagemultiple.Add($"Usuario {usuario.NMBRCOMPLETO} no tiene códigos de seguro asignados");
+                        continue;
                     }
 
-                    var aseguramiento = new AseguramientoRequestDTO()
-                    {
-                        CEDULA = usuario.CEDULA,
-                        CODSEGURO = seguroAsignado.CODSEGURO,
-
-                    };
-
+                    // Registrar el usuario una sola vez
                     var resp = await _asegurados.RegistrarAsegurado(usuario);
                     if (!resp.IsSucces)
                     {
-
                         response.Messagemultiple.Add(resp.Message);
-
+                        continue; // Si falla el registro de usuario, saltamos este usuario
                     }
 
-                    var respaseg = await _asegurmiento.RegistrarAseguramiento(aseguramiento);
-                    if (!resp.IsSucces)
+                    // Separar los códigos de seguro por coma
+                    var codigos = usuario.CODSEGURO.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                                                    .Select(c => c.Trim())
+                                                    .ToList();
+
+                    foreach (var codigo in codigos)
                     {
+                        var seguroAsignado = seguros.FirstOrDefault(s => s.CODSEGURO.ToLower() == codigo.ToLower());
 
-                        respaseg.Messagemultiple.Add(resp.Message);
+                        if (seguroAsignado == null)
+                        {
+                            response.Messagemultiple.Add($"Usuario {usuario.NMBRCOMPLETO} no tiene un seguro válido con CODSEGURO {codigo}");
+                            continue;
+                        }
 
+                        var aseguramiento = new AseguramientoRequestDTO()
+                        {
+                            CEDULA = usuario.CEDULA,
+                            CODSEGURO = seguroAsignado.CODSEGURO
+                        };
+
+                        var respaseg = await _asegurmiento.RegistrarAseguramiento(aseguramiento);
+                        if (!respaseg.IsSucces)
+                        {
+                            response.Messagemultiple.Add(respaseg.Message);
+                        }
                     }
-                    else
-                    {
-                        response.Data = true;
-                        response.IsSucces = true;
-                        response.Message = "Aseguramient registrado correctamente.";
-                    }
 
+                    // Si al menos un seguro fue registrado correctamente
+                    response.Data = true;
+                    response.IsSucces = true;
+                    response.Message = "Aseguramientos registrados correctamente.";
+                   
+            
 
                 }
             }

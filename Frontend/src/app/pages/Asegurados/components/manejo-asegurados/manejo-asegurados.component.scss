@@ -27,14 +27,12 @@
 
 .header-card-animated {
     /* Gradiente oscuro elegante */
-    background: linear-gradient(270deg, #232526, #414345, #2c3e50, #232526);
+    background: linear-gradient(270deg, #0c0c0c, #3b5168, #0e1114, #101111);
     background-size: 400% 400%;
-    animation: subtle-shift 25s ease infinite;
-
+    animation: subtle-shift 18s ease infinite;
     width: 100%;
     border-radius: 12px;
     padding: 20px 30px;
-
     display: flex;
     flex-direction: column;
     gap: 20px;

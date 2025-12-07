@@ -76,17 +76,31 @@ export class ManejoAseguradosComponent {
   }
 
   search(data: FilterBox) {
-    const ced = data.searchData?.trim();
-    if (!ced) {
-      this.component.filters = {};
-      actualizarPermiso.prototype.PermisoConsultar(true)
-    } else {
-      actualizarPermiso.prototype.PermisoConsultar(false)
-      this.component.filters = { cedula: ced };
-    }
-    this.setGetInputsProviders(true);
+    const searchValue = data.searchData.toLocaleLowerCase()?.trim();
+    const searchField = data.searchValue || null; // nuevo: campo a filtrar
+    ComponentSettings.filters.numFilter=searchField.toString()
+  console.log(data) ;
+  this.component.filters.numFilter=1
+    if (!searchValue) {
 
+      this.component.filters = {};
+     // actualizarPermiso.prototype.PermisoConsultar(true);
+    } else {
+      //actualizarPermiso.prototype.PermisoConsultar(false);
+      if (searchField) {
+        // filtrar por campo específico
+        this.component.filters.textFilter = { [searchField]: searchValue };
+        this.component.filters.numFilter=1
+      } else {
+        // si no hay campo, se puede filtrar por todos los campos relevantes
+        this.component.filters.textFilter = { searchAll: searchValue };
+        this.component.filters.numFilter=1
+      }
+    }
+  
+    this.setGetInputsProviders(true);
   }
+  
 
   rowClick(e: any) {
     let action = e.action

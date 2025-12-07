@@ -12,6 +12,7 @@ namespace Chubbseg.Application.DTOS
         public string NMBRCOMPLETO { get; set; } = null!;
         public string TELEFONO { get; set; } = null!;
         public int EDAD { get; set; }
+        public string CODSEGURO { get; set; } = null!;
 
     }
 }

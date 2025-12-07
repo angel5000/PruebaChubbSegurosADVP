@@ -41,6 +41,6 @@ namespace Chubbseg.Application.DTOS
         public int EDAD { get; set; }
         public string NMBRSEGURO { get; set; } = null!;
         public string? TELEFONO { get; set; } = null!;
-        public DateTime FECHACONTRATASEGURO { get; set; }
+        public string FECHACONTRATASEGURO { get; set; }
     }
 }

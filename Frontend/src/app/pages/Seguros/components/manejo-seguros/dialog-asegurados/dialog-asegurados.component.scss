@@ -1,0 +1,30 @@
+/* Heredamos el contenedor principal que definimos antes */
+.corporate-dialog-container {
+    max-height: 90vh; /* Límite de altura */
+    min-width: 600px; /* Ancho mínimo para que la tabla respire */
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 4px; /* Ajuste sutil si el dialog tiene bordes */
+}
+
+/* Header estandarizado (por si no lo tenías global) */
+.dialog-header {
+    background-color: #f8fafc; /* Slate-50 */
+    border-bottom: 1px solid #e2e8f0; /* Slate-200 */
+}
+
+/* Área de contenido sin padding default de Material para controlarlo nosotros */
+mat-dialog-content {
+    max-height: none !important; /* Quitamos el max-height default de material */
+}
+
+/* Estilo para el contenedor de la tabla */
+.table-wrapper {
+    background-color: #ffffff;
+}
+
+/* Opcional: Si quieres que la tabla tenga filas alternadas tipo zebra para mejor lectura */
+::ng-deep .mat-table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}

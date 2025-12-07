@@ -1,7 +1,7 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog} from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-bienvenida',
@@ -12,27 +12,32 @@ import { ActivatedRoute } from '@angular/router';
 
 export class BienvenidaComponent implements OnInit {
 
-form: FormGroup 
-paymentId: string | null = null;
-payerId: string | null = null;
-token: string | null = null;
-  pagado: boolean=false;
+
+  form: FormGroup
+  paymentId: string | null = null;
+  payerId: string | null = null;
+  token: string | null = null;
+  pagado: boolean = false;
   filtro: boolean;
   precio: any;
   idplan: any;
-constructor(  ) { 
+  constructor(private router: Router) {
 
 
-}
+  }
   ngOnInit(): void {
 
   }
 
-
- 
-
-
+  Polizas() {
+    this.router.navigate(["/seguros"]);
   }
- 
+  Asegurados() {
+    this.router.navigate(["/asegurados"]);
+  }
+
+
+}
+
 
 

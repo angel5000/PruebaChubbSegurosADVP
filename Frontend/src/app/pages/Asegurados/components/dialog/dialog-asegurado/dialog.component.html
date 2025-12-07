@@ -65,7 +65,10 @@
                                 {{ estado.label }}
                             </mat-option>
                         </mat-select>
-                        <mat-icon matSuffix class="text-blue-800">verified_user</mat-icon>
+                        <mat-icon  matSuffix class="text-blue-800">verified_user</mat-icon>
+                        <button *ngIf="mostrar" mat-icon-button matSuffix type="button" (click)="clearSeguro()" aria-label="Borrar selección">
+                            <mat-icon>close</mat-icon>
+                          </button>
                         <mat-error *ngIf="form?.get('segdisponibles')?.hasError('required')">
                             Debe seleccionar un seguro
                         </mat-error>

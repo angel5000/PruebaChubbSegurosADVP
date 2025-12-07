@@ -51,6 +51,16 @@ export class SegurosService {
       }));
   }
 
+
+  AseguradosPorseguro(id: number): Observable<BaseResponse> {
+    return this.http.get<SegurosResponseID>(`${env.apiseguros}${end.ASEGURADOSPORSEGUDOR}${id}`).pipe(
+      map((res) => res),
+      catchError((error) => {
+        this.showError(error);
+        return of(error);  
+      }));
+  }
+
   EliminarSeguro(id: Number, request: SegurosRequest): Observable<BaseResponse> {
     const requestURL = `${env.apiseguros}${end.ELIMINARSEGURO}${id}`;
 

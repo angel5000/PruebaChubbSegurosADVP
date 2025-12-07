@@ -10,6 +10,7 @@ import { ComponentSettings } from './list.config';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { FilterBox } from '../../../../shared/models/SearchOptions.interface';
+import { DialogAseguradosComponent } from './dialog-asegurados/dialog-asegurados.component';
 @Component({
   selector: 'app-manejo-seguros',
   templateUrl: './manejo-seguros.component.html',
@@ -45,12 +46,28 @@ export class ManejoSegurosComponent implements OnInit {
   }
 
   search(data: FilterBox) {
-    const codigo = data.searchData?.trim();
-    if (!codigo) {
+    const searchValue = data.searchData.toLocaleLowerCase()?.trim();
+    const searchField = data.searchValue || null; // nuevo: campo a filtrar
+    ComponentSettings.filters.numFilter=searchField.toString()
+  console.log(data) ;
+  this.component.filters.numFilter=1
+    if (!searchValue) {
+
       this.component.filters = {};
+     // actualizarPermiso.prototype.PermisoConsultar(true);
     } else {
-      this.component.filters = { codseguro: codigo.toLowerCase() };
+      //actualizarPermiso.prototype.PermisoConsultar(false);
+      if (searchField) {
+        // filtrar por campo específico
+        this.component.filters.textFilter = { [searchField]: searchValue };
+        this.component.filters.numFilter=1
+      } else {
+        // si no hay campo, se puede filtrar por todos los campos relevantes
+        this.component.filters.textFilter = { searchAll: searchValue };
+        this.component.filters.numFilter=1
+      }
     }
+  
     this.setGetInputsProviders(true);
   }
 
@@ -60,17 +77,34 @@ export class ManejoSegurosComponent implements OnInit {
     this._dialog.open(DialogSegurosComponent, {
       data: dialogConfig.data,
       disableClose: false,
-      width: '500px',
+      width: '550px',
+
+    }).afterClosed().subscribe((res) => {
+      this.setGetInputsProviders(true)
+    })
+  }
+  
+
+  openDialogAsegurados( id?: number) {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.data = { id };
+    this._dialog.open(DialogAseguradosComponent, {
+      data: dialogConfig.data,
+      disableClose: false,
+      width: '750px',
 
     }).afterClosed().subscribe((res) => {
       this.setGetInputsProviders(true)
     })
   }
 
+
   rowClick(e: RowClick<SegurosResponse>) {
     let action = e.action
     switch (action) {
       case "edit": this.openDialogRegister(false, e.row.idseguro, action, 'actualizar')
+        break
+        case "ver": this.openDialogAsegurados(e.row.idseguro);
         break
       case "remove":
         this.EliminarSeguro(e.row.idseguro, e.row)

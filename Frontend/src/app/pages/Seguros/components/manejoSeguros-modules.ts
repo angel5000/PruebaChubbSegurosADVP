@@ -9,12 +9,14 @@ import { ListTableComponent } from '../../../shared/components/Reusables/list-ta
 import { DialogSegurosComponent } from './manejo-seguros/dialog-seguros/dialog-seguros.component';
 import { BuscadorComponent } from '../../../shared/components/Reusables/buscador/buscador.component';
 import { SubirArchivosComponent } from '../../../shared/components/Reusables/subir-archivos/subir-archivos.component';
+import { DialogAseguradosComponent } from './manejo-seguros/dialog-asegurados/dialog-asegurados.component';
 
 
 @NgModule({
   declarations: [
     ManejoSegurosComponent,
-    DialogSegurosComponent
+    DialogSegurosComponent,
+    DialogAseguradosComponent
   ],
   exports:[],
   imports: [

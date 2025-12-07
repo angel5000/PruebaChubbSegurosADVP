@@ -4,14 +4,14 @@ import { GenericValidators } from "../../../../shared/validators/generic-validat
 
 const searchOptions: SearchOptions[] = [
   {
-    label: "Cedula",
+    label: "Buscador avanzado",
     value: 1,
-    placeholder: "Buscar cedula",
-    validation: [GenericValidators.numeric],
-    validation_desc: "Solo se permite numeros",
-    min_lenght: 2,
-  },
-
+    placeholder: "Buscar por cedula, Nombre, cod.seg, etc",
+    validation: [GenericValidators.alphanumeric],
+    validation_desc: "",
+    min_lenght: 1,
+  }
+   
 ]
 function getTableColumns() {
   return [

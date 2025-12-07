@@ -172,6 +172,35 @@ export class ListTableComponent<T> implements OnInit, AfterViewInit, OnChanges {
       this.paginatorOptions.pageLenght = data.data.length;
     }
 
+   if (this.filtros.numFilter) {
+      const searchValue = this.filtros.textFilter;
+      processedData = processedData.filter((item: any) => {
+        if (searchValue) {
+          // buscar en varios campos
+          const value = typeof searchValue === 'string'
+          ? searchValue
+          : Object.values(searchValue)[0]; // toma el primer valor del objeto
+
+        return (
+          item.idseguro?.toString().includes(value) ||
+          item.edadmin?.toString().includes(value) ||
+          item.edadmax?.toString().includes(value) ||
+          item.cedula?.toString().includes(value) ||
+          item.nmbrcompleto?.toLocaleLowerCase().includes(value) ||
+          item.codseguro?.toString().toLocaleLowerCase().includes(value)||
+          item.nmbrseguro?.toString().toLocaleLowerCase().includes(value)
+        );
+        }
+        return Object.keys(this.filtros).every(key => {
+
+          if (!item[key]) return false;
+          return item[key].toString().toLowerCase().includes(this.filtros[key].toLowerCase());
+        });
+      });
+    }
+
+
+/*
     if (this.filtros && this.filtros.cedula) {
       const ced = this.filtros.cedula.trim();
       processedData = processedData.filter((x: any) =>
@@ -183,7 +212,8 @@ export class ListTableComponent<T> implements OnInit, AfterViewInit, OnChanges {
       processedData = processedData.filter((x: any) =>
         x.codseguro?.toString().includes(codseg)
       );
-    }
+    }*/
+   
 
     this.dataSource.data = processedData;
     this.dataSource.paginator = this.paginator;

@@ -137,6 +137,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Backend_ChubbSeg.Controllers.AuthControllers.LoginController",
+    "Method": "IniciarSesion",
+    "RelativePath": "api/Login/IniciarSesion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestDTO",
+        "Type": "Chubbseg.Application.DTOS.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.SegurosController",
+    "Method": "AseguradosPorSeguros",
+    "RelativePath": "api/Seguros/CantAsegurados/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Backend_ChubbSeg.Controllers.SegurosController",
     "Method": "ConsultaSeguros",
     "RelativePath": "api/Seguros/ConsultaSeguros",
@@ -161,7 +193,7 @@
       },
       {
         "Name": "requestDTO",
-        "Type": "Chubbseg.Application.DTOS.SegurosRequestDTO",
+        "Type": "Chubbseg.Application.DTOS.SegurosRequesteditDTO",
         "IsRequired": true
       }
     ],
@@ -179,6 +211,11 @@
         "Name": "Id",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Chubbseg.Application.DTOS.SegurosRequestDeleteDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -195,6 +232,22 @@
         "Name": "requestDTO",
         "Type": "Chubbseg.Application.DTOS.SegurosRequestDTO",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.SegurosController",
+    "Method": "RegistrarSegurosmasivo",
+    "RelativePath": "api/Seguros/RegistrarSegurosMasivo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "archivo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

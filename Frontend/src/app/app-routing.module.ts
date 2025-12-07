@@ -3,6 +3,7 @@ import {  RouterModule, Routes } from '@angular/router';
 import { ManejoAseguradosComponent } from './pages/Asegurados/components/manejo-asegurados/manejo-asegurados.component';
 import { LoginComponent } from './pages/Auth/components/login/login.component';
 import { BienvenidaComponent } from './pages/Bienvenida/Principal/components/bienvenida/bienvenida.component';
+import { ManejoCobranzasComponent } from './pages/Cobranzas/components/manejo-cobranzas/manejo-cobranzas.component';
 import { ManejoSegurosComponent } from './pages/Seguros/components/manejo-seguros/manejo-seguros.component';
 
 
@@ -29,6 +30,12 @@ import { ManejoSegurosComponent } from './pages/Seguros/components/manejo-seguro
       path: 'asegurados',
     component:ManejoAseguradosComponent,
       loadChildren: () => import('./pages/Asegurados/components/manejoAsegurados-modules').then((m) => m.AseguradosModule)
+    },
+    {
+    
+      path: 'cobranzas',
+    component:ManejoCobranzasComponent,
+      loadChildren: () => import('./pages/Cobranzas/manejoAsegurados-modules').then((m) => m.CobranzasModule)
     },
     {
     

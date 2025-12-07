@@ -159,37 +159,18 @@
 }
 
 .header-card-animated {
-  /* 1. Definimos el gradiente.
-     Usamos tonos oscuros (carbón, pizarra, azul noche muy oscuro)
-     para que combine con la imagen que mostraste. */
-  background: linear-gradient(
-      270deg,
-      #222324, /* Negro suave */
-      #39393a, /* Gris medio oscuro */
-      #070808, /* Azul noche desaturado para profundidad */
-      #1b1b1b  /* Vuelta al negro suave */
-  );
-
-  /* 2. Hacemos el fondo mucho más grande que el contenedor
-     para poder moverlo */
+  /* Gradiente oscuro elegante */
+  background: linear-gradient(270deg, #0c0c0c, #3b5168, #0e1114, #101111);
   background-size: 400% 400%;
+  animation: subtle-shift 18s ease infinite;
 
-  /* 3. Aplicamos la animación:
-     Nombre: subtle-shift
-     Duración: 25s (muy lento para que sea elegante)
-     Tipo: ease (suave al inicio y final)
-     Repetición: infinite (bucle) */
-  animation: subtle-shift 20s ease infinite;
-
-  /* --- Estilos base del contenedor (Bordes, Sombra, Texto) --- */
+  width: 100%;
   border-radius: 12px;
   padding: 20px 30px;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /* Sombra un poco más oscura para resaltar sobre fondos claros */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  /* Un borde sutil para definirlo mejor si el fondo de la página es oscuro */
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 

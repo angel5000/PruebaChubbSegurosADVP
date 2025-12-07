@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     { icons: 'bi bi-house fs-4', route: '/bienvenido', label: 'Principal' },
     { icons: 'bi bi-heart-pulse fs-4', route: '/seguros', label: 'Control de Seguros' },
     { icons: 'bi bi-person-arms-up fs-4', route: '/asegurados', label: 'Control de Asegurados' },
+    { icons: 'bi bi-currency-dollar fs-4', route: '/cobranzas', label: 'Cobranzas' },
   ];
   filteredItems: Navigationitem[] = [];
   constructor(private router: Router) {
