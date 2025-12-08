@@ -1,3 +1,4 @@
+#Si al hacer ng serve-o no compila, eliminar la carpeta cache dentro de .Angular
 # PruebaChubbSegurosADVP
 | Herramienta                         | Versión recomendada | Enlace                                                                       |
 | ----------------------------------- | ------------------- | ---------------------------------------------------------------------------- |
