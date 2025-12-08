@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using Chubbseg.Application.DTOS;
 using Chubbseg.Application.Interfaces;
 using Chubbseg.Domain.Entidades;
@@ -22,13 +23,12 @@ namespace Chubbseg.Application.Services
             _mapper = mapper;
         }
 
-        async public Task<BaseResponse<AseguradosResponseDTO>> AseguradosporID(int AseguradoID)
+        public async Task<BaseResponse<AseguradosResponseDTO>> AseguradosporID(int AseguradoID)
         {
-            var response = new BaseResponse<AseguradosResponseDTO>();
+            BaseResponse<AseguradosResponseDTO> response = new BaseResponse<AseguradosResponseDTO>();
             try
             {
-                // Obtener datos del repositorio (ADO.NET)
-                var seguro = await _repo.GetByIdAsync(AseguradoID);
+                Asegurados seguro = await _repo.GetByIdAsync(AseguradoID);
 
                 if (seguro == null)
                 {
@@ -36,15 +36,8 @@ namespace Chubbseg.Application.Services
                     response.Message = "No se encontró un asegurado con ese ID.";
                     return response;
                 }
-                var dto = new AseguradosResponseDTO
-                {
-                  
-                    IDASEGURADOS = seguro.IDASEGURADOS,
-                    CEDULA = seguro.CEDULA,
-                    NMBRCOMPLETO = seguro.NMBRCOMPLETO,
-                    TELEFONO = seguro.TELEFONO,
-                    EDAD = seguro.EDAD,
-                };
+                AseguradosResponseDTO dto = _mapper.Map<AseguradosResponseDTO>(seguro);
+
                 response.Data = dto;
                 response.IsSucces = true;
                 response.Message = "Consulta realizada correctamente";
@@ -58,28 +51,26 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-        async public Task<BaseResponse<bool>> EditarAsegurados(int AseguradoID, AseguradosRequestDTO request)
+        public async Task<BaseResponse<bool>> EditarAsegurados(int AseguradoID, AseguradosEditRequestDTO request)
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                // DTO → Entidad Domain
-                var entidad = _mapper.Map<Asegurados>(request);
 
-                // Llamada al repositorio (SP)
+                Asegurados entidad = _mapper.Map<Asegurados>(request);
                 int result = await _repo.UpdateAsync(AseguradoID, entidad);
 
                 if (result > 0)
                 {
                     response.Data = true;
                     response.IsSucces = true;
-                    response.Message = "Informacion del cliente modificada correctamente.";
+                    response.Message = "Información del cliente modificada correctamente.";
                 }
                 else
                 {
                     response.Data = false;
                     response.IsSucces = false;
-                    response.Message = "No se pudo modificar la informacion del cliente.";
+                    response.Message = "No se pudo modificar la información del cliente.";
                 }
             }
             catch (Exception ex)
@@ -92,9 +83,9 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-       async public Task<BaseResponse<bool>> EliminarAsegurados(int AseguradoID)
+        public async Task<BaseResponse<bool>> EliminarAsegurados(int AseguradoID)
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
                 int result = await _repo.DeleteAsync(AseguradoID);
@@ -122,25 +113,13 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-        async  public Task<BaseResponse<IEnumerable<AseguradosResponseDTO>>> ListaAsegurados()
+        public async Task<BaseResponse<IEnumerable<AseguradosResponseDTO>>> ListaAsegurados()
         {
-            var response = new BaseResponse<IEnumerable<AseguradosResponseDTO>>();
+            BaseResponse<IEnumerable<AseguradosResponseDTO>> response = new BaseResponse<IEnumerable<AseguradosResponseDTO>>();
             try
             {
-                // Obtener datos del repositorio (ADO.NET)
-                var listaSeguros = await _repo.GetAllAsync();
-
-                // Mapear entidad → DTO
-                var listaDto = listaSeguros.Select(x => new AseguradosResponseDTO
-                {
-                    IDASEGURADOS = x.IDASEGURADOS,
-                    CEDULA = x.CEDULA,
-                    NMBRCOMPLETO = x.NMBRCOMPLETO,
-                    TELEFONO = x.TELEFONO,
-                    EDAD = x.EDAD,
-
-                });
-
+                List<Asegurados> listaSeguros = await _repo.GetAllAsync();
+                IEnumerable<AseguradosResponseDTO> listaDto = _mapper.Map<IEnumerable<AseguradosResponseDTO>>(listaSeguros);
                 response.Data = listaDto;
                 response.IsSucces = true;
                 response.Message = "Consulta realizada correctamente";
@@ -154,15 +133,12 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-        async public Task<BaseResponse<bool>> RegistrarAsegurado(AseguradosRequestDTO request)
+        public async Task<BaseResponse<bool>> RegistrarAsegurado(AseguradosRequestDTO request)
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                // DTO → Entidad Domain
-                var entidad = _mapper.Map<Asegurados>(request);
-
-                // Llamada al repositorio (SP)
+                Asegurados entidad = _mapper.Map<Asegurados>(request);
                 int result = await _repo.CreateAsync(entidad);
 
                 if (result > 0)
@@ -188,4 +164,4 @@ namespace Chubbseg.Application.Services
             return response;
         }
     }
-}
+    }

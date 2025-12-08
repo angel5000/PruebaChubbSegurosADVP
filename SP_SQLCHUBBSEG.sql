@@ -42,7 +42,13 @@ BEGIN
         SUMASEGURADA,
         PRIMA,
         EDADMIN,
-        EDADMAX
+        EDADMAX,
+		FechaCreacion,
+        USRCreacion,
+        FechaActualizacion,
+        USRActualizacion,
+		UsuarioIP,
+		Estado
 		FROM SEGUROS
 		WHERE IDSEGURO = @IDSEGURO
 	END;
@@ -85,11 +91,16 @@ BEGIN
     SET NOCOUNT ON;
 
     -- VALIDACIÓN: Código de seguro duplicado
-    IF EXISTS (SELECT 1 FROM SEGUROS WHERE CODSEGURO = @CODSEGURO)
-    BEGIN
-        RAISERROR ('El código del seguro ya existe.', 16, 1);
-        RETURN -1; 
-    END
+   IF EXISTS (SELECT 1 FROM SEGUROS WHERE CODSEGURO = @CODSEGURO)
+BEGIN
+    RAISERROR (
+        'El código del seguro ya existe. Código duplicado: %s',
+        16,
+        1,
+        @CODSEGURO
+    );
+    RETURN -1; 
+END
 
     -- INSERT
     INSERT INTO SEGUROS
@@ -181,53 +192,82 @@ END;
 ---------------------------
 -------------------------------
 
-CREATE PROCEDURE ELIMINARSEGURO(
-		@IDSEGURO INT,
-		@USRActualizacion   VARCHAR(50),
-        @UsuarioIP      VARCHAR(50),
-        @EstadoDT         VARCHAR(15)
+CREATE OR ALTER PROCEDURE ELIMINARSEGURO(
+    @IDSEGURO INT,
+    @USRActualizacion VARCHAR(50),
+    @UsuarioIP VARCHAR(50),
+    @EstadoDT VARCHAR(15)
 )
 AS 
 BEGIN
-	SET NOCOUNT ON;
+    SET NOCOUNT ON;
 
-	IF NOT EXISTS (SELECT 1 FROM SEGUROS WHERE IDSEGURO =@IDSEGURO)
-	BEGIN
-	 RAISERROR('Seguro no existe para eliminar', 16, 1);
-        RETURN -1;   -- Registro no encontrado
-    END
-	  INSERT INTO SEGUROS_HISTORICO (
-        IDSEGURO,
-        NMBRSEGURO,
-        CODSEGURO,
-        SUMASEGURADA,
-        PRIMA,
-        EDADMIN,
-        EDADMAX,
-        EstadoDT,
-        FechaModElim,
-        UsuarioIP,
-        USRActualizacion
-    )
-    SELECT 
-        IDSEGURO,
-        NMBRSEGURO,
-        CODSEGURO,
-        SUMASEGURADA,
-        PRIMA,
-        EDADMIN,
-        EDADMAX,
-        @EstadoDT,
-        GETDATE(),   
-		@UsuarioIP,
-        @USRActualizacion
-    FROM SEGUROS
+    -- 1. Validar que el seguro exista y obtener su CODIGO para verificar relaciones
+    DECLARE @CodSeguro VARCHAR(10);
+
+    SELECT @CodSeguro = CODSEGURO 
+    FROM SEGUROS 
     WHERE IDSEGURO = @IDSEGURO;
 
-	DELETE FROM SEGUROS
-	WHERE IDSEGURO =@IDSEGURO;
-	
-	RETURN 1;
+    IF @CodSeguro IS NULL
+    BEGIN
+        RAISERROR('Seguro no existe para eliminar', 16, 1);
+        RETURN -1; -- Registro no encontrado
+    END
+
+    IF EXISTS (SELECT 1 FROM USRASEGURADOS WHERE CODSEGUROFK = @CodSeguro AND Estado = 1)
+    BEGIN
+        -- Si existe al menos uno, lanzamos error y detenemos el proceso
+        RAISERROR('No se puede eliminar el seguro porque tiene asegurados activos asociados.', 16, 1);
+        RETURN -2; -- Código de error por dependencia
+    END
+
+    -- Inicio de Transacción para asegurar integridad (Histórico + Borrado)
+    BEGIN TRANSACTION;
+
+    BEGIN TRY
+        -- 3. Guardar en Histórico
+        INSERT INTO SEGUROS_HISTORICO (
+            IDSEGURO,
+            NMBRSEGURO,
+            CODSEGURO,
+            SUMASEGURADA,
+            PRIMA,
+            EDADMIN,
+            EDADMAX,
+            EstadoDT,
+            FechaModElim,
+            UsuarioIP,
+            USRActualizacion
+        )
+        SELECT 
+            IDSEGURO,
+            NMBRSEGURO,
+            CODSEGURO,
+            SUMASEGURADA,
+            PRIMA,
+            EDADMIN,
+            EDADMAX,
+            @EstadoDT,
+            GETDATE(),    
+            @UsuarioIP,
+            @USRActualizacion
+        FROM SEGUROS
+        WHERE IDSEGURO = @IDSEGURO;
+
+        -- 4. Eliminar el registro
+        DELETE FROM SEGUROS
+        WHERE IDSEGURO = @IDSEGURO;
+
+        COMMIT TRANSACTION;
+        RETURN 1; -- Éxito
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        RAISERROR(@ErrorMessage, 16, 1);
+        RETURN -99;
+    END CATCH
 
 END;
 
@@ -264,12 +304,23 @@ AS
 BEGIN
   SET NOCOUNT ON;
 
-  IF EXISTS (SELECT 1 FROM ASEGURADOS WHERE CEDULA = @CEDULA)
-  BEGIN
-   RAISERROR('Usuario ya se encuentra registrado', 16, 1);
-        RETURN -1;   -- Cedula duplicada
-    END
+IF EXISTS (SELECT 1 FROM ASEGURADOS  WHERE CEDULA = @CEDULA)
+BEGIN
+    DECLARE @NOMBRECORTO VARCHAR(50);
 
+    -- Tomar solo los primeros 20 caracteres del nombre completo
+    SET @NOMBRECORTO = SUBSTRING(@NMBRCOMPLETO, 1, 14);
+
+    RAISERROR(
+        'El Usuario %s... con cédula %s ya se encuentra registrado',
+        16,
+        1,
+        @NOMBRECORTO,
+        @CEDULA
+    );
+    
+    RETURN -1;   -- Cedula duplicada
+END
 	INSERT INTO ASEGURADOS
 	(
 	    CEDULA,
@@ -344,22 +395,27 @@ END;
 ------ASEGURAMIENTOS-------
 ----------------------------
 
-exec CONSULTASEGURAMIENTO
+
 CREATE PROCEDURE CONSULTASEGURAMIENTO
 AS
 BEGIN
     SET NOCOUNT ON;
 
-     SELECT 
+    SELECT 
+        -- Datos base
         A.IDASEGURADOS,
         A.CEDULA,
         A.NMBRCOMPLETO,
         A.EDAD,
-		 CASE 
+
+        -- ID aseguramiento
+        CASE 
             WHEN U.IDUSRSEGUROS IS NULL THEN 0
             ELSE U.IDUSRSEGUROS
         END AS IDUSRSEGUROS,
-    CASE 
+
+        -- Seguro
+        CASE 
             WHEN S.NMBRSEGURO IS NULL THEN 'SIN SEGURO ASIGNADO'
             ELSE S.NMBRSEGURO
         END AS NMBRSEGURO,
@@ -379,65 +435,29 @@ BEGIN
             ELSE S.PRIMA
         END AS PRIMA,
 
-       CASE 
-			WHEN U.FECHACONTRATASEGURO IS NULL THEN 'N/A'
-			ELSE CONVERT(VARCHAR(10), U.FECHACONTRATASEGURO, 120)
-			END AS FECHACONTRATASEGURO
+        CASE 
+            WHEN U.FECHACONTRATASEGURO IS NULL THEN 'N/A'
+            ELSE CONVERT(VARCHAR(10), U.FECHACONTRATASEGURO, 120)
+        END AS FECHACONTRATASEGURO,
+
+        -- ===============================
+        -- CAMPOS DE AUDITORÍA USRASEGURADOS
+        -- ===============================
+        U.FechaCreacion AS FechaCreacion,
+        U.USRCreacion AS USRCreacion,
+        U.FechaActualizacion AS FechaActualizacion,
+        U.USRActualizacion AS USRActualizacion,
+        U.UsuarioIP AS UsuarioIP,
+        U.Estado AS Estado
 
 
     FROM 
-      ASEGURADOS A
+        ASEGURADOS A
         LEFT JOIN USRASEGURADOS U ON A.CEDULA = U.CEDULAFK
-        LEFT JOIN SEGUROS S ON S.CODSEGURO = U.CODSEGUROFK;;
-   
+        LEFT JOIN SEGUROS S ON S.CODSEGURO = U.CODSEGUROFK;
+
 END;
 GO
-
-
-CREATE PROCEDURE REGASEGURAMIENTO(
-		@CEDULA VARCHAR(10),
-		@CODSEGURO VARCHAR(10) 
-)
-AS
-BEGIN
-   SET NOCOUNT ON;
-   IF NOT EXISTS (SELECT 1 FROM ASEGURADOS WHERE CEDULA =@CEDULA)
-   BEGIN
-   RAISERROR('El asegurado no existe.', 16, 1);
-        RETURN -1;
-    END
-
-    -- Validar que el seguro exista
-    IF NOT EXISTS (SELECT 1 FROM SEGUROS WHERE CODSEGURO = @CODSEGURO)
-    BEGIN
-        RAISERROR('El seguro no existe.', 16, 1);
-        RETURN -2;
-    END
-
-	 IF EXISTS (
-        SELECT 1 
-        FROM USRASEGURADOS 
-        WHERE CEDULAFK = @CEDULA 
-          AND CODSEGUROFK = @CODSEGURO
-    )
-    BEGIN
-        RAISERROR('El cliente ya tiene registrado este seguro.', 16, 1);
-        RETURN -3;
-    END
-
-	INSERT INTO USRASEGURADOS (
-        CEDULAFK,
-        CODSEGUROFK,
-        FECHACONTRATASEGURO
-    )
-    VALUES (
-        @CEDULA,
-        @CODSEGURO,
-        GETDATE()
-    );
-	RETURN 1; 
-END;
-
 
 CREATE PROCEDURE SEGUR0SDISPO
     @EDAD INT
@@ -459,7 +479,8 @@ BEGIN
         RETURN;
     END
 
-    SELECT 
+    SELECT
+	    IDSEGURO,
         CODSEGURO,
         NMBRSEGURO,
         EDADMIN,
@@ -470,26 +491,6 @@ BEGIN
     WHERE @EDAD BETWEEN EDADMIN AND EDADMAX;
 END
 GO
-
-CREATE PROCEDURE ELIMINARASEGURAMIENTO(
-		@IDUSRSEGUROS INT
-)
-AS 
-BEGIN
-	SET NOCOUNT ON;
-
-	IF NOT EXISTS (SELECT 1 FROM USRASEGURADOS WHERE IDUSRSEGUROS = @IDUSRSEGUROS)
-	BEGIN
-	 RAISERROR('Aseguramiento no existe para eliminar', 16, 1);
-        RETURN -1;   -- Registro no encontrado
-    END
-	DELETE FROM USRASEGURADOS
-	WHERE IDUSRSEGUROS = @IDUSRSEGUROS;
-	
-	RETURN 1;
-
-END;
-
 
 
 CREATE PROCEDURE ConsulAseguradosPorSeguros
@@ -538,12 +539,6 @@ BEGIN
 END
 GO
 
-EXEC ConsulAseguradosPorSeguros @IDSEGURO = 5;
-
-
-
-
-
 
 ----------------------------------------
 ------------LOGIN---------------
@@ -591,7 +586,7 @@ BEGIN
         RETURN -3;
     END
 
-    -- 4️⃣ Validar contraseña → HASH(SALT + CONTRASEÑAINGRESADA)
+    -- Validar contraseña → HASH(SALT + CONTRASEÑAINGRESADA)
     DECLARE @HashIngresado VARBINARY(64);
     SET @HashIngresado = HASHBYTES('SHA2_512', @PasswordSalt + CONVERT(VARBINARY(200), @Contraseña));
 
@@ -601,7 +596,7 @@ BEGIN
         RETURN -2;
     END
 
-    -- 5️⃣ Obtener Rol principal del usuario
+    -- Obtener Rol principal del usuario
     SELECT TOP 1
         @IdRol = R.IdRol,
         @NombreRol = R.NombreRol
@@ -610,7 +605,7 @@ BEGIN
     WHERE UR.IdUsuario = @IdUsuario
     ORDER BY R.IdRol;  -- opcional: primer rol asignado
 
-    -- 6️⃣ Retornar los datos completos
+    -- Retornar los datos completos
     SELECT 
         @IdUsuario     AS IdUsuario,
         @NombreUsuario AS NombreUsuario,
@@ -619,10 +614,9 @@ BEGIN
         @NombreRol     AS NombreRol,
         @Estado        AS Estado;
 
-    RETURN 1; -- login exitoso
+    RETURN 1; 
 END;
 GO
-
 
 DECLARE @Resultado INT;
 
@@ -631,3 +625,163 @@ EXEC @Resultado = LoginUsuario
     @Contraseña = '123456';
 
 SELECT @Resultado AS Resultado;
+
+
+CREATE PROCEDURE COBRANZASTOTALES
+
+AS
+BEGIN
+    SET NOCOUNT ON;
+	SELECT 
+
+    C.IDCOBRANZA,
+	UA.IDUSRSEGUROS AS IDASEGURADO,
+    A.NMBRCOMPLETO AS CLIENTE,
+    S.NMBRSEGURO AS POLIZA,
+    C.FECHA_VENCIMIENTO,
+    C.MONTO_ESPERADO,
+    C.ESTADO_COBRANZA,
+    -- Columna calculada para saber si hay MORA
+    CASE 
+        WHEN C.ESTADO_COBRANZA = 'PENDIENTE' AND C.FECHA_VENCIMIENTO < GETDATE() THEN 'MORA'
+        WHEN C.ESTADO_COBRANZA = 'PENDIENTE' AND C.FECHA_VENCIMIENTO >= GETDATE() THEN 'AL DIA'
+        ELSE 'PAGADO'
+    END AS ESTADO_CALCULADO,
+    -- Días de retraso
+    DATEDIFF(day, C.FECHA_VENCIMIENTO, GETDATE()) AS DIAS_RETRASO
+FROM COBRANZAS C
+INNER JOIN USRASEGURADOS UA ON C.IDUSRSEGUROSFK = UA.IDUSRSEGUROS
+INNER JOIN ASEGURADOS A ON UA.CEDULAFK = A.CEDULA
+INNER JOIN SEGUROS S ON UA.CODSEGUROFK = S.CODSEGURO
+WHERE C.Estado = 1;
+
+	END;
+GO
+
+---------------
+---------------
+
+CREATE PROCEDURE CONSULTARPERMISOS
+(
+    @IDROL  INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+       IdRol,
+	   IdPermiso,
+	   Estado,
+	   FechaAsignacion
+    FROM RolesPermisos
+	WHERE IdRol = @IDROL
+END;
+GO
+
+
+SELECT * FROM USRASEGURADOS
+CREATE PROCEDURE CANCELAR_POLIZA
+    @IDUSRSEGUROS INT,
+    @USUARIO_ANULA VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRANSACTION;
+
+    BEGIN TRY
+        -- Desactivar la Póliza (Soft Delete)
+        UPDATE USRASEGURADOS
+        SET Estado = 0, -- 0 = Inactivo
+            FechaActualizacion = GETDATE(),
+            USRActualizacion = @USUARIO_ANULA
+        WHERE IDUSRSEGUROS = @IDUSRSEGUROS;
+
+        -- Anular SOLO los cobros pendientes (No tocar lo pagado)
+        UPDATE COBRANZAS
+        SET ESTADO_COBRANZA = 'ANULADO',
+            OBSERVACION = 'Póliza Cancelada por el usuario',
+            FechaActualizacion = GETDATE(),
+            USRActualizacion = @USUARIO_ANULA
+        WHERE IDUSRSEGUROSFK = @IDUSRSEGUROS 
+          AND ESTADO_COBRANZA = 'PENDIENTE'; 
+	
+        COMMIT TRANSACTION;
+			   RETURN 1;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        THROW; -- Relanzar el error para que Angular lo detecte
+    END CATCH
+END;
+
+CREATE PROCEDURE ELIMINARASEGURAMIENTO
+    @IDUSRSEGUROS INT,
+    @USUARIO_EJECUTA VARCHAR(50) 
+AS 
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Variables para leer el estado antes de borrar
+    DECLARE @EstadoActual BIT;
+    DECLARE @Cedula VARCHAR(10);
+    DECLARE @CodSeguro VARCHAR(10);
+    DECLARE @FechaContrata DATE;
+
+    -- Verificar si existe y obtener datos
+    SELECT 
+        @EstadoActual = Estado,
+        @Cedula = CEDULAFK,
+        @CodSeguro = CODSEGUROFK,
+        @FechaContrata = FECHACONTRATASEGURO
+    FROM USRASEGURADOS 
+    WHERE IDUSRSEGUROS = @IDUSRSEGUROS;
+
+    IF @@ROWCOUNT = 0
+    BEGIN
+        RAISERROR('El registro de aseguramiento no existe.', 16, 1);
+        RETURN -1;
+    END
+
+    -- Verificar Estado (Solo si es 0 se elimina)
+    IF @EstadoActual = 1
+    BEGIN
+        RAISERROR('No se puede eliminar un seguro activo', 16, 1);
+        RETURN -2;
+    END
+
+    -- INICIO DE TRANSACCIÓN (Todo o Nada)
+    BEGIN TRANSACTION;
+
+    BEGIN TRY
+        -- 3. Guardar en Histórico (Backup antes de morir)
+        INSERT INTO USRASEGURADOS_HISTORICO (
+            IDUSRSEGUROS_ORIGINAL, CEDULAFK, CODSEGUROFK, FECHACONTRATASEGURO, UsuarioElimino
+        )
+        VALUES (
+            @IDUSRSEGUROS, @Cedula, @CodSeguro, @FechaContrata, @USUARIO_EJECUTA
+        );
+
+        -- Eliminar dependencias en COBRANZAS (Hijos)
+        -- Borramos todo rastro financiero de este seguro específico
+        DELETE FROM COBRANZAS 
+        WHERE IDUSRSEGUROSFK = @IDUSRSEGUROS;
+
+        -- Eliminar el registro principal en USRASEGURADOS (Padre)
+        DELETE FROM USRASEGURADOS
+        WHERE IDUSRSEGUROS = @IDUSRSEGUROS;
+
+        -- Si todo salió bien, confirmamos
+        COMMIT TRANSACTION;
+        RETURN 1; -- Éxito
+
+    END TRY
+    BEGIN CATCH
+        -- Si algo falla, revertimos todo (no se borra nada ni se inserta histórico)
+        ROLLBACK TRANSACTION;
+        
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        RAISERROR(@ErrorMessage, 16, 1);
+        RETURN -99;
+    END CATCH
+END;

@@ -40,7 +40,7 @@
       },
       {
         "Name": "requestDTO",
-        "Type": "Chubbseg.Application.DTOS.AseguradosRequestDTO",
+        "Type": "Chubbseg.Application.DTOS.AseguradosEditRequestDTO",
         "IsRequired": true
       }
     ],
@@ -100,6 +100,11 @@
         "Name": "Id",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "usuario",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -137,6 +142,37 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Backend_ChubbSeg.Controllers.CobranzasController.CobranzasController",
+    "Method": "EliminarSeguro",
+    "RelativePath": "api/Cobranzas/CancelarSeguro/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuario",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.CobranzasController.CobranzasController",
+    "Method": "ConsultarCobranzas",
+    "RelativePath": "api/Cobranzas/ConsultaCobranzas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Backend_ChubbSeg.Controllers.AuthControllers.LoginController",
     "Method": "IniciarSesion",
     "RelativePath": "api/Login/IniciarSesion",
@@ -147,6 +183,22 @@
       {
         "Name": "requestDTO",
         "Type": "Chubbseg.Application.DTOS.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend_ChubbSeg.Controllers.PermisosController.PermisosController",
+    "Method": "ConsultaPermisos",
+    "RelativePath": "api/Permisos/ConsultarPermisos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

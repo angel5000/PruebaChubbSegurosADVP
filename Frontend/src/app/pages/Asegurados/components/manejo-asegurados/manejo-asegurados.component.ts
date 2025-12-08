@@ -10,6 +10,7 @@ import { DialogSegurosclientesComponent } from '../dialog/dialog-seguros/dialog-
 import { FilterBox } from '../../../../shared/models/SearchOptions.interface';
 import { actualizarPermiso } from './list.config';
 import { SegurosService } from '../../../Seguros/Servicios/seguros.service';
+import { AuthService } from '../../../Auth/Services/auth.service';
 @Component({
   selector: 'app-manejo-asegurados',
   templateUrl: './manejo-asegurados.component.html',
@@ -20,9 +21,10 @@ export class ManejoAseguradosComponent {
   component: any;
   mode: string = 'register'
   pantalla: string;
+  usuario: string;
 
   constructor(public _dialog: MatDialog,
-    private toastr: ToastrService, public aseguradosserv: AseguradosService,
+    private toastr: ToastrService, public aseguradosserv: AseguradosService, public authserv:AuthService,
     public seguroserv: SegurosService) {
   }
 
@@ -30,6 +32,26 @@ export class ManejoAseguradosComponent {
     this.component = ComponentSettings
     this.pantalla = 'asegurados'
     this.formatGetInputs()
+    this.usuario = (localStorage.getItem('usuario') ?? '').replace(/"/g, '');
+    const role = this.authserv.getUserRole();
+    this.authserv.ObtenerPermisos(role).subscribe(res => {
+      
+      for (const item of res.data) {
+  
+        if (item.idPermiso === 4) {
+          actualizarPermiso.prototype.PermisoConsultar(true);
+        }
+        else if (item.idPermiso === 2) {
+          actualizarPermiso.prototype.PermisoEditar(true);
+        }
+        else if (item.idPermiso === 3) {
+          actualizarPermiso.prototype.PermisoEliminar(true);
+        }
+        else if (item.idPermiso === 1) {
+          actualizarPermiso.prototype.PermisoAgregar(true);
+        }
+      }
+    });
   }
 
   formatGetInputs() {
@@ -79,20 +101,15 @@ export class ManejoAseguradosComponent {
     const searchValue = data.searchData.toLocaleLowerCase()?.trim();
     const searchField = data.searchValue || null; // nuevo: campo a filtrar
     ComponentSettings.filters.numFilter=searchField.toString()
-  console.log(data) ;
   this.component.filters.numFilter=1
     if (!searchValue) {
 
       this.component.filters = {};
-     // actualizarPermiso.prototype.PermisoConsultar(true);
     } else {
-      //actualizarPermiso.prototype.PermisoConsultar(false);
       if (searchField) {
-        // filtrar por campo específico
         this.component.filters.textFilter = { [searchField]: searchValue };
         this.component.filters.numFilter=1
       } else {
-        // si no hay campo, se puede filtrar por todos los campos relevantes
         this.component.filters.textFilter = { searchAll: searchValue };
         this.component.filters.numFilter=1
       }

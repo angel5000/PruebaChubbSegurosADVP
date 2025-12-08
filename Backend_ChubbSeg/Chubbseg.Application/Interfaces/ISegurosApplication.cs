@@ -12,9 +12,9 @@ namespace Chubbseg.Application.Interfaces
     {
         Task<BaseResponse<IEnumerable<SegurosResponseDTO>>> ListaSeguros();
         Task<BaseResponse<SegurosResponseIDDTO>> SegurosporID(int SeguroID);
-        Task<BaseResponse<bool>> RegistrarSeguro(SegurosRequestDTO request, HttpContext context);
-        Task<BaseResponse<bool>> EditarSeguros(int SeguroID, SegurosRequesteditDTO request, HttpContext context);
-        Task<BaseResponse<bool>> EliminarSeguros(int SeguroID, SegurosRequestDeleteDTO request, HttpContext context);
+        Task<BaseResponse<bool>> RegistrarSeguro(SegurosRequestDTO request);
+        Task<BaseResponse<bool>> EditarSeguros(int SeguroID, SegurosRequesteditDTO request);
+        Task<BaseResponse<bool>> EliminarSeguros(int SeguroID, SegurosRequestDeleteDTO request);
         Task<BaseResponse<IEnumerable<SegurosResponseDTO>>> SegurosDisponibles(int edad);
         Task<BaseResponse<AseguradosporSeguraresponseDTO>> AseguradosPorSeguros(int id);
     }

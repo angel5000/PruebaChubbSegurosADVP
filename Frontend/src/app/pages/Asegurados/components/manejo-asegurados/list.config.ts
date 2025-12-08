@@ -144,7 +144,7 @@ function getTableColumns() {
       action: "edit",
       sticky: false,
       sort: false,
-      visible: true,
+      visible: Permisos.editar,
       download: false
 
     },
@@ -170,7 +170,7 @@ function getTableColumns() {
       cssSubProperty: ["bi bi-clipboard2-plus fs-5"],
       type: "icon",
       action: "agregar",
-      visible: true,
+      visible: Permisos.agregar,
       tooltip: "Agregar Seguros",
       sticky: false,
       sort: false,
@@ -188,7 +188,7 @@ function getTableColumns() {
       tooltip: "eliminar",
       sticky: false,
       sort: false,
-      visible: true,
+      visible: Permisos.eliminar,
       download: false
 
     }
@@ -205,14 +205,35 @@ const filters = {
 }
 
 
-const Permisos = {
-  consultar: true,
-};
+const Permisos={
+  eliminar:false,
+  editar:false,
+  consultar:false,
+  agregar:false
+  };
+
 
 export class actualizarPermiso {
-
+  PermisoEliminar(valor: boolean) {
+    Permisos.eliminar = valor;
+  
+    // Actualizar las columnas dinámicamente
+    ComponentSettings.tableColumns = getTableColumns();
+  }
+  PermisoEditar(valor: boolean) {
+    Permisos.editar = valor;
+  
+    // Actualizar las columnas dinámicamente
+    ComponentSettings.tableColumns = getTableColumns();
+  }
   PermisoConsultar(valor: boolean) {
     Permisos.consultar = valor;
+  
+    // Actualizar las columnas dinámicamente
+    ComponentSettings.tableColumns = getTableColumns();
+  }
+  PermisoAgregar(valor: boolean) {
+    Permisos.agregar = valor;
     ComponentSettings.tableColumns = getTableColumns();
   }
 }
@@ -225,4 +246,5 @@ export const ComponentSettings = {
   getInputs,
   filters: filters,
   searchOptions: searchOptions,
+
 }

@@ -11,7 +11,7 @@ namespace Chubbseg.Application.Interfaces
     {
         Task<BaseResponse<IEnumerable<AseguradosResponseDTO>>> ListaAsegurados();
         Task<BaseResponse<bool>> RegistrarAsegurado(AseguradosRequestDTO request);
-        Task<BaseResponse<bool>> EditarAsegurados(int AseguradoID, AseguradosRequestDTO request);
+        Task<BaseResponse<bool>> EditarAsegurados(int AseguradoID, AseguradosEditRequestDTO request);
         Task<BaseResponse<bool>> EliminarAsegurados(int AseguradoID);
         Task<BaseResponse<AseguradosResponseDTO>> AseguradosporID(int AseguradoID);
     }

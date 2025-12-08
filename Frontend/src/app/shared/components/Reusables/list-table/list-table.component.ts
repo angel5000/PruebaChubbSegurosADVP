@@ -159,7 +159,8 @@ export class ListTableComponent<T> implements OnInit, AfterViewInit, OnChanges {
             codseguro: item.codseguro,
             sumasegurada: item.sumasegurada,
             prima: item.prima,
-            fechacontrataseguro: item.fechacontrataseguro
+            fechacontrataseguro: item.fechacontrataseguro,
+            estado:item.estado
           });
           return acc;
         }, {}));
@@ -176,7 +177,6 @@ export class ListTableComponent<T> implements OnInit, AfterViewInit, OnChanges {
       const searchValue = this.filtros.textFilter;
       processedData = processedData.filter((item: any) => {
         if (searchValue) {
-          // buscar en varios campos
           const value = typeof searchValue === 'string'
           ? searchValue
           : Object.values(searchValue)[0]; // toma el primer valor del objeto
@@ -198,22 +198,6 @@ export class ListTableComponent<T> implements OnInit, AfterViewInit, OnChanges {
         });
       });
     }
-
-
-/*
-    if (this.filtros && this.filtros.cedula) {
-      const ced = this.filtros.cedula.trim();
-      processedData = processedData.filter((x: any) =>
-        x.cedula?.toString().includes(ced)
-      );
-    } 
-    else if (this.filtros && this.filtros.codseguro) {
-      const codseg = this.filtros.codseguro.trim();
-      processedData = processedData.filter((x: any) =>
-        x.codseguro?.toString().includes(codseg)
-      );
-    }*/
-   
 
     this.dataSource.data = processedData;
     this.dataSource.paginator = this.paginator;

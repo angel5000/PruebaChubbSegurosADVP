@@ -2,10 +2,11 @@ import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Aseguramiento } from '../../../Model/asegurados.interface';
-import { ComponentSettings } from './list.config';
+import { actualizarPermiso, ComponentSettings } from './list.config';
 import Swal from 'sweetalert2';
 import { AseguradosService } from '../../services/servicios.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../../Auth/Services/auth.service';
 @Component({
   selector: 'app-dialog-seguros',
   templateUrl: './dialog-seguros.component.html',
@@ -18,19 +19,23 @@ export class DialogSegurosclientesComponent {
   detalleColumns: any[] = []
   detalleSeguros: any;
   segurosAgrupados: any[] = [];
+  usuario: string;
   constructor(@Inject(MAT_DIALOG_DATA) public data, private _fb: FormBuilder,
     public _dialogRef: MatDialogRef<DialogSegurosclientesComponent>,
     public aseguradosserv: AseguradosService,
-    private toastr: ToastrService
+    private toastr: ToastrService, private authserv:AuthService
   ) {
     if (data) {
+      console.log(data);
+      
       this.segurosAgrupados = data.data.row.seguros.map(x => ({
         idusrseguros: x.idusrseguros,
         nmbrseguro: x.nmbrseguro,
         codseguro: x.codseguro,
         sumasegurada: x.sumasegurada,
         prima: x.prima,
-        fechacontrataseguro: x.fechacontrataseguro
+        fechacontrataseguro: x.fechacontrataseguro,
+        estado:x.estado
       }));
       let segurosdispo = this.segurosAgrupados.filter(s => s.idusrseguros !== 0);
       if (segurosdispo.length !== 0) {
@@ -43,6 +48,16 @@ export class DialogSegurosclientesComponent {
 
   ngOnInit(): void {
     this.component = ComponentSettings
+    this.usuario = (localStorage.getItem('usuario') ?? '').replace(/"/g, '');
+    const role = this.authserv.getUserRole();
+    this.authserv.ObtenerPermisos(role).subscribe(res => {
+      for (const item of res.data) {
+
+      if (item.idPermiso === 3) {
+          actualizarPermiso.prototype.PermisoEliminar(true);
+        }
+      }
+    });
   }
 
   formatGetInputs() {
@@ -87,7 +102,7 @@ export class DialogSegurosclientesComponent {
 
     }).then((result) => {
       if (result.isConfirmed) {
-        this.aseguradosserv.EliminarAseguramiento(id).subscribe({
+        this.aseguradosserv.EliminarAseguramiento(id,this.usuario).subscribe({
           next: (response) => {
             if (response.isSucces) {
               this.toastr.success(response.message, 'Éxito');

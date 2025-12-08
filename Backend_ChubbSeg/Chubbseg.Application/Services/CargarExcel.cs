@@ -6,13 +6,7 @@ using Chubbseg.Domain.Entidades;
 using Chubbseg.Infrastructure.FileExcel;
 using Chubbseg.Infrastructure.FileUpload;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Microsoft.Data.SqlClient;
 namespace Chubbseg.Application.Services
 {
     public class CargarExcel : ICargarExcel
@@ -34,33 +28,35 @@ namespace Chubbseg.Application.Services
             _mapper = mapper;
         }
 
-        async public Task<BaseResponse<bool>> ProcesarArchivo<T> (IFormFile archivo) where T : class, new()
+        public async Task<BaseResponse<bool>> ProcesarArchivo<T>(IFormFile archivo) where T : class, new()
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                var extension = Path.GetExtension(archivo.FileName).ToLower();
+                string extension = Path.GetExtension(archivo.FileName).ToLower();
                 List<T> usuarios = new List<T>();
+
                 if (extension == ".xlsx")
                 {
-
                     usuarios = cargaexcel.SubirExcel<T>(archivo);
                 }
                 else if (extension == ".txt")
                 {
                     usuarios = cargatxt.ImportarTxt<T>(archivo);
-
                 }
                 else
                 {
                     response.Message = "Formato no soportado. Use .xlsx o .txt";
                     return response;
                 }
-                var usuariosMapeados = usuarios.Cast<AseguradosRequestDTO>().ToList();
-                var segurosResponse = await _seguros.ListaSeguros();
-                var seguros = segurosResponse.Data;
 
-                foreach (var usuario in usuariosMapeados)
+                List<AseguradosRequestDTO> usuariosMapeados = usuarios.Cast<AseguradosRequestDTO>().ToList();
+
+                BaseResponse<IEnumerable<SegurosResponseDTO>> 
+                segurosResponse = await _seguros.ListaSeguros();
+                IEnumerable<SegurosResponseDTO> seguros = segurosResponse.Data;
+
+                foreach (AseguradosRequestDTO usuario in usuariosMapeados)
                 {
                     if (string.IsNullOrWhiteSpace(usuario.CODSEGURO))
                     {
@@ -68,22 +64,23 @@ namespace Chubbseg.Application.Services
                         continue;
                     }
 
-                    // Registrar el usuario una sola vez
-                    var resp = await _asegurados.RegistrarAsegurado(usuario);
+                    // Registrar el usuario (Asegurado)
+                    BaseResponse<bool> resp = await _asegurados.RegistrarAsegurado(usuario);
                     if (!resp.IsSucces)
                     {
                         response.Messagemultiple.Add(resp.Message);
-                        continue; // Si falla el registro de usuario, saltamos este usuario
+                        continue; // Si falla el registro del asegurado, no intentamos asignarle seguros
                     }
 
                     // Separar los códigos de seguro por coma
-                    var codigos = usuario.CODSEGURO.Split(',', StringSplitOptions.RemoveEmptyEntries)
-                                                    .Select(c => c.Trim())
-                                                    .ToList();
+                    List<string> codigos = usuario.CODSEGURO.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                                                            .Select(c => c.Trim())
+                                                            .ToList();
 
-                    foreach (var codigo in codigos)
+                    foreach (string codigo in codigos)
                     {
-                        var seguroAsignado = seguros.FirstOrDefault(s => s.CODSEGURO.ToLower() == codigo.ToLower());
+                        // Buscar si el código existe en la lista de seguros cargada
+                        SegurosResponseDTO seguroAsignado = seguros.FirstOrDefault(s => s.CODSEGURO.ToLower() == codigo.ToLower());
 
                         if (seguroAsignado == null)
                         {
@@ -91,96 +88,85 @@ namespace Chubbseg.Application.Services
                             continue;
                         }
 
-                        var aseguramiento = new AseguramientoRequestDTO()
+                        AseguramientoRequestDTO aseguramiento = new AseguramientoRequestDTO()
                         {
                             CEDULA = usuario.CEDULA,
                             CODSEGURO = seguroAsignado.CODSEGURO
                         };
 
-                        var respaseg = await _asegurmiento.RegistrarAseguramiento(aseguramiento);
+                        BaseResponse<bool> respaseg = await _asegurmiento.RegistrarAseguramiento(aseguramiento);
                         if (!respaseg.IsSucces)
                         {
                             response.Messagemultiple.Add(respaseg.Message);
                         }
                     }
-
-                    // Si al menos un seguro fue registrado correctamente
-                    response.Data = true;
-                    response.IsSucces = true;
-                    response.Message = "Aseguramientos registrados correctamente.";
-                   
-            
-
                 }
+
+                response.Data = true;
+                response.IsSucces = true;
+                response.Message = "Proceso de carga masiva finalizado. Verifique los mensajes de error si los hubo.";
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("SQL Error: " + ex.Message);
             }
             catch (Exception ex)
             {
-                response.IsSucces = false;
-                response.Message = ex.Message;
+                throw new Exception("Excepcion Error: " + ex.Message);
             }
             return response;
         }
 
-        async public Task<BaseResponse<bool>> RegistMasvSeguros<T>(IFormFile archivo, HttpContext context) where T : class, new()
+        public async Task<BaseResponse<bool>> RegistMasvSeguros<T>(IFormFile archivo) where T : class, new()
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                var extension = Path.GetExtension(archivo.FileName).ToLower();
-                List<T> usuarios = new List<T>();
+                string extension = Path.GetExtension(archivo.FileName).ToLower();
+                List<T> listaCargada = new List<T>();
+
                 if (extension == ".xlsx")
                 {
-
-                    usuarios = cargaexcel.SubirExcel<T>(archivo);
+                    listaCargada = cargaexcel.SubirExcel<T>(archivo);
                 }
                 else if (extension == ".txt")
                 {
-                    usuarios = cargatxt.ImportarTxt<T>(archivo);
-
+                    listaCargada = cargatxt.ImportarTxt<T>(archivo);
                 }
                 else
                 {
                     response.Message = "Formato no soportado. Use .xlsx o .txt";
                     return response;
                 }
-                var SegurosMapeados = usuarios.Cast<SegurosRequestDTO>().ToList();
-            
 
-                foreach (var seguros in SegurosMapeados)
+                List<SegurosRequestDTO> segurosMapeados = listaCargada.Cast<SegurosRequestDTO>().ToList();
+
+                foreach (SegurosRequestDTO seguroDto in segurosMapeados)
                 {
-                    var seguroAsignado = seguros;
+                    // Nota: Aquí se asume que _seguros.RegistrarSeguro espera un SegurosRequestDTO
+                    BaseResponse<bool> resp = await _seguros.RegistrarSeguro(seguroDto);
 
-                    var entidad = _mapper.Map<SegurosRequestDTO>(seguroAsignado);
-
-                  
-
-                    var resp = await _seguros.RegistrarSeguro(entidad, context);
                     if (!resp.IsSucces)
                     {
-
-                        response.Messagemultiple.Add(resp.Message);
-
+                        response.Messagemultiple.Add($"Error al registrar seguro {seguroDto.CODSEGURO}: {resp.Message}");
                     }
-
-                   
-                    else
-                    {
-                        response.Data = true;
-                        response.IsSucces = true;
-                        response.Message = "Aseguramient registrado correctamente.";
-                    }
-
-
                 }
+
+                response.Data = true;
+                response.IsSucces = true;
+                response.Message = "Carga masiva de seguros finalizada.";
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("SQL Error: " + ex.Message);
             }
             catch (Exception ex)
             {
+                response.Data = false;
                 response.IsSucces = false;
                 response.Message = ex.Message;
             }
             return response;
         }
-
-
     }
-}
+    }

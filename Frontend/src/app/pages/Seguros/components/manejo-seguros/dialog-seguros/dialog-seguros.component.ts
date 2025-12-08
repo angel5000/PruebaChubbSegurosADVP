@@ -6,7 +6,9 @@ import { ToastrService } from 'ngx-toastr';
 import { SegurosRequest } from '../../../Models/seguros.interface';
 import { SegurosService } from '../../../Servicios/seguros.service';
 import { HttpClient } from '@angular/common/http';
-
+import { firstValueFrom } from 'rxjs';
+import { Estados } from '../../../../../../static-data/config';
+import { AuthService } from '../../../../Auth/Services/auth.service';
 @Component({
   selector: 'app-dialog-seguros',
   templateUrl: './dialog-seguros.component.html',
@@ -17,11 +19,11 @@ export class DialogSegurosComponent implements OnInit {
   form: FormGroup
   ocultar: boolean = false;
   isLoading: boolean = false;
-
+  getestado :any;
+  usuario:string=""
   constructor(@Inject(MAT_DIALOG_DATA) public data, private _fb: FormBuilder,
     public _dialogRef: MatDialogRef<DialogSegurosComponent>,
-    private toastr: ToastrService, private seguroserv: SegurosService,private http: HttpClient
-  ) {
+    private toastr: ToastrService, private seguroserv: SegurosService,private http: HttpClient) {
     this.initForm();
     if (data.id) {
       this.Segurosporid(data.id)
@@ -29,11 +31,12 @@ export class DialogSegurosComponent implements OnInit {
     this.ocultar = this.data.ocultar || false
   }
 
-
   ngOnInit(): void {
     if (this.data.accion == 'edit') {
       this.form.get('codseguro')?.disable();
     }
+    this.getestado=Estados
+    this.usuario = (localStorage.getItem('usuario') ?? '').replace(/"/g, '');
   }
 
   initForm(): void {
@@ -44,9 +47,8 @@ export class DialogSegurosComponent implements OnInit {
       sumasegurada: ['', [Validators.required]],
       prima: ['', [Validators.required]],
       edadmin: ['', [Validators.required]],
-      edadmax: ['', [Validators.required]]
-     
-     
+      edadmax: ['', [Validators.required]],
+      estado: ['', [Validators.required]]
     }, {
       validators: this.validarRangoEdad
     });
@@ -62,9 +64,6 @@ export class DialogSegurosComponent implements OnInit {
   
     return null;
   }
-
-  
-  
 
   onInputnumbsimple(event: Event): void {
   const input = event.target as HTMLInputElement;
@@ -84,9 +83,9 @@ export class DialogSegurosComponent implements OnInit {
     input.value = value;
   }
 
-  GuardarSeguro() {
-
+  async GuardarSeguro() {
     this.isLoading = true;
+    const ipuser = await this.getClientIp();
     if (this.data.accion == 'edit') {
       const form = this.form.getRawValue();
       const idseg = form.id;
@@ -97,10 +96,11 @@ export class DialogSegurosComponent implements OnInit {
         prima: Number(form.prima),
         edadmin: Number(form.edadmin),
         edadmax: Number(form.edadmax),
-        usrActualizacion:'david',
-        estado:1
-      };
-      this.seguroserv.ActualizarSeguro(idseg, request).subscribe({
+        usrActualizacion: this.usuario ,
+        estado:form.estado,
+        usuarioIP:ipuser
+      }; 
+     this.seguroserv.ActualizarSeguro(idseg, request).subscribe({
         next: (response) => {
           if (response.isSucces) {
             this.toastr.success(response.message, 'Éxito');
@@ -122,7 +122,6 @@ export class DialogSegurosComponent implements OnInit {
 
     else {
       const form = this.form.value;
-      
       const request: SegurosRequest = {
         nmbrseguro: form.nmbrseguro,
         codseguro: form.codseguro,
@@ -130,11 +129,10 @@ export class DialogSegurosComponent implements OnInit {
         prima: Number(form.prima),
         edadmin: Number(form.edadmin),
         edadmax: Number(form.edadmax),
-        usrCreacion:'angel',
-        estado:1
+        usrCreacion: this.usuario,
+        estado:form.estado,
+        usuarioIP:ipuser
       };
-this.getClientIp()
-
       this.seguroserv.RegistrarSeguro(request).subscribe({
         next: (response) => {
           if (response.isSucces) {
@@ -162,18 +160,29 @@ this.getClientIp()
     }
 
   }
-  getClientIp() {
-    this.http.get<{ip: string}>('https://api.ipify.org?format=json')
-      .subscribe(resp => {
-        console.log("IP del cliente: ", resp.ip);
-      });
+
+async getClientIp(): Promise<string> {
+  try {
+
+    const data = await firstValueFrom(
+      this.http.get<{ ip: string }>('https://api.ipify.org?format=json')
+    );
+    return data.ip;
+  } catch (error) {
+    console.warn('No se pudo obtener la IP, usando default');
+    return '0.0.0.0'; 
   }
+}
   
   
   Segurosporid(id: number) {
     this.seguroserv.SeguroPorId(id).subscribe({
       next: (response) => {
         if (response) {
+          const estadoNum = response.data.estado ? 1 : 0;
+
+          console.log(estadoNum,response);
+          
           this.form.reset({
             id: response.data.idseguro,
             nmbrseguro: response.data.nmbrseguro,
@@ -182,6 +191,7 @@ this.getClientIp()
             prima: response.data.prima,
             edadmin: response.data.edadmin,
             edadmax: response.data.edadmax,
+            estado:response.data.estado ? 1 : 0
           });
         }
       },

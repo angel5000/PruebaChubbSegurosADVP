@@ -21,19 +21,23 @@ namespace Chubbseg.Application.Services
         {
             _config = config;
         }
+
         public string GenerateToken(LoginResponseDTO response)
         {
-            var claims = new[]
-         {
-            new Claim(ClaimTypes.Name, response.NombreUsuario),
-            new Claim(ClaimTypes.Role, response.IdRol.ToString()),
-            new Claim(ClaimTypes.Email, response.Correo.ToString()),
-            new Claim("Estado", response.Estado.ToString())
-        };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            Claim[] claims = new[]
+            {
+        new Claim(ClaimTypes.Name, response.NombreUsuario),
+        new Claim(ClaimTypes.Role, response.IdRol.ToString()),
+        // Asumiendo que Correo ya es string, el .ToString() es redundante pero seguro
+        new Claim(ClaimTypes.Email, response.Correo.ToString()),
+        new Claim("Estado", response.Estado.ToString())
+    };
 
-            var token = new JwtSecurityToken(
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            JwtSecurityToken token = new JwtSecurityToken(
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,

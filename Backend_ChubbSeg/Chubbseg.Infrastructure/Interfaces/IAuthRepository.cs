@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chubbseg.Infrastructure.Interfaces
 {
-    public interface IAuth
+    public interface IAuthRepository
     {
         Task<Login> Auth(AuthRequest auth);
     }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Chubbseg.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf242eabada6a3bc3fef0df516c55825bf11d1d7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ef28d870b223ae013320360953fef554ffbce2e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Chubbseg.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Chubbseg.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

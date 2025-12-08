@@ -1,12 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ComponentSettings } from '../../../../pages/Asegurados/components/manejo-asegurados/list.config';
 import { AseguradosService } from '../../../../pages/Asegurados/components/services/servicios.service';
 import Swal from 'sweetalert2';
+import { SegurosService } from '../../../../pages/Seguros/Servicios/seguros.service';
+import { ModalErrorsComponent } from './modal-errors/modal-errors.component';
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-subir-archivos',
   standalone: true,
-  imports: [],
+  imports: [ModalErrorsComponent],
   templateUrl: './subir-archivos.component.html',
   styleUrl: './subir-archivos.component.scss'
 })
@@ -17,7 +21,14 @@ export class SubirArchivosComponent implements OnInit {
   allowedExtensions: any[] = ['xls', 'xlsx', 'txt'];
   acceptTypes = this.allowedExtensions.map(e => '.' + e).join(', ');
   @Output() buttonClick = new EventEmitter<void>();
-  constructor(public aseguradosserv: AseguradosService, private toastr: ToastrService) { }
+  @Input() bandeja: string = "";
+  displayErrorModal: boolean = false;
+  erroresMultiples: string[] = [];
+  @ViewChild(ModalErrorsComponent) modalErrores!: ModalErrorsComponent;
+errores: any;
+
+  constructor(public aseguradosserv: AseguradosService, private toastr: ToastrService,
+    public segurosserv:SegurosService,) { }
   ngOnInit(): void {
     this.component = ComponentSettings
 
@@ -56,7 +67,7 @@ export class SubirArchivosComponent implements OnInit {
   upload(fileInput: HTMLInputElement) {
 
     Swal.fire({
-      title: `Esta carga asignara automaticamente los seguros a los usuarios segun su edad`,
+      title: `Se iniciara un registro masivo de datos`,
       text: "¿Desea continuar?",
       icon: "warning",
       showCancelButton: true,
@@ -70,22 +81,50 @@ export class SubirArchivosComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         if (this.selectedFile) {
-          this.aseguradosserv.RegistroMasivoAsegurados(this.selectedFile).subscribe(
-            (response) => {
-              if (response.isSucces) {
-                this.showSuccess(response.message)
-                console.log(response.message)
-                fileInput.value = '';
-                this.selectedFile = null;
-                this.fileSelected = false;
-                this.setGetInputsProviders(true)
-                return this.buttonClick.emit();
-              } else {
-                this.toastr.warning(`Se encontraron ${response.messagemultiple.length} inconveniente/es. Revisa el archivo.`);
+          if(this.bandeja=='seguros'){
+            this.segurosserv.RegistroMasivoSeguros(this.selectedFile).subscribe(
+              (response) => {
+                if (response.isSucces) {
+                  this.showSuccess(response.message)
+                  console.log(response.message)
+                  fileInput.value = '';
+                  this.selectedFile = null;
+                  this.fileSelected = false;
+                  this.setGetInputsProviders(true)
+                  return this.buttonClick.emit();
+                } else {
+                  this.toastr.warning(`Se encontraron ${response.messagemultiple.length} inconveniente/es. Revisa el archivo.`);
+                  this.erroresMultiples = response.messagemultiple;
+                  setTimeout(() => {
+                    this.modalErrores.open();
+                  }, 0);
+                }
               }
-            }
-
-          );
+  
+            );
+          }else{
+            this.aseguradosserv.RegistroMasivoAsegurados(this.selectedFile).subscribe(
+              (response) => {
+                if (response.isSucces) {
+                  this.showSuccess(response.message)
+                  console.log(response.message)
+                  fileInput.value = '';
+                  this.selectedFile = null;
+                  this.fileSelected = false;
+                  this.setGetInputsProviders(true)
+                  return this.buttonClick.emit();
+                } else {
+                  this.toastr.warning(`Se encontraron ${response.messagemultiple.length} inconveniente/es. Revisa el archivo.`);
+                  this.erroresMultiples = response.messagemultiple;
+                  setTimeout(() => {
+                    this.modalErrores.open();
+                  }, 0);
+                }
+              }
+  
+            );
+          }
+          
         } else {
           console.error('No se ha seleccionado ningún archivo');
         }

@@ -44,7 +44,7 @@
 
                 <mat-form-field appearance="outline" class="w-full col-span-1 md:col-span-2">
                     <mat-label>Suma Asegurada Total</mat-label>
-                    <input matInput formControlName="sumasegurada" (input)="onInput($event)" maxlength="9" placeholder="0.00"/>
+                    <input matInput formControlName="sumasegurada" (input)="onInput($event)" maxlength="8" placeholder="0.00"/>
                     <mat-icon matSuffix class="text-green-600 text-sm">attach_money</mat-icon>
                     <mat-hint align="end">Monto máximo de cobertura</mat-hint>
                     <mat-error *ngIf="form?.get('sumasegurada')?.hasError('required')">Requerido</mat-error>
@@ -66,6 +66,21 @@
                             </mat-error>
                         </mat-form-field>
                     </div>
+                </div>
+                <div class="col-span-1 md:col-span-2" >
+                    <mat-form-field appearance="fill" class="w-full">
+                        <mat-label>Estado</mat-label>
+                        <mat-select formControlName="estado">
+                            <mat-option *ngFor="let estado of getestado" [value]="estado.value">
+                                {{ estado.label }}
+                              </mat-option>
+                        </mat-select>
+                        <mat-icon  matSuffix class="text-blue-800">verified_user</mat-icon>
+                        
+                        <mat-error *ngIf="form?.get('segdisponibles')?.hasError('required')">
+                            Debe seleccionar un seguro
+                        </mat-error>
+                    </mat-form-field>
                 </div>
 
             </div>

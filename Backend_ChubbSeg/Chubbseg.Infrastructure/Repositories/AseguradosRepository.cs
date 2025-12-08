@@ -19,7 +19,7 @@ namespace Chubbseg.Infrastructure.Repositories
         {
             _context = context;
         }
-       async public Task<int> CreateAsync(Asegurados asegurados)
+        public async Task<int> CreateAsync(Asegurados asegurados)
         {
             using (SqlConnection con = _context.CreateConnection())
             {
@@ -33,8 +33,8 @@ namespace Chubbseg.Infrastructure.Repositories
                     cmd.Parameters.AddWithValue("@NMBRCOMPLETO", asegurados.NMBRCOMPLETO);
                     cmd.Parameters.AddWithValue("@TELEFONO", asegurados.TELEFONO);
                     cmd.Parameters.AddWithValue("@EDAD", asegurados.EDAD);
- 
-                    var returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
+
+                    SqlParameter returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
 
                     await cmd.ExecuteNonQueryAsync();
@@ -42,10 +42,9 @@ namespace Chubbseg.Infrastructure.Repositories
                     return (int)returnParameter.Value;
                 }
             }
-
         }
 
-        async public Task<int> DeleteAsync(int id)
+        public async Task<int> DeleteAsync(int id)
         {
             using (SqlConnection con = _context.CreateConnection())
             {
@@ -57,7 +56,7 @@ namespace Chubbseg.Infrastructure.Repositories
                     // Parámetros del SP
                     cmd.Parameters.AddWithValue("@IDASEGURADOS", id);
 
-                    var returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
+                    SqlParameter returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
 
                     await cmd.ExecuteNonQueryAsync();
@@ -67,9 +66,9 @@ namespace Chubbseg.Infrastructure.Repositories
             }
         }
 
-       async public Task<List<Asegurados>> GetAllAsync()
+        public async Task<List<Asegurados>> GetAllAsync()
         {
-            var lista = new List<Asegurados>();
+            List<Asegurados> lista = new List<Asegurados>();
             using (SqlConnection con = _context.CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("CONSULTAASEGURADOS", con);
@@ -93,9 +92,8 @@ namespace Chubbseg.Infrastructure.Repositories
             return lista;
         }
 
-       async public Task<Asegurados> GetByIdAsync(int id)
+        public async Task<Asegurados> GetByIdAsync(int id)
         {
-            var lista = new List<Asegurados>();
             using (SqlConnection con = _context.CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("CONSULASGURADOSEGID", con);
@@ -114,7 +112,6 @@ namespace Chubbseg.Infrastructure.Repositories
                             NMBRCOMPLETO = (string)reader["NMBRCOMPLETO"],
                             TELEFONO = (string)reader["TELEFONO"],
                             EDAD = (int)reader["EDAD"],
-
                         };
                     }
                 }
@@ -122,7 +119,7 @@ namespace Chubbseg.Infrastructure.Repositories
             return null;
         }
 
-       async public Task<int> UpdateAsync(int id,Asegurados seguro)
+        public async Task<int> UpdateAsync(int id, Asegurados seguro)
         {
             using (SqlConnection con = _context.CreateConnection())
             {
@@ -138,7 +135,7 @@ namespace Chubbseg.Infrastructure.Repositories
                     cmd.Parameters.AddWithValue("@TELEFONO", seguro.TELEFONO);
                     cmd.Parameters.AddWithValue("@EDAD", seguro.EDAD);
 
-                    var returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
+                    SqlParameter returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
 
                     await cmd.ExecuteNonQueryAsync();

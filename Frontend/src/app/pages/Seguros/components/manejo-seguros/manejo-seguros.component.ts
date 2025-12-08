@@ -6,11 +6,14 @@ import { RowClick } from '../../../../shared/models/RowClick.interface';
 import { SegurosRequest, SegurosResponse } from '../../Models/seguros.interface';
 import { SegurosService } from '../../Servicios/seguros.service';
 import { DialogSegurosComponent } from './dialog-seguros/dialog-seguros.component';
-import { ComponentSettings } from './list.config';
+import { actualizarPermiso, ComponentSettings } from './list.config';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { FilterBox } from '../../../../shared/models/SearchOptions.interface';
 import { DialogAseguradosComponent } from './dialog-asegurados/dialog-asegurados.component';
+import { AuthService } from '../../../Auth/Services/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-manejo-seguros',
   templateUrl: './manejo-seguros.component.html',
@@ -20,14 +23,36 @@ export class ManejoSegurosComponent implements OnInit {
 
   component: any;
   mode: string = 'register'
+  nombandeja: string = 'seguros';
+  usuario: string;
+  
   constructor(
     public _dialog: MatDialog,
     public seguroserv: SegurosService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,private authserv:AuthService,private http: HttpClient) {
   }
 
   ngOnInit(): void {
     this.component = ComponentSettings
+    const role = this.authserv.getUserRole();
+    this.authserv.ObtenerPermisos(role).subscribe(res => {
+      for (const item of res.data) {
+  
+        if (item.idPermiso === 4) {
+          actualizarPermiso.prototype.PermisoConsultar(true);
+        }
+        else if (item.idPermiso === 2) {
+          actualizarPermiso.prototype.PermisoEditar(true);
+        }
+        else if (item.idPermiso === 3) {
+          actualizarPermiso.prototype.PermisoEliminar(true);
+        }
+        else if (item.idPermiso === 1) {
+          actualizarPermiso.prototype.PermisoAgregar(true);
+        }
+      }
+    });
+    this.usuario = (localStorage.getItem('usuario') ?? '').replace(/"/g, '');
   }
 
   formatGetInputs() {
@@ -48,26 +73,22 @@ export class ManejoSegurosComponent implements OnInit {
   search(data: FilterBox) {
     const searchValue = data.searchData.toLocaleLowerCase()?.trim();
     const searchField = data.searchValue || null; // nuevo: campo a filtrar
-    ComponentSettings.filters.numFilter=searchField.toString()
-  console.log(data) ;
-  this.component.filters.numFilter=1
+    ComponentSettings.filters.numFilter = searchField.toString()
+    console.log(data);
+    this.component.filters.numFilter = 1
     if (!searchValue) {
-
       this.component.filters = {};
-     // actualizarPermiso.prototype.PermisoConsultar(true);
+    
     } else {
-      //actualizarPermiso.prototype.PermisoConsultar(false);
       if (searchField) {
-        // filtrar por campo específico
         this.component.filters.textFilter = { [searchField]: searchValue };
-        this.component.filters.numFilter=1
+        this.component.filters.numFilter = 1
       } else {
-        // si no hay campo, se puede filtrar por todos los campos relevantes
         this.component.filters.textFilter = { searchAll: searchValue };
-        this.component.filters.numFilter=1
+        this.component.filters.numFilter = 1
       }
     }
-  
+
     this.setGetInputsProviders(true);
   }
 
@@ -83,9 +104,9 @@ export class ManejoSegurosComponent implements OnInit {
       this.setGetInputsProviders(true)
     })
   }
-  
 
-  openDialogAsegurados( id?: number) {
+
+  openDialogAsegurados(id?: number) {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.data = { id };
     this._dialog.open(DialogAseguradosComponent, {
@@ -104,7 +125,7 @@ export class ManejoSegurosComponent implements OnInit {
     switch (action) {
       case "edit": this.openDialogRegister(false, e.row.idseguro, action, 'actualizar')
         break
-        case "ver": this.openDialogAsegurados(e.row.idseguro);
+      case "ver": this.openDialogAsegurados(e.row.idseguro);
         break
       case "remove":
         this.EliminarSeguro(e.row.idseguro, e.row)
@@ -114,12 +135,14 @@ export class ManejoSegurosComponent implements OnInit {
   }
 
 
-  EliminarSeguro(id: number, seg: SegurosResponse) {
+  async EliminarSeguro(id: number, seg: SegurosResponse) {
+    const ipuser = await this.getClientIp();
     const request: SegurosRequest = {
-      usrActualizacion:'angel',
-      estadoDt:'Eliminado'
+      usrActualizacion:  this.usuario,
+      estadoDt: 'Eliminado',
+      usuarioIP:ipuser
     };
-    
+
     Swal.fire({
       title: `¿Esta seguro que desea eliminar el seguro: ${seg.nmbrseguro}? `,
       text: "Se borrara permanentemente",
@@ -134,7 +157,7 @@ export class ManejoSegurosComponent implements OnInit {
 
     }).then((result) => {
       if (result.isConfirmed) {
-        this.seguroserv.EliminarSeguro(id,request).subscribe({
+        this.seguroserv.EliminarSeguro(id, request).subscribe({
           next: (response) => {
             if (response.isSucces) {
               this.toastr.success(response.message, 'Éxito');
@@ -151,6 +174,17 @@ export class ManejoSegurosComponent implements OnInit {
       }
     })
   }
-
+  
+  async getClientIp(): Promise<string> {
+    try {
+      const data = await firstValueFrom(
+        this.http.get<{ ip: string }>('https://api.ipify.org?format=json')
+      );
+      return data.ip;
+    } catch (error) {
+      console.warn('No se pudo obtener la IP, usando default');
+      return '0.0.0.0'; 
+    }
+  }
 
 }

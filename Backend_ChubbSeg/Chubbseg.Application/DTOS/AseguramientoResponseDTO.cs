@@ -18,5 +18,11 @@ namespace Chubbseg.Application.DTOS
         public decimal SUMASEGURADA { get; set; }
         public decimal PRIMA { get; set; }
         public string FECHACONTRATASEGURO { get; set; }
+        public string? USRCreacion { get; set; } = null!;
+        public string? FechaCreacion { get; set; } = null!;
+        public string? USRActualizacion { get; set; } = null!;
+        public DateTime? FechaActualizacion { get; set; }
+        public string? UsuarioIP { get; set; } = null!;
+        public bool? Estado { get; set; }
     }
 }

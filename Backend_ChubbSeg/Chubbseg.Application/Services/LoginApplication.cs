@@ -11,10 +11,10 @@ namespace Chubbseg.Application.Services
 {
     public class Login:ILogin
     {
-        private readonly IAuth _repo;
+        private readonly IAuthRepository _repo;
         private readonly IMapper _mapper;
         private readonly IToken _token;
-        public Login(IAuth repo, IMapper mapper, IToken token)
+        public Login(IAuthRepository repo, IMapper mapper, IToken token)
         {
             _repo = repo;
             _mapper = mapper;
@@ -24,39 +24,48 @@ namespace Chubbseg.Application.Services
 
         async public Task<BaseResponse<LoginResponseDTO>> IniciarSesion(LoginDTO request)
         {
-            var response = new BaseResponse<LoginResponseDTO>();
-            var entidad = _mapper.Map<AuthRequest>(request);
+           
+            BaseResponse<LoginResponseDTO> response = new BaseResponse<LoginResponseDTO>();
+            AuthRequest entidad = _mapper.Map<AuthRequest>(request);
+
             try
             {
-                var loginResult = await _repo.Auth(entidad);
+                Chubbseg.Domain.Entidades.Login loginResult = await _repo.Auth(entidad);
 
                 if (loginResult.Resultado == 1)
                 {
-                    var listaDto = _mapper.Map<LoginResponseDTO>(loginResult);
-                    string restoken=_token.GenerateToken(listaDto);
+                    LoginResponseDTO listaDto = _mapper.Map<LoginResponseDTO>(loginResult);
+                    string restoken = _token.GenerateToken(listaDto);
+
                     response.IsSucces = true;
                     listaDto.token = restoken;
                     response.Data = listaDto;
                     response.Message = "Login exitoso.";
                 }
-                else if (loginResult.Resultado == -1) {
+                else if (loginResult.Resultado == -1)
+                {
                     response.IsSucces = false;
                     response.Message = "Usuario o correo no existe.";
-
                 }
-
-            else if (loginResult.Resultado == -2)
+                else if (loginResult.Resultado == -2)
+                {
                     response.Message = "Contraseña incorrecta.";
+                }
                 else if (loginResult.Resultado == -3)
+                {
                     response.Message = "Usuario inactivo.";
+                }
                 else
+                {
                     response.Message = "Error desconocido.";
-
-            } catch (Exception ex)
+                }
+            }
+            catch (Exception ex)
             {
                 response.IsSucces = false;
                 response.Message = ex.Message;
             }
+
             return response;
         }
     }

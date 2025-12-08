@@ -27,7 +27,8 @@ namespace Chubbseg.Application.Extensions
             services.AddScoped<ICargarExcel, CargarExcel>();
             services.AddScoped<ILogin, Login>();
             services.AddScoped<IToken,TokenApplication>();
-
+            services.AddScoped<ICobranzasApplication, CobranzasApplication>();
+            services.AddScoped<IRolesPermisosApplication, RolesPermisosApplication>();
             return services;
 
         }

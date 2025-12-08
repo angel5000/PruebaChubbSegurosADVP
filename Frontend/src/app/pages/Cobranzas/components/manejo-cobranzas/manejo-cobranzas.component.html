@@ -10,11 +10,7 @@
             </h2>
             <span class="text-gray-300 text-sm mt-1 block">Panel de Recaudación y Seguimiento</span>
           </div>
-          
-          <div class="search-section bg-white/10 p-1 rounded-lg backdrop-blur-sm border border-white/20">
-               <input type="text" placeholder="Buscar por CI o Póliza..." class="bg-transparent text-white placeholder-gray-300 border-none outline-none px-3 py-1 w-64">
-               <button class="text-white hover:text-green-400"><i class="bi bi-search"></i></button>
-          </div>
+    
         </div>
       </div>
   
@@ -68,67 +64,104 @@
       </div>
   
       <div class="table-card glass-effect elevation-shadow w-full p-6">
-          <div class="flex justify-between items-center mb-4">
-              <h4 class="text-lg font-bold text-slate-700 m-0">Alertas de Cobro Pendientes</h4>
-              
-              <button mat-stroked-button color="primary">
-                  <i class="bi bi-filter mr-2"></i> Filtros Avanzados
-              </button>
-          </div>
+        <div class="flex justify-between items-center mb-4">
+            <h4 class="text-lg font-bold text-slate-700 m-0">Alertas de Cobro Pendientes</h4>
+        </div>
+    
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="text-gray-500 border-b border-gray-200 text-sm uppercase">
+                    <th class="pb-3 font-semibold">Cliente / Póliza</th>
+                    <th class="pb-3 font-semibold">Vencimiento</th>
+                    <th class="pb-3 font-semibold">Monto</th>
+                    <th class="pb-3 font-semibold">Estado</th>
+                    <th class="pb-3 font-semibold">Estado Poliza</th>
+                    <th class="pb-3 font-semibold text-right">Acciones</th>
+                </tr>
+            </thead>
+            
+            <tbody class="text-slate-700 text-sm">
+                
+                <tr *ngFor="let item of listaCobranzas" class="border-b border-gray-100 hover:bg-gray-50 transition">
+                    
+                    <td class="py-4">
+                        <div class="font-bold uppercase">{{ item.cliente }}</div>
+                        <span class="text-xs text-gray-400">POL: {{ item.poliza }}</span>
+                    </td>
+    
+                    <td class="py-4 font-medium">
+                        <div [ngClass]="{'text-red-600': item.diaS_RETRASO > 0, 'text-green-600': item.diaS_RETRASO <= 0}">
+                            {{ item.fechA_VENCIMIENTO | date:'dd/MM/yyyy' }}
+                        </div>
+                        
+                        <span class="text-xs" 
+                              [ngClass]="{'text-red-400': item.diaS_RETRASO > 0, 'text-gray-400': item.diaS_RETRASO <= 0}">
+                            <span *ngIf="item.diaS_RETRASO > 0">Hace {{ item.diaS_RETRASO }} días</span>
+                            <span *ngIf="item.diaS_RETRASO == 0">Vence Hoy</span>
+                            <span *ngIf="item.diaS_RETRASO < 0">Faltan {{ item.diaS_RETRASO * -1 }} días</span>
+                        </span>
+                    </td>
+    
+                    <td class="py-4 font-bold">
+                        {{ item.montO_ESPERADO | currency:'USD':'symbol':'1.2-2' }}
+                    </td>
+    
+                    <td class="py-4">
+                        <span *ngIf="item.estadO_CALCULADO === 'MORA'" class="badge badge-critical">
+                            MORA ALTA
+                        </span>
+                        
+                        <span *ngIf="item.estadO_CALCULADO === 'POR VENCER'" class="badge badge-warning">
+                            POR VENCER
+                        </span>
+    
+                        <span *ngIf="item.estadO_CALCULADO === 'AL DIA'" class="badge badge-success">
+                            AL DÍA
+                        </span>
+                        <span *ngIf="item.estadO_CALCULADO === 'PAGADO'" class="badge badge-success">
+                            PAGADO
+                        </span>
+                    </td>
+
+                    <td class="py-4">
+                        <span *ngIf="item.estadO_COBRANZA=== 'ANULADO'" class="badge badge-critical">
+                            ANULADA
+                        </span>
+                        
+                        <span *ngIf="item.estadO_COBRANZA === 'PENDIENTE'" class="badge badge-warning">
+                            PENDIENTE
+                        </span>
   
-          <table class="w-full text-left border-collapse">
-              <thead>
-                  <tr class="text-gray-500 border-b border-gray-200 text-sm uppercase">
-                      <th class="pb-3 font-semibold">Cliente / Póliza</th>
-                      <th class="pb-3 font-semibold">Vencimiento</th>
-                      <th class="pb-3 font-semibold">Monto</th>
-                      <th class="pb-3 font-semibold">Estado</th>
-                      <th class="pb-3 font-semibold text-right">Acciones</th>
-                  </tr>
-              </thead>
-              <tbody class="text-slate-700 text-sm">
-                  <tr class="border-b border-gray-100 hover:bg-gray-50 transition">
-                      <td class="py-4">
-                          <div class="font-bold">Juan Pérez</div>
-                          <span class="text-xs text-gray-400">POL-99821 (Vida)</span>
-                      </td>
-                      <td class="py-4 text-red-600 font-medium">Hace 45 días</td>
-                      <td class="py-4 font-bold">$ 350.00</td>
-                      <td class="py-4">
-                          <span class="badge badge-critical">Mora Alta</span>
-                      </td>
-                      <td class="py-4 text-right flex justify-end gap-2">
-                           <button mat-icon-button class="text-blue-600 bg-blue-50" matTooltip="Enviar Aviso">
-                              <i class="bi bi-whatsapp"></i>
-                          </button>
-                           <button mat-flat-button color="primary" class="h-8 leading-8 px-4 text-xs">
-                              COBRAR
-                          </button>
-                      </td>
-                  </tr>
-  
-                  <tr class="border-b border-gray-100 hover:bg-gray-50 transition">
-                      <td class="py-4">
-                          <div class="font-bold">María Lopez</div>
-                          <span class="text-xs text-gray-400">POL-11234 (Auto)</span>
-                      </td>
-                      <td class="py-4 text-orange-500 font-medium">Mañana</td>
-                      <td class="py-4 font-bold">$ 120.50</td>
-                      <td class="py-4">
-                          <span class="badge badge-warning">Por Vencer</span>
-                      </td>
-                      <td class="py-4 text-right flex justify-end gap-2">
-                          <button mat-icon-button class="text-blue-600 bg-blue-50" matTooltip="Enviar Aviso">
-                              <i class="bi bi-envelope"></i>
-                          </button>
-                           <button mat-flat-button color="primary" class="h-8 leading-8 px-4 text-xs">
-                              COBRAR
-                          </button>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
+                    </td>
+    
+                    <td class="py-4 text-right flex justify-end gap-2">
+                        <button mat-icon-button class="text-blue-600 bg-blue-50" 
+                                matTooltip="Enviar Aviso por WhatsApp"
+                                (click)="enviarWhatsapp(item)">
+                            <i class="bi bi-whatsapp"></i>
+                        </button>
+                        
+                        <button mat-flat-button color="primary" class="h-8 leading-8 px-4 text-xs"
+                                (click)="abrirModalCobrar(item)">
+                            COBRAR
+                        </button>
+                        <button mat-icon-button color="warn" 
+                             matTooltip="Cancelar Póliza"
+                            (click)="confirmarCancelacion(item)">
+                            <mat-icon>block</mat-icon> </button>
+                    </td>
+                </tr>
+    
+                <tr *ngIf="listaCobranzas.length === 0">
+                    <td colspan="5" class="text-center py-10 text-gray-400">
+                        <i class="bi bi-inbox text-4xl block mb-2"></i>
+                        No hay cobros pendientes por gestionar.
+                    </td>
+                </tr>
+    
+            </tbody>
+        </table>
+    </div>
   
     </div>
   </div>

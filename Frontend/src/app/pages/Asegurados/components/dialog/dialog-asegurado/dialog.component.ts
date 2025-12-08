@@ -84,7 +84,9 @@ mostrar: boolean = false;
         cedula: form.cedula,
         nmbrcompleto: form.nmbrcompleto,
         telefono: form.telefono,
-        edad: Number(form.edad)
+        edad: Number(form.edad),
+        usrActualizacion:'ANGEL',
+        estado:1
       };
 
       this.aseguradosserv.ActualizarAsegurado(idseg, request).subscribe({
@@ -163,13 +165,16 @@ mostrar: boolean = false;
           this.form.markAsPristine();
           this.form.markAsUntouched();
           this._dialogRef.close(response.isSucces);
+          this.isLoading = false
         }
         else {
+          this.isLoading = false
           this.toastr.warning(response.message, 'Advertencia');
         }
       },
       error: (err) => {
-        this.toastr.error(err, 'Error');
+        this.isLoading = false
+        this.toastr.error(err.message, 'Error');
 
       }
     });

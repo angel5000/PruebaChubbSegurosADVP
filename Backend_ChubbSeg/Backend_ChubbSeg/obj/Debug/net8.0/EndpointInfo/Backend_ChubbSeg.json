@@ -91,17 +91,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AseguradosRequestDTO"
+                "$ref": "#/components/schemas/AseguradosEditRequestDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AseguradosRequestDTO"
+                "$ref": "#/components/schemas/AseguradosEditRequestDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AseguradosRequestDTO"
+                "$ref": "#/components/schemas/AseguradosEditRequestDTO"
               }
             }
           }
@@ -225,6 +225,55 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "usuario",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cobranzas/ConsultaCobranzas": {
+      "get": {
+        "tags": [
+          "Cobranzas"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cobranzas/CancelarSeguro/{Id}": {
+      "delete": {
+        "tags": [
+          "Cobranzas"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "usuario",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -258,6 +307,29 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Permisos/ConsultarPermisos/{id}": {
+      "get": {
+        "tags": [
+          "Permisos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -496,6 +568,37 @@
   },
   "components": {
     "schemas": {
+      "AseguradosEditRequestDTO": {
+        "type": "object",
+        "properties": {
+          "cedula": {
+            "type": "string",
+            "nullable": true
+          },
+          "nmbrcompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "edad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "usrActualizacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AseguradosRequestDTO": {
         "type": "object",
         "properties": {
@@ -599,6 +702,10 @@
             "type": "string",
             "nullable": true
           },
+          "usuarioIP": {
+            "type": "string",
+            "nullable": true
+          },
           "estadoDT": {
             "type": "string",
             "nullable": true
@@ -634,6 +741,10 @@
             "format": "int32"
           },
           "usrActualizacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuarioIP": {
             "type": "string",
             "nullable": true
           },

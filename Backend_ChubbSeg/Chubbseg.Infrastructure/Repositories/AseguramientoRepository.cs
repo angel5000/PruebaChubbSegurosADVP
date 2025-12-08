@@ -2,12 +2,7 @@
 using Chubbseg.Infrastructure.Data;
 using Chubbseg.Infrastructure.Interfaces;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chubbseg.Infrastructure.Repositories
 {
@@ -19,7 +14,7 @@ namespace Chubbseg.Infrastructure.Repositories
         {
             _context = context;
         }
-        async public Task<int> CreateAsync(Aseguramiento aseguramiento)
+        public async Task<int> CreateAsync(Aseguramiento aseguramiento)
         {
             using (SqlConnection con = _context.CreateConnection())
             {
@@ -31,9 +26,8 @@ namespace Chubbseg.Infrastructure.Repositories
                     // Parámetros del SP
                     cmd.Parameters.AddWithValue("@CEDULA", aseguramiento.CEDULA);
                     cmd.Parameters.AddWithValue("@CODSEGURO", aseguramiento.CODSEGURO);
-                  
 
-                    var returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
+                    SqlParameter returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
 
                     await cmd.ExecuteNonQueryAsync();
@@ -41,10 +35,9 @@ namespace Chubbseg.Infrastructure.Repositories
                     return (int)returnParameter.Value;
                 }
             }
-
         }
 
-       async public Task<int> DeleteAsync(int id)
+        public async Task<int> DeleteAsync(int id, string usuario)
         {
             using (SqlConnection con = _context.CreateConnection())
             {
@@ -55,8 +48,9 @@ namespace Chubbseg.Infrastructure.Repositories
 
                     // Parámetros del SP
                     cmd.Parameters.AddWithValue("@IDUSRSEGUROS", id);
+                    cmd.Parameters.AddWithValue("@USUARIO_EJECUTA", usuario);
 
-                    var returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
+                    SqlParameter returnParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
 
                     await cmd.ExecuteNonQueryAsync();
@@ -66,9 +60,9 @@ namespace Chubbseg.Infrastructure.Repositories
             }
         }
 
-        async public Task<List<Aseguramiento>> GetAllAsync()
+        public async Task<List<Aseguramiento>> GetAllAsync()
         {
-            var lista = new List<Aseguramiento>();
+            List<Aseguramiento> lista = new List<Aseguramiento>();
             using (SqlConnection con = _context.CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("CONSULTASEGURAMIENTO", con);
@@ -80,25 +74,44 @@ namespace Chubbseg.Infrastructure.Repositories
                 {
                     lista.Add(new Aseguramiento
                     {
-
                         IDASEGURADOS = (int)reader["IDASEGURADOS"],
-                        IDUSRSEGUROS = (int)reader["IDUSRSEGUROS"],
+                        CEDULA = (string)reader["CEDULA"],
                         NMBRSEGURO = (string)reader["NMBRSEGURO"],
+                        EDAD = (int)reader["EDAD"],
+
+                        IDUSRSEGUROS = (int)reader["IDUSRSEGUROS"],
                         CODSEGURO = (string)reader["CODSEGURO"],
                         SUMASEGURADA = (decimal)reader["SUMASEGURADA"],
                         PRIMA = (decimal)reader["PRIMA"],
-                        CEDULA = (string)reader["CEDULA"],
                         NMBRCOMPLETO = (string)reader["NMBRCOMPLETO"],
-                        EDAD = (int)reader["EDAD"],
-                        FECHACONTRATASEGURO = (string)reader["FECHACONTRATASEGURO"] 
 
+                        FECHACONTRATASEGURO = reader["FECHACONTRATASEGURO"] == DBNull.Value
+                            ? null
+                            : (string)reader["FECHACONTRATASEGURO"],
+
+                        USRCreacion = reader["USRCreacion"] as string,
+
+                        FechaActualizacion = reader["FechaActualizacion"] == DBNull.Value
+                            ? (DateTime?)null
+                            : (DateTime)reader["FechaActualizacion"],
+
+                        USRActualizacion = reader["USRActualizacion"] == DBNull.Value
+                            ? null
+                            : (string)reader["USRActualizacion"],
+
+                        UsuarioIP = reader["UsuarioIP"] == DBNull.Value
+                            ? null
+                            : (string)reader["UsuarioIP"],
+
+                        Estado = reader["Estado"] == DBNull.Value
+                            ? (bool?)null
+                            : (bool)reader["Estado"],
                     });
                 }
             }
 
             return lista;
         }
-
         public Task<Aseguramiento> GetByIdAsync(int id)
         {
             throw new NotImplementedException();

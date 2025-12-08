@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
@@ -23,8 +23,15 @@ export class SegurosService {
     this.toastr.error(mensaje, 'Error');
   }
 
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem("token")?.replace(/"/g, '');
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
+
   Obtenerdatos(): Observable<BaseResponse[]> {
-    return this.http.get<any>(env.apiseguros + end.CONSULTASEGUROS).pipe(
+    return this.http.get<any>(env.apiseguros + end.CONSULTASEGUROS, { headers: this.getAuthHeaders() }).pipe(
 
       map((res) => res),
       catchError((error) => {
@@ -35,36 +42,36 @@ export class SegurosService {
   }
 
   RegistrarSeguro(request: SegurosRequest): Observable<BaseResponse> {
-    return this.http.post<BaseResponse>(env.apiseguros + end.REGISTRARASEGURO, request);
+    return this.http.post<BaseResponse>(env.apiseguros + end.REGISTRARASEGURO, request, { headers: this.getAuthHeaders() });
   }
 
   ActualizarSeguro(id: number, request: SegurosRequest): Observable<BaseResponse> {
-    return this.http.put<BaseResponse>(`${env.apiseguros}${end.ACTUALIZARASEGURO}${id}`, request);
+    return this.http.put<BaseResponse>(`${env.apiseguros}${end.ACTUALIZARASEGURO}${id}`, request, { headers: this.getAuthHeaders() });
   }
 
   SeguroPorId(id: number): Observable<BaseResponse> {
-    return this.http.get<SegurosResponseID>(`${env.apiseguros}${end.CONSULTASEGUROSID}${id}`).pipe(
+    return this.http.get<SegurosResponseID>(`${env.apiseguros}${end.CONSULTASEGUROSID}${id}`, { headers: this.getAuthHeaders() }).pipe(
       map((res) => res),
       catchError((error) => {
         this.showError(error);
-        return of(error);  
+        return of(error);
       }));
   }
 
 
   AseguradosPorseguro(id: number): Observable<BaseResponse> {
-    return this.http.get<SegurosResponseID>(`${env.apiseguros}${end.ASEGURADOSPORSEGUDOR}${id}`).pipe(
+    return this.http.get<SegurosResponseID>(`${env.apiseguros}${end.ASEGURADOSPORSEGUDOR}${id}`, { headers: this.getAuthHeaders() }).pipe(
       map((res) => res),
       catchError((error) => {
         this.showError(error);
-        return of(error);  
+        return of(error);
       }));
   }
 
   EliminarSeguro(id: Number, request: SegurosRequest): Observable<BaseResponse> {
     const requestURL = `${env.apiseguros}${end.ELIMINARSEGURO}${id}`;
 
-    return this.http.request('DELETE', requestURL, { body: request })
+    return this.http.request('DELETE', requestURL, { body: request, headers: this.getAuthHeaders() })
       .pipe(
         map(res => res as BaseResponse),
         catchError(err => {
@@ -72,6 +79,16 @@ export class SegurosService {
           return of(err);
         })
       );
+  }
+
+  RegistroMasivoSeguros(file: File): Observable<BaseResponse> {
+    const token = localStorage.getItem("token")?.replace(/"/g, '');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const formData: FormData = new FormData();
+    formData.append('archivo', file, file.name);
+    return this.http.post<BaseResponse>(`${env.apiseguros}${end.REGISTRARSEGUROMASIVO}`, formData, { headers });
   }
 
 }

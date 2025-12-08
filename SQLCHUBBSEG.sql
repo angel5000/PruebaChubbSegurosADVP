@@ -94,11 +94,6 @@ VALUES
 ('0914526845', 'ADPR321000',
  GETDATE(), 'SYSTEM', NULL, NULL, '127.0.0.1', 1);
 
-
- SELECT * FROM ASEGURADOS
-
- DELETE FROM ASEGURADOS WHERE IDASEGURADOS  BETWEEN 3 AND 9
-
  CREATE TABLE Roles (
     IdRol INT PRIMARY KEY,
     NombreRol VARCHAR(50) NOT NULL UNIQUE,
@@ -114,6 +109,7 @@ VALUES
 (101,'GESTOR_COBRANZAS', 'Gestiona pagos, facturación y cobranzas'),
 (102,'CLIENTE', 'Accede a su portal para ver sus pólizas y pagos'),
 (103,'AUDITOR_INTERNO', 'Revisa trazabilidad, controles y operaciones internas')
+
 
 
 CREATE TABLE Usuarios (
@@ -142,10 +138,6 @@ SET PasswordSalt = @Salt,
     PasswordHash = @Hash
 WHERE IdUsuario = 3;
 
-SELECT * FROM Usuarios
-SELECT*FROM Roles
-
-
 
 INSERT INTO Usuarios (Cedula, NombreUsuario, Correo, PasswordHash, PasswordSalt, Estado)
 VALUES
@@ -153,7 +145,6 @@ VALUES
 ('0933147789','cobranzas.mario', 'mario.cobranzas@aseguradora.com', NULL, NULL, 1),
 ('0998445331','cliente.juan', 'juan.cliente@gmail.com', NULL, NULL, 1),
 ('0946487111','auditor.carla', 'carla.auditoria@aseguradora.com', NULL, NULL, 1)
-
 
 
 CREATE TABLE UsuarioRoles (
@@ -170,7 +161,6 @@ CREATE TABLE UsuarioRoles (
 );
 
 
-
 INSERT INTO UsuarioRoles (IdUsuario, IdRol)
 VALUES (2, 100);
 
@@ -179,10 +169,6 @@ VALUES (3, 101);
 -- Índices recomendados:
 CREATE INDEX IDX_UsuarioRoles_IdUsuario ON UsuarioRoles(IdUsuario);
 CREATE INDEX IDX_UsuarioRoles_IdRol ON UsuarioRoles(IdRol);
-
-
-
-
 
 
  ---------------------------------
@@ -203,8 +189,19 @@ CREATE TABLE SEGUROS_HISTORICO (
     USRActualizacion VARCHAR(50),
 );
 
-SELECT * FROM COBRANZAS
 
+CREATE TABLE USRASEGURADOS_HISTORICO (
+    IDHISTORICO INT IDENTITY(1,1) PRIMARY KEY,
+    -- Datos originales del registro eliminado
+    IDUSRSEGUROS_ORIGINAL INT,
+    CEDULAFK VARCHAR(10),
+    CODSEGUROFK VARCHAR(10),
+    FECHACONTRATASEGURO DATE,
+    -- Auditoría de la eliminación
+    FechaEliminacion DATETIME DEFAULT GETDATE(),
+    UsuarioElimino VARCHAR(50),
+    Motivo VARCHAR(100) DEFAULT 'Eliminación Física por Estado 0'
+);
 
 
 CREATE TABLE COBRANZAS (
@@ -236,8 +233,6 @@ CREATE TABLE COBRANZAS (
     USRActualizacion VARCHAR(50) NULL,
     UsuarioIP VARCHAR(50) NULL,
     Estado BIT NOT NULL DEFAULT 1,
-
-    -- Llave foránea
     FOREIGN KEY (IDUSRSEGUROSFK) REFERENCES USRASEGURADOS(IDUSRSEGUROS)
 );
 
@@ -263,23 +258,39 @@ BEGIN
 END;
 
 
-SELECT 
-    C.IDCOBRANZA,
-    A.NMBRCOMPLETO AS CLIENTE,
-    S.NMBRSEGURO AS POLIZA,
-    C.FECHA_VENCIMIENTO,
-    C.MONTO_ESPERADO,
-    C.ESTADO_COBRANZA,
-    -- Columna calculada para saber si hay MORA
-    CASE 
-        WHEN C.ESTADO_COBRANZA = 'PENDIENTE' AND C.FECHA_VENCIMIENTO < GETDATE() THEN 'MORA'
-        WHEN C.ESTADO_COBRANZA = 'PENDIENTE' AND C.FECHA_VENCIMIENTO >= GETDATE() THEN 'AL DIA'
-        ELSE 'PAGADO'
-    END AS ESTADO_CALCULADO,
-    -- Días de retraso
-    DATEDIFF(day, C.FECHA_VENCIMIENTO, GETDATE()) AS DIAS_RETRASO
-FROM COBRANZAS C
-INNER JOIN USRASEGURADOS UA ON C.IDUSRSEGUROSFK = UA.IDUSRSEGUROS
-INNER JOIN ASEGURADOS A ON UA.CEDULAFK = A.CEDULA
-INNER JOIN SEGUROS S ON UA.CODSEGUROFK = S.CODSEGURO
-WHERE C.Estado = 1;
+CREATE TABLE Permisos (
+    IdPermiso INT PRIMARY KEY,
+    NombrePermiso VARCHAR(50) NOT NULL UNIQUE,
+    Descripcion VARCHAR(200) NULL
+);
+
+
+INSERT INTO Permisos (IdPermiso,NombrePermiso, Descripcion)
+VALUES
+(1,'AGREGAR', 'Permite crear registros'),
+(2,'EDITAR', 'Permite actualizar registros'),
+(3,'ELIMINAR', 'Permite borrar registros'),
+(4,'CONSULTAR', 'Permite ver registros');
+
+
+CREATE TABLE RolesPermisos (
+    IdRol INT NOT NULL,
+    IdPermiso INT NOT NULL,
+    Estado BIT NOT NULL DEFAULT 1,  -- 1 = Activo, 0 = Inactivo
+    FechaAsignacion DATETIME NOT NULL DEFAULT GETDATE(),
+    PRIMARY KEY (IdRol, IdPermiso),
+    FOREIGN KEY (IdRol) REFERENCES Roles(IdRol),
+    FOREIGN KEY (IdPermiso) REFERENCES Permisos(IdPermiso)
+);
+
+
+INSERT INTO RolesPermisos (IdRol, IdPermiso)
+SELECT 100, IdPermiso FROM Permisos;
+
+INSERT INTO RolesPermisos (IdRol, IdPermiso)
+SELECT 101, IdPermiso 
+FROM Permisos 
+WHERE NombrePermiso IN ('CONSULTAR');
+
+
+

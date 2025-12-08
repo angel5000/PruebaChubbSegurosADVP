@@ -15,7 +15,8 @@ namespace Chubbseg.Application.DTOS
          public int EDADMIN { get; set; }
          public int EDADMAX { get; set; }
          public string? USRActualizacion { get; set; } = null!;
-         public int? Estado { get; set; }
+        public string? UsuarioIP { get; set; } = null!;
+        public int? Estado { get; set; }
     }
     
     public class SegurosRequestDTO
@@ -49,8 +50,7 @@ namespace Chubbseg.Application.DTOS
     {
    
         public string? USRActualizacion { get; set; } = null!;
-      /*  public DateTime? FechaActualizacion { get; set; }
-        public string? UsuarioIP { get; set; } = null!;*/
+        public string? UsuarioIP { get; set; } = null!;
         public string? EstadoDT { get; set; }
     }
 }

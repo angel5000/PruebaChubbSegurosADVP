@@ -6,8 +6,8 @@
     
   <div class="flex justify-between sizediv">
     
-      <input class="form-control size" type="file" id="formFile" [attr.accept]="acceptTypes"  
-      (change)="onFileChange($event)" #fileInput>
+      <input class="form-control size" type="file" id="formFile" [attr.accept]="acceptTypes" 
+      (change)="onFileChange($event)" #fileInput >
      
       <button matTooltip="Subir Archivo Excel" type="button"
       
@@ -18,6 +18,11 @@
   </button>
   
     </div>
+    
   </div>
-  
+  <div>
+    <app-modal-errors [errores]="erroresMultiples"></app-modal-errors>
+
+
+  </div>
   

@@ -13,7 +13,7 @@ namespace Chubbseg.Infrastructure.Interfaces
         Task<Aseguramiento> GetByIdAsync(int id);
         Task<int> CreateAsync(Aseguramiento aseguramiento);
         Task<int> UpdateAsync(int id, Aseguramiento aseguramiento);
-        Task<int> DeleteAsync(int id);
+        Task<int> DeleteAsync(int id,string usuario);
 
 
     }

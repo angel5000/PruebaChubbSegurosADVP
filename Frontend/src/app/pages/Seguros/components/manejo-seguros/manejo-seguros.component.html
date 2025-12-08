@@ -17,13 +17,13 @@
             </div>
   
             <div class="actions-block flex gap-4 items-end">
-              <button  type="button" class="btn-custom-green" (click)="openDialogRegister(true)">
+              <button  [hidden]="!component.Permisos.agregar" type="button" class="btn-custom-green" (click)="openDialogRegister(true)">
                 Registrar Seguro
                 <i class="bi bi-person-add ml-2"></i>
               </button>
   
               <div class="upload-wrapper">
-                <app-subir-archivos></app-subir-archivos>
+                <app-subir-archivos [hidden]="!component.Permisos.agregar" [bandeja]="nombandeja" ></app-subir-archivos>
               </div>
           </div>
   

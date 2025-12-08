@@ -13,22 +13,20 @@ using System.Threading.Tasks;
 
 namespace Chubbseg.Infrastructure.Repositories
 {
-    public class AuthRepository : IAuth
+    public class AuthRepository : IAuthRepository
     {
 
         private readonly DbContextADO _context;
-        private readonly IPTransform _ipt;
 
-        public AuthRepository(DbContextADO context, IPTransform ipt)
+        public AuthRepository(DbContextADO context)
         {
             _context = context;
-            _ipt = ipt;
+  
         }
 
-        async  public Task<Login> Auth(AuthRequest auth)
+        public async Task<Login> Auth(AuthRequest auth)
         {
-   
-            var result = new Login();
+            Login result = new Login();
 
             using (SqlConnection con = _context.CreateConnection())
             {
@@ -42,11 +40,9 @@ namespace Chubbseg.Infrastructure.Repositories
                     cmd.Parameters.AddWithValue("@Contraseña", auth.Contrasena);
 
                     // Parámetro de retorno del SP
-                    var returnParameter = cmd.Parameters.Add("@return_value", SqlDbType.Int);
+                    SqlParameter returnParameter = cmd.Parameters.Add("@return_value", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
-
-                    // Ejecutar y obtener datos del usuario SI el login es correcto (retorna tabla)
-                    using (var reader = await cmd.ExecuteReaderAsync())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
                         if (reader.HasRows)
                         {
@@ -62,12 +58,11 @@ namespace Chubbseg.Infrastructure.Repositories
                         }
                     }
 
-                    // Capturar código de retorno
                     result.Resultado = (int)returnParameter.Value;
 
                     return result;
                 }
             }
-            }
+        }
     }
 }

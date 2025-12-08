@@ -32,6 +32,7 @@ namespace Chubbseg.Application.DTOS
         public decimal PRIMA { get; set; }
         public int EDADMIN { get; set; }
         public int EDADMAX { get; set; }
+        public int? Estado { get; set; }
     }
     public class AseguradosporSeguraresponseDTO
     {

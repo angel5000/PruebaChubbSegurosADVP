@@ -22,6 +22,7 @@ import { IconModule } from '@visurel/iconify-angular';
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
+    
   ]
 })
 export class SharedModule { }

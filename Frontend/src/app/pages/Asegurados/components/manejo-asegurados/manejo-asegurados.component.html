@@ -18,13 +18,13 @@
           </div>
   
           <div class="actions-block">
-              <button matTooltip="Registrar Nuevo Asegurado" type="button" class="btn-custom-green" (click)="openDialogRegister(true)">
+              <button [hidden]="!component.Permisos.agregar" matTooltip="Registrar Nuevo Asegurado" type="button" class="btn-custom-green" (click)="openDialogRegister(true)">
                 Registrar Asegurado
                 <i class="bi bi-person-add ml-2"></i>
               </button>
   
               <div class="upload-wrapper">
-                <app-subir-archivos></app-subir-archivos>
+                <app-subir-archivos [hidden]="!component.Permisos.agregar"></app-subir-archivos>
               </div>
           </div>
   

@@ -115,12 +115,12 @@ export class AseguradosService {
     );
   }
 
-  EliminarAseguramiento(id: number): Observable<BaseResponse> {
+  EliminarAseguramiento(id: number,usuariomod:string): Observable<BaseResponse> {
     const token = localStorage.getItem("token")?.replace(/"/g, '');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    const requestURL = `${env.apiseguros}${end.ELIMINARAASEGURAMIENTO}${id}`;
+    const requestURL = `${env.apiseguros}${end.ELIMINARAASEGURAMIENTO}${id}?usuario=${usuariomod}`;
     return this.http.delete<BaseResponse>(requestURL, { headers }).pipe(
       map(res => res),
       catchError(error => {

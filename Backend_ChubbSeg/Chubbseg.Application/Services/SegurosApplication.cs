@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using Chubbseg.Application.DTOS;
 using Chubbseg.Application.Interfaces;
 using Chubbseg.Domain.Entidades;
 using Chubbseg.Infrastructure.Interfaces;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 
 namespace Chubbseg.Application.Services
 {
@@ -23,39 +17,39 @@ namespace Chubbseg.Application.Services
             _mapper = mapper;
         }
 
-       async public Task<BaseResponse<AseguradosporSeguraresponseDTO>> AseguradosPorSeguros(int id)
+        public async Task<BaseResponse<AseguradosporSeguraresponseDTO>> AseguradosPorSeguros(int id)
         {
-            var response = new BaseResponse<AseguradosporSeguraresponseDTO>();
+            BaseResponse<AseguradosporSeguraresponseDTO> response = new BaseResponse<AseguradosporSeguraresponseDTO>();
             try
             {
-                // Obtener datos del repositorio (ADO.NET)
-                var listaasegurados = await _repo.GetSelectASegAsync(id);
 
-                var listaDto = _mapper.Map<AseguradosporSeguraresponseDTO>(listaasegurados);
+                Aseguramiento asegurado = await _repo.GetSelectASegAsync(id);
 
-                response.Data = listaDto;
+                AseguradosporSeguraresponseDTO dto = _mapper.Map<AseguradosporSeguraresponseDTO>(asegurado);
+
+                response.Data = dto;
                 response.IsSucces = true;
                 response.Message = "Consulta realizada correctamente";
             }
+            catch (SqlException ex)
+            {
+                throw new Exception("SQL Error: " + ex.Message);
+            }
             catch (Exception ex)
             {
-                response.IsSucces = false;
-                response.Message = ex.Message;
+                throw new Exception("Excepcion Error: " + ex.Message);
             }
 
             return response;
         }
 
-        async public Task<BaseResponse<bool>> EditarSeguros(int SeguroID, SegurosRequesteditDTO request, HttpContext context)
+        public async Task<BaseResponse<bool>> EditarSeguros(int SeguroID, SegurosRequesteditDTO request)
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                // DTO → Entidad Domain
-                var entidad = _mapper.Map<Seguros>(request);
-
-                // Llamada al repositorio (SP)
-                int result = await _repo.UpdateAsync(SeguroID,entidad,context);
+                Seguros entidad = _mapper.Map<Seguros>(request);
+                int result = await _repo.UpdateAsync(SeguroID, entidad);
 
                 if (result > 0)
                 {
@@ -70,24 +64,25 @@ namespace Chubbseg.Application.Services
                     response.Message = "No se pudo modificar el seguro.";
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new Exception("SQL Error: " + ex.Message);
+            }
             catch (Exception ex)
             {
-                response.Data = false;
-                response.IsSucces = false;
-                response.Message = $"Error: {ex.Message}";
+                throw new Exception("Excepcion Error: " + ex.Message);
             }
 
             return response;
         }
 
-       async public Task<BaseResponse<bool>> EliminarSeguros(int SeguroID, SegurosRequestDeleteDTO request, HttpContext context)
+        public async Task<BaseResponse<bool>> EliminarSeguros(int SeguroID, SegurosRequestDeleteDTO request)
         {
-
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                var entidad = _mapper.Map<Seguros>(request);
-                int result = await _repo.DeleteAsync(SeguroID, entidad, context);
+                Seguros entidad = _mapper.Map<Seguros>(request);
+                int result = await _repo.DeleteAsync(SeguroID, entidad);
 
                 if (result > 0)
                 {
@@ -102,33 +97,15 @@ namespace Chubbseg.Application.Services
                     response.Message = "No se pudo eliminar el seguro.";
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 response.Data = false;
                 response.IsSucces = false;
-                response.Message = $"Error: {ex.Message}";
-            }
-
-            return response;
-        
-        }
-
-        async public Task<BaseResponse<IEnumerable<SegurosResponseDTO>>> ListaSeguros()
-        {
-            var response = new BaseResponse<IEnumerable<SegurosResponseDTO>>();
-            try
-            {
-                // Obtener datos del repositorio (ADO.NET)
-                var listaSeguros = await _repo.GetAllAsync();
-
-                var listaDto = _mapper.Map<List<SegurosResponseDTO>>(listaSeguros);
-
-                response.Data = listaDto;
-                response.IsSucces = true;
-                response.Message = "Consulta realizada correctamente";
+                response.Message = ex.Message;
             }
             catch (Exception ex)
             {
+                response.Data = false;
                 response.IsSucces = false;
                 response.Message = ex.Message;
             }
@@ -136,16 +113,39 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-       async public Task<BaseResponse<bool>> RegistrarSeguro(SegurosRequestDTO request, HttpContext context)
+        public async Task<BaseResponse<IEnumerable<SegurosResponseDTO>>> ListaSeguros()
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<IEnumerable<SegurosResponseDTO>> response = new BaseResponse<IEnumerable<SegurosResponseDTO>>();
             try
             {
-                // DTO → Entidad Domain
-                var entidad = _mapper.Map<Seguros>(request);
+                List<Seguros> listaSeguros = await _repo.GetAllAsync();
 
-                // Llamada al repositorio (SP)
-                int result = await _repo.CreateAsync(entidad,context);
+                List<SegurosResponseDTO> listaDto = _mapper.Map<List<SegurosResponseDTO>>(listaSeguros);
+
+                response.Data = listaDto;
+                response.IsSucces = true;
+                response.Message = "Consulta realizada correctamente";
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("SQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Excepcion Error: " + ex.Message);
+            }
+
+            return response;
+        }
+
+        public async Task<BaseResponse<bool>> RegistrarSeguro(SegurosRequestDTO request)
+        {
+            BaseResponse<bool> response = new BaseResponse<bool>();
+            try
+            {
+                Seguros entidad = _mapper.Map<Seguros>(request);
+
+                int result = await _repo.CreateAsync(entidad);
 
                 if (result > 0)
                 {
@@ -160,43 +160,13 @@ namespace Chubbseg.Application.Services
                     response.Message = "No se pudo registrar el seguro.";
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new Exception("SQL Error: " + ex.Message);
+            }
             catch (Exception ex)
             {
                 response.Data = false;
-                response.IsSucces = false;
-                response.Message = $"{ex.Message}";
-            }
-
-            return response;
-        }
-
-       async public Task<BaseResponse<IEnumerable<SegurosResponseDTO>>> SegurosDisponibles(int edad)
-        {
-            var response = new BaseResponse<IEnumerable<SegurosResponseDTO>>();
-            try
-            {
-                // Obtener datos del repositorio (ADO.NET)
-                var listaSeguros = await _repo.GetSelectlistAsync(edad);
-
-                // Mapear entidad → DTO
-                var listaDto = listaSeguros.Select(x => new SegurosResponseDTO
-                {
-                    IDSEGURO = x.IDSEGURO,
-                    NMBRSEGURO = x.NMBRSEGURO,
-                    CODSEGURO = x.CODSEGURO,
-                    SUMASEGURADA = x.SUMASEGURADA,
-                    PRIMA = x.PRIMA,
-                    EDADMIN = x.EDADMIN,
-                    EDADMAX = x.EDADMAX
-
-                });
-
-                response.Data = listaDto;
-                response.IsSucces = true;
-                response.Message = "Consulta realizada correctamente";
-            }
-            catch (Exception ex)
-            {
                 response.IsSucces = false;
                 response.Message = ex.Message;
             }
@@ -204,13 +174,38 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-        async public Task<BaseResponse<SegurosResponseIDDTO>> SegurosporID(int SeguroID)
+        public async Task<BaseResponse<IEnumerable<SegurosResponseDTO>>> SegurosDisponibles(int edad)
         {
-            var response = new BaseResponse<SegurosResponseIDDTO>();
+            BaseResponse<IEnumerable<SegurosResponseDTO>> response = new BaseResponse<IEnumerable<SegurosResponseDTO>>();
             try
             {
-                // Obtener datos del repositorio (ADO.NET)
-                var seguro = await _repo.GetByIdAsync(SeguroID);
+
+                List<Seguros> listaSeguros = await _repo.GetSelectlistAsync(edad);
+
+                IEnumerable<SegurosResponseDTO> listaDto = _mapper.Map<IEnumerable<SegurosResponseDTO>>(listaSeguros);
+
+                response.Data = listaDto;
+                response.IsSucces = true;
+                response.Message = "Consulta realizada correctamente";
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("SQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Excepcion Error: " + ex.Message);
+            }
+
+            return response;
+        }
+
+        public async Task<BaseResponse<SegurosResponseIDDTO>> SegurosporID(int SeguroID)
+        {
+            BaseResponse<SegurosResponseIDDTO> response = new BaseResponse<SegurosResponseIDDTO>();
+            try
+            {
+                Seguros seguro = await _repo.GetByIdAsync(SeguroID);
 
                 if (seguro == null)
                 {
@@ -218,24 +213,20 @@ namespace Chubbseg.Application.Services
                     response.Message = "No se encontró un seguro con ese ID.";
                     return response;
                 }
-                var dto = new SegurosResponseIDDTO
-                {
-                    IDSEGURO = seguro.IDSEGURO,
-                    NMBRSEGURO = seguro.NMBRSEGURO,
-                    CODSEGURO = seguro.CODSEGURO,
-                    SUMASEGURADA = seguro.SUMASEGURADA,
-                    PRIMA = seguro.PRIMA,
-                    EDADMAX =seguro.EDADMAX,
-                    EDADMIN = seguro.EDADMIN
-                };
+
+                SegurosResponseIDDTO dto = _mapper.Map<SegurosResponseIDDTO>(seguro);
+
                 response.Data = dto;
                 response.IsSucces = true;
                 response.Message = "Consulta realizada correctamente";
             }
+            catch (SqlException ex)
+            {
+                throw new Exception("SQL Error: " + ex.Message);
+            }
             catch (Exception ex)
             {
-                response.IsSucces = false;
-                response.Message = ex.Message;
+                throw new Exception("Excepcion Error: " + ex.Message);
             }
 
             return response;

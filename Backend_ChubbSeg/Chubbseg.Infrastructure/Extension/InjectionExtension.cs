@@ -22,7 +22,9 @@ namespace Chubbseg.Infrastructure.Extension
             services.AddTransient<IPTransform>();
             services.AddScoped<IAseguradosRepository, AseguradosRepository>();
             services.AddScoped<IAseguramientoRepository, AseguramientoRepository>();
-            services.AddScoped<IAuth,AuthRepository>();
+            services.AddScoped<IAuthRepository,AuthRepository>();
+            services.AddScoped<ICobranzasRepository, CobranzasRepository>();
+            services.AddScoped<IPermisosRepository, PermisosRepository>();
             return services;
         }
 

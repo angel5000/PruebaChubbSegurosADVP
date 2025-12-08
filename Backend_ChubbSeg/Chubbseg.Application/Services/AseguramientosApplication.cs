@@ -21,12 +21,12 @@ namespace Chubbseg.Application.Services
             _mapper = mapper;
         }
 
-        async public Task<BaseResponse<bool>> EliminarAseguramiento(int AseguramientoID)
+        public async Task<BaseResponse<bool>> EliminarAseguramiento(int AseguramientoID, string usuario)
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                int result = await _repo.DeleteAsync(AseguramientoID);
+                int result = await _repo.DeleteAsync(AseguramientoID, usuario);
 
                 if (result > 0)
                 {
@@ -51,16 +51,13 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-        async public Task<BaseResponse<IEnumerable<AseguramientoResponseDTO>>> ListaAseguramientos()
+        public async Task<BaseResponse<IEnumerable<AseguramientoResponseDTO>>> ListaAseguramientos()
         {
-            var response = new BaseResponse<IEnumerable<AseguramientoResponseDTO>>();
+            BaseResponse<IEnumerable<AseguramientoResponseDTO>> response = new BaseResponse<IEnumerable<AseguramientoResponseDTO>>();
             try
             {
-  
-                var listaAseguramientos = await _repo.GetAllAsync();
-                var listaDto = _mapper.Map<List<AseguramientoResponseDTO>>(listaAseguramientos);
-              
-
+                List<Aseguramiento> listaAseguramientos = await _repo.GetAllAsync();
+                List<AseguramientoResponseDTO> listaDto = _mapper.Map<List<AseguramientoResponseDTO>>(listaAseguramientos);
                 response.Data = listaDto;
                 response.IsSucces = true;
                 response.Message = "Consulta realizada correctamente";
@@ -74,22 +71,19 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-       async public Task<BaseResponse<bool>> RegistrarAseguramiento(AseguramientoRequestDTO request)
+        public async Task<BaseResponse<bool>> RegistrarAseguramiento(AseguramientoRequestDTO request)
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                // DTO → Entidad Domain
-                var entidad = _mapper.Map<Aseguramiento>(request);
-
-                // Llamada al repositorio (SP)
+                Aseguramiento entidad = _mapper.Map<Aseguramiento>(request);
                 int result = await _repo.CreateAsync(entidad);
 
                 if (result > 0)
                 {
                     response.Data = true;
                     response.IsSucces = true;
-                    response.Message = "Aseguramient registrado correctamente.";
+                    response.Message = "Aseguramiento registrado correctamente.";
                 }
                 else
                 {
@@ -102,10 +96,10 @@ namespace Chubbseg.Application.Services
             {
                 response.Data = false;
                 response.IsSucces = false;
-                response.Message = $"{ex.Message}";
+                response.Message = ex.Message;
             }
 
             return response;
         }
     }
-}
+    }

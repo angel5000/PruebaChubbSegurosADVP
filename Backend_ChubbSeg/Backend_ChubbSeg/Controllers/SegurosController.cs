@@ -1,8 +1,8 @@
 ﻿using Chubbseg.Application.DTOS;
 using Chubbseg.Application.Interfaces;
-using Chubbseg.Domain.Entidades;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 
 namespace Backend_ChubbSeg.Controllers
 {
@@ -18,71 +18,201 @@ namespace Backend_ChubbSeg.Controllers
             CARGAexcel = cARGAexcel;
         }
 
+        [Authorize]
         [HttpGet("ConsultaSeguros")]
         public async Task<IActionResult> ConsultaSeguros()
         {
-            var response = await _SegurosApplication.ListaSeguros();
-          
-            return Ok(response);
+      
+            BaseResponse<IEnumerable<SegurosResponseDTO>> response = new BaseResponse<IEnumerable<SegurosResponseDTO>>();
+            try
+            {
+                BaseResponse<IEnumerable<SegurosResponseDTO>> result = await _SegurosApplication.ListaSeguros();
+                response = result;
+            }
+            catch (SqlException ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con la base de datos. Inténtalo más tarde.";
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con el servidor. Inténtalo más tarde.";
+
+            }
+            return Ok(response); ;
         }
 
+        [Authorize]
         [HttpGet("SegurosDisponibles/{edad:int}")]
         public async Task<IActionResult> SegurosDisponibles(int edad)
         {
-            var response = await _SegurosApplication.SegurosDisponibles(edad);
+            BaseResponse <IEnumerable<SegurosResponseDTO>> response = new BaseResponse<IEnumerable<SegurosResponseDTO>>();
+            try
+            {
+                BaseResponse<IEnumerable<SegurosResponseDTO>> result = await _SegurosApplication.SegurosDisponibles(edad);
+                response = result;
+            }
+            catch (SqlException ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con la base de datos. Inténtalo más tarde.";
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con el servidor. Inténtalo más tarde.";
+
+            }
             return Ok(response);
         }
 
+        [Authorize]
         [HttpGet("CantAsegurados/{id:int}")]
         public async Task<IActionResult> AseguradosPorSeguros(int id)
         {
-            var response = await _SegurosApplication.AseguradosPorSeguros(id);
+            BaseResponse<AseguradosporSeguraresponseDTO> response = new BaseResponse<AseguradosporSeguraresponseDTO>();
+            try
+            {
+                BaseResponse<AseguradosporSeguraresponseDTO> result = await _SegurosApplication.AseguradosPorSeguros(id);
+                response = result;
+            }
+            catch (SqlException ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con la base de datos. Inténtalo más tarde.";
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con el servidor. Inténtalo más tarde.";
+
+            }
             return Ok(response);
         }
 
-
+        [Authorize]
         [HttpGet("SegurosID/{id:int}")]
         public async Task<IActionResult> SegurosPorid(int id)
         {
-            var response = await _SegurosApplication.SegurosporID(id);
+            BaseResponse<SegurosResponseIDDTO> response = new BaseResponse<SegurosResponseIDDTO>();
+            try
+            {
+                BaseResponse<SegurosResponseIDDTO> result = await _SegurosApplication.SegurosporID(id);
+                response = result;
+            }
+            catch (SqlException ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con la base de datos. Inténtalo más tarde.";
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con el servidor. Inténtalo más tarde.";
+
+            }
             return Ok(response);
         }
 
+        [Authorize]
         [HttpPost("RegistrarSeguro")]
         public async Task<IActionResult> RegistrarSeguro([FromBody] SegurosRequestDTO requestDTO)
         {
-            var ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-        
-            var response = await _SegurosApplication.RegistrarSeguro(requestDTO, HttpContext);
+            BaseResponse<bool> response = new BaseResponse<bool>();
+            try
+            {
+                BaseResponse<bool> result = await _SegurosApplication.RegistrarSeguro(requestDTO);
+                response = result;
+            }
+            catch (SqlException ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con la base de datos. Inténtalo más tarde.";
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con el servidor. Inténtalo más tarde.";
+ 
+            }
 
             return Ok(response);
         }
 
+        [Authorize]
         [HttpPost("RegistrarSegurosMasivo")]
         [Consumes("multipart/form-data")]
 
         public async Task<IActionResult> RegistrarSegurosmasivo(IFormFile archivo, [FromServices] ICargarExcel subirexcel)
         {
-            var ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-            var response = await CARGAexcel.RegistMasvSeguros<SegurosRequestDTO>(archivo,HttpContext);
+            BaseResponse<bool> response = new BaseResponse<bool>();
+            try
+            {
+                BaseResponse<bool> result = await CARGAexcel.RegistMasvSeguros<SegurosRequestDTO>(archivo);
+                response = result;
+            }
+            catch (SqlException ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con la base de datos. Inténtalo más tarde.";
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con el servidor. Inténtalo más tarde.";
+
+            }
 
             return Ok(response);
         }
 
+        [Authorize]
         [HttpPut("EditarSeguro/{Id:int}")]
         public async Task<IActionResult> EditarSeguro(int Id, [FromBody] SegurosRequesteditDTO requestDTO)
         {
-            var ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-            var response = await _SegurosApplication.EditarSeguros(Id,requestDTO, HttpContext);
+        
+            BaseResponse<bool> response = new BaseResponse<bool>();
+            try
+            {
+                BaseResponse<bool> result = await _SegurosApplication.EditarSeguros(Id, requestDTO);
+                response = result;
+            }
+            catch (SqlException ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con la base de datos. Inténtalo más tarde.";
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con el servidor. Inténtalo más tarde.";
 
+            }
             return Ok(response);
         }
 
+        [Authorize]
         [HttpDelete("EliminarSeguro/{Id:int}")]
         public async Task<IActionResult> EliminarSeguro(int Id, [FromBody] SegurosRequestDeleteDTO request)
         {
-            var ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-            var response = await _SegurosApplication.EliminarSeguros(Id, request, HttpContext);
+            BaseResponse<bool> response = new BaseResponse<bool>();
+            try
+            {
+                BaseResponse<bool> result = await _SegurosApplication.EliminarSeguros(Id, request);
+                response = result;
+            }
+            catch (SqlException ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con la base de datos. Inténtalo más tarde.";
+            }
+            catch (Exception ex)
+            {
+                response.IsSucces = false;
+                response.Message = "Hubo un problema en la comunicación con el servidor. Inténtalo más tarde.";
+
+            }
             return Ok(response);
         }
     }

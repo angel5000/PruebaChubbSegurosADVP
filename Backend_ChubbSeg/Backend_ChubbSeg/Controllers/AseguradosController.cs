@@ -19,7 +19,6 @@ namespace Backend_ChubbSeg.Controllers
 
         }
         [Authorize]
-        [Authorize(Roles = "100")]
         [HttpGet("ConsultaAsegurados")]
         public async Task<IActionResult> ListCliente()
         {
@@ -28,6 +27,8 @@ namespace Backend_ChubbSeg.Controllers
             return Ok(response);
         }
 
+
+        [Authorize]
         [HttpGet("AseguradoID/{id:int}")]
         public async Task<IActionResult> AseguradoporId(int id)
         {
@@ -36,6 +37,7 @@ namespace Backend_ChubbSeg.Controllers
         }
 
 
+        [Authorize]
         [HttpPost("RegistrarAsegurado")]
         public async Task<IActionResult> RegistrarAsegurado([FromBody] AseguradosRequestDTO requestDTO)
         {
@@ -44,14 +46,16 @@ namespace Backend_ChubbSeg.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         [HttpPut("EditarAsegurado/{Id:int}")]
-        public async Task<IActionResult> EditarAsegurado(int Id, [FromBody] AseguradosRequestDTO requestDTO)
+        public async Task<IActionResult> EditarAsegurado(int Id, [FromBody] AseguradosEditRequestDTO requestDTO)
         {
             var response = await _Asegurados.EditarAsegurados(Id, requestDTO);
 
             return Ok(response);
         }
 
+        [Authorize]
         [HttpDelete("EliminarAsegurado/{Id:int}")]
         public async Task<IActionResult> EliminarAsegurado(int Id)
         {

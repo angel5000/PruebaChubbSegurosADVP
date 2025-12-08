@@ -6,6 +6,7 @@ export const endpoint = {
     CONSULTASEGUROS: 'Seguros/ConsultaSeguros',
     CONSULTASEGUROSID: 'Seguros/SegurosID/',
     REGISTRARASEGURO: 'Seguros/RegistrarSeguro',
+    REGISTRARSEGUROMASIVO: 'Seguros/RegistrarSegurosMasivo',
     ACTUALIZARASEGURO: 'Seguros/EditarSeguro/',
     ELIMINARSEGURO: 'Seguros/EliminarSeguro/',
     SEGUROSDISPONIBLES: 'Seguros/SegurosDisponibles/',
@@ -20,4 +21,9 @@ export const endpoint = {
     ASEGURADOSMASIVOS:'Aseguramientos/RegistrarAseguramientoMasivo',
     REGISTRARASEGURAMIENT:'Aseguramientos/RegistrarAseguramiento',
     ELIMINARAASEGURAMIENTO: 'Aseguramientos/EliminarAseguramiento/',
+    /*-------------------------------------------*/
+    CONSULTACOBRANZA:'Cobranzas/ConsultaCobranzas',
+    CANCELARSEGURO:'Cobranzas/CancelarSeguro/',
+    /*--------------------------------------------*/
+    CONSULTAPERMISOS:'Permisos/ConsultarPermisos/',
 }

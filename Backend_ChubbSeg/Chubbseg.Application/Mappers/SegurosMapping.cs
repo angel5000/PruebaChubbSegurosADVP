@@ -21,6 +21,7 @@ namespace Chubbseg.Application.Mappers
             CreateMap<AseguradosResponseDTO, Asegurados>();
             CreateMap<SegurosRequestDTO, Seguros>();
             CreateMap<SegurosRequesteditDTO, Seguros>();
+            CreateMap<AseguradosEditRequestDTO, Asegurados>();
             CreateMap<AseguradosRequestDTO, Asegurados>();
             CreateMap<SegurosResponseIDDTO, Asegurados>();
             CreateMap<Aseguramiento,AseguramientoResponseDTO>();
@@ -30,8 +31,11 @@ namespace Chubbseg.Application.Mappers
             CreateMap< AuthRequest, LoginDTO>();
             CreateMap< Login, LoginResponseDTO>();
             CreateMap<Aseguramiento, AseguradosporSeguraresponseDTO>();
-
-
+            CreateMap<CobranzasResponse, CobranzasResponseDTO>();
+            CreateMap<Seguros, SegurosResponseIDDTO>()
+           .ForMember(dest => dest.Estado,
+                      opt => opt.MapFrom(src => (bool)src.Estado ? 1 : 0));
+            CreateMap<RolesPermisos, RolesPermisosResponseDTO>();
         }
     }
 }

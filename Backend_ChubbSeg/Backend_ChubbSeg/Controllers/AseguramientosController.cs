@@ -21,7 +21,6 @@ namespace Backend_ChubbSeg.Controllers
         }
 
         [Authorize]
-        [Authorize(Roles = "100")]
         [HttpGet("ConsultaAseguramientos")]
         public async Task<IActionResult> ConsultaAseguramientos()
         {
@@ -31,7 +30,6 @@ namespace Backend_ChubbSeg.Controllers
         }
 
         [Authorize]
-        [Authorize(Roles = "100")]
         [HttpPost("RegistrarAseguramiento")]
         public async Task<IActionResult> RegistrarSeguramiento([FromBody] AseguramientoRequestDTO requestDTO)
         {
@@ -41,7 +39,6 @@ namespace Backend_ChubbSeg.Controllers
         }
 
         [Authorize]
-        [Authorize(Roles = "100")]
         [HttpPost("RegistrarAseguramientoMasivo")]
         [Consumes("multipart/form-data")]
   
@@ -53,11 +50,10 @@ namespace Backend_ChubbSeg.Controllers
         }
 
         [Authorize]
-        [Authorize(Roles = "100")]
         [HttpDelete("EliminarAseguramiento/{Id:int}")]
-        public async Task<IActionResult> EliminarAseguramiento(int Id)
+        public async Task<IActionResult> EliminarAseguramiento(int Id, [FromQuery] string usuario)
         {
-            var response = await _AseguramientosApplication.EliminarAseguramiento(Id);
+            var response = await _AseguramientosApplication.EliminarAseguramiento(Id, usuario);
             return Ok(response);
         }
     }

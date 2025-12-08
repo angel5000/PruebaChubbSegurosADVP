@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { BaseResponse } from '../../../shared/models/BaseApiResponse';
 import { Login, RegistrarUsuario, UserData } from '../Models/login-interface';
 import { environment as env } from '../../../../enviroments/environment';
@@ -24,6 +24,12 @@ export class AuthService {
     this.toastr.error(mensaje, 'Error');
   }
 
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem("token")?.replace(/"/g, '');
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
   login(req: Login): Observable<BaseResponse> {
     const requestURL = `${env.apiseguros}${end.AUTH}`
     return this.http.post<BaseResponse>(requestURL, req).pipe(
@@ -37,7 +43,7 @@ export class AuthService {
             const usuario = resp.data.nombreUsuario;
             const rol = resp.data.idRol;
             const token= resp.data.token;
-            localStorage.setItem('rol', JSON.stringify(rol)); // Almacenar el ID
+            localStorage.setItem('rol', JSON.stringify(rol)); 
             localStorage.setItem('correo', JSON.stringify(correo));
             localStorage.setItem('usuario', JSON.stringify(usuario));
             localStorage.setItem('token', JSON.stringify(token));
@@ -49,28 +55,28 @@ export class AuthService {
         return resp;
       }), catchError((error) => {
         this.showError(error);
-        return of(error);  // Retorna una respuesta de error para que el flujo continúe
+        return of(error);  
       }));
-
-
   }
+  ObtenerPermisos(id:number): Observable<BaseResponse> {
+    return this.http.get<any>(`${env.apiseguros}${end.CONSULTAPERMISOS}${id}`, { headers: this.getAuthHeaders() }).pipe(
+       map((res) => res), catchError((error) => {
+         this.toastr.error('Error al obtener los datos'); 
+         return throwError(() => error); }) );
+        }
+ 
 
-
-
-  /*
     getUserRole(): number | null {
-      return JSON.parse(localStorage.getItem('userRole') || 'null');
+      return JSON.parse(localStorage.getItem('rol') || 'null');
       
     }
   
-    getUserId(): number | null {
-      return JSON.parse(localStorage.getItem('userId') || 'null');
+    getNombre(): number | null {
+      return JSON.parse(localStorage.getItem('usuario') || 'null');
     }
   
-    getNombre(): number | null {
-      return JSON.parse(localStorage.getItem('NombreUsuario') || 'null');
-    }
-    */
+    
+    
 
 
 }

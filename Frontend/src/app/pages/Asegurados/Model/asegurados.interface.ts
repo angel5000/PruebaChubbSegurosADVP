@@ -11,6 +11,13 @@ export interface Asegurados{
     nmbrcompleto: string;
     telefono: number;
     edad: number;
+    usrCreacion?: string,
+    usrActualizacion?: string,
+    fechaActualizacion?: Date
+    usuarioIP?: string,
+    estado?: number
+    estadoDt?:string
+  
   }
   export interface Aseguramiento {
     nmbrcompleto?: string;

@@ -3,48 +3,196 @@
   "WorkspaceRootPath": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\services\\segurosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\services\\segurosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\services\\tokenapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\services\\tokenapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\services\\rolespermisosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\services\\rolespermisosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\services\\loginapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\services\\loginapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\services\\cobranzasapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\services\\cobranzasapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\services\\aseguradosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\services\\aseguradosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\services\\aseguramientosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\services\\aseguramientosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\services\\cargarexcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\services\\cargarexcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\repositories\\cobranzasrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\repositories\\cobranzasrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\repositories\\authrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\repositories\\authrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\repositories\\aseguramientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\repositories\\aseguramientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\repositories\\aseguradosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\repositories\\aseguradosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\repositories\\permisosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\repositories\\permisosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\dtos\\aseguradosrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\dtos\\aseguradosrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\services\\segurosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\services\\segurosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\repositories\\segurosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\repositories\\segurosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.domain\\entidades\\asegurados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|solutionrelative:chubbseg.domain\\entidades\\asegurados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.domain\\entidades\\aseguramiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|solutionrelative:chubbseg.domain\\entidades\\aseguramiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.domain\\entidades\\seguros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|solutionrelative:chubbseg.domain\\entidades\\seguros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\dtos\\segurosrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\dtos\\segurosrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\dtos\\segurosresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\dtos\\segurosresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\backend_chubbseg.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\backend_chubbseg.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\repositories\\segurosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\repositories\\segurosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\dtos\\aseguramientoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\dtos\\aseguramientoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\controllers\\aseguramientoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\controllers\\aseguramientoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\controllers\\cobranzascontroller\\cobranzascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\controllers\\cobranzascontroller\\cobranzascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\interfaces\\iaseguramientosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\interfaces\\iaseguramientosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\interfaces\\iaseguramientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\interfaces\\iaseguramientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\dtos\\cobranzasresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\dtos\\cobranzasresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\controllers\\seguroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\controllers\\seguroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\interfaces\\icobranzasapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\interfaces\\icobranzasapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\dtos\\rolespermisosresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\dtos\\rolespermisosresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\interfaces\\irolespermisosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\interfaces\\irolespermisosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\interfaces\\isegurosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\interfaces\\isegurosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\interfaces\\icobranzasrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\interfaces\\icobranzasrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\interfaces\\isegurosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\interfaces\\isegurosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\interfaces\\ipermisosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\interfaces\\ipermisosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\controllers\\permisoscontroller\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\controllers\\permisoscontroller\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\controllers\\aseguradoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\controllers\\aseguradoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\controllers\\authcontrollers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\controllers\\authcontrollers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\interfaces\\iauthrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\interfaces\\iauthrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\mappers\\segurosmapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\mappers\\segurosmapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\extensions\\injectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\extensions\\injectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.infrastructure\\extension\\injectionextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360A2E40-1AB0-4804-AFFB-0EBD6705AD0A}|Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj|solutionrelative:chubbseg.infrastructure\\extension\\injectionextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.domain\\entidades\\rolespermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|solutionrelative:chubbseg.domain\\entidades\\rolespermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.domain\\entidades\\seguros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|solutionrelative:chubbseg.domain\\entidades\\seguros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\interfaces\\icargarexcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\interfaces\\icargarexcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\interfaces\\iaseguradosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\interfaces\\iaseguradosapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.application\\dtos\\aseguramientorequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABA9E906-CE2D-403C-978E-94A2D73CACCA}|Chubbseg.Application\\Chubbseg.Application.csproj|solutionrelative:chubbseg.application\\dtos\\aseguramientorequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.domain\\entidades\\cobranzas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|solutionrelative:chubbseg.domain\\entidades\\cobranzas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\chubbseg.domain\\entidades\\asegurados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61311AF0-5695-4E12-9558-A931249490BE}|Chubbseg.Domain\\Chubbseg.Domain.csproj|solutionrelative:chubbseg.domain\\entidades\\asegurados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\backend_chubbseg.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|solutionrelative:backend_chubbseg\\backend_chubbseg.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{91894F64-9864-4DD9-AFC6-88528502D236}|Backend_ChubbSeg\\Backend_ChubbSeg.csproj|c:\\users\\angeldvvp\\desktop\\prueba_chubb_angelvergaraparedes_viamatica\\backend_chubbseg\\backend_chubbseg\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -58,7 +206,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 223,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,46 +218,579 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AseguradosApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\AseguradosApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\AseguradosApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\AseguradosApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Services\\AseguradosApplication.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAUwCUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T17:20:37.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\LoginApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\LoginApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\LoginApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Services\\LoginApplication.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAA5wCIAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T16:10:31.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RolesPermisosApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\RolesPermisosApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\RolesPermisosApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\RolesPermisosApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Services\\RolesPermisosApplication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T01:40:18.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SegurosApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\SegurosApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\SegurosApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\SegurosApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Services\\SegurosApplication.cs",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAuwLUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T00:18:03.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "TokenApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\TokenApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\TokenApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\TokenApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Services\\TokenApplication.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAcwDAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:47:55.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AseguramientosApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\AseguramientosApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\AseguramientosApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\AseguramientosApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Services\\AseguramientosApplication.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAwwDoAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T04:38:01.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CargarExcel.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\CargarExcel.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\CargarExcel.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\CargarExcel.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Services\\CargarExcel.cs",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAAwAgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T00:10:19.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CobranzasApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\CobranzasApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\CobranzasApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\CobranzasApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Services\\CobranzasApplication.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAIwEAAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T16:10:14.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CobranzasRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\CobranzasRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Repositories\\CobranzasRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\CobranzasRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Repositories\\CobranzasRepository.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAcwFYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:58:16.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\AuthRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Repositories\\AuthRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\AuthRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Repositories\\AuthRepository.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAcwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T04:00:40.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AseguradosRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\AseguradosRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Repositories\\AseguradosRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\AseguradosRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Repositories\\AseguradosRepository.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAcwF8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:59:18.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SegurosResponseDTO.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\SegurosResponseDTO.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\DTOS\\SegurosResponseDTO.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\SegurosResponseDTO.cs",
+              "RelativeToolTip": "Chubbseg.Application\\DTOS\\SegurosResponseDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T00:35:51.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PermisosRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\PermisosRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Repositories\\PermisosRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\PermisosRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Repositories\\PermisosRepository.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwDUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T01:25:33.387Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AseguramientoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\AseguramientoRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Repositories\\AseguramientoRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\AseguramientoRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Repositories\\AseguramientoRepository.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T17:26:14.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "AseguradosRequestDTO.cs",
               "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\AseguradosRequestDTO.cs",
               "RelativeDocumentMoniker": "Chubbseg.Application\\DTOS\\AseguradosRequestDTO.cs",
               "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\AseguradosRequestDTO.cs",
               "RelativeToolTip": "Chubbseg.Application\\DTOS\\AseguradosRequestDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA4AAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-07T05:12:48.171Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CargarExcel.cs",
-              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\CargarExcel.cs",
-              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\CargarExcel.cs",
-              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\CargarExcel.cs",
-              "RelativeToolTip": "Chubbseg.Application\\Services\\CargarExcel.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAgwFMAAAAoAAAAAAAAAA==",
+              "DocumentIndex": 14,
+              "Title": "SegurosRequestDTO.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\SegurosRequestDTO.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\DTOS\\SegurosRequestDTO.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\SegurosRequestDTO.cs",
+              "RelativeToolTip": "Chubbseg.Application\\DTOS\\SegurosRequestDTO.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAUwC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T05:07:42.099Z",
+              "WhenOpened": "2025-12-07T17:21:32.784Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SegurosApplication.cs",
-              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\SegurosApplication.cs",
-              "RelativeDocumentMoniker": "Chubbseg.Application\\Services\\SegurosApplication.cs",
-              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Services\\SegurosApplication.cs",
-              "RelativeToolTip": "Chubbseg.Application\\Services\\SegurosApplication.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 17,
+              "Title": "AseguramientoResponseDTO.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\AseguramientoResponseDTO.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\DTOS\\AseguramientoResponseDTO.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\AseguramientoResponseDTO.cs",
+              "RelativeToolTip": "Chubbseg.Application\\DTOS\\AseguramientoResponseDTO.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBAAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T05:07:33.565Z",
+              "WhenOpened": "2025-12-07T17:45:26.577Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 19,
+              "Title": "CobranzasController.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\CobranzasController\\CobranzasController.cs",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\Controllers\\CobranzasController\\CobranzasController.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\CobranzasController\\CobranzasController.cs",
+              "RelativeToolTip": "Backend_ChubbSeg\\Controllers\\CobranzasController\\CobranzasController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAiwCIAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T16:13:46.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AseguramientosController.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\AseguramientosController.cs",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\Controllers\\AseguramientosController.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\AseguramientosController.cs",
+              "RelativeToolTip": "Backend_ChubbSeg\\Controllers\\AseguramientosController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwDcAAABdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T00:38:55.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SegurosRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\SegurosRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Repositories\\SegurosRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\SegurosRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Repositories\\SegurosRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T23:22:28.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IAseguramientosApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\IAseguramientosApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Interfaces\\IAseguramientosApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\IAseguramientosApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Interfaces\\IAseguramientosApplication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T04:38:18.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IAseguramientoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\IAseguramientoRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Interfaces\\IAseguramientoRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\IAseguramientoRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Interfaces\\IAseguramientoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T04:37:23.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CobranzasResponseDTO.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\CobranzasResponseDTO.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\DTOS\\CobranzasResponseDTO.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\CobranzasResponseDTO.cs",
+              "RelativeToolTip": "Chubbseg.Application\\DTOS\\CobranzasResponseDTO.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T16:08:49.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "SegurosController.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\SegurosController.cs",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\Controllers\\SegurosController.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\SegurosController.cs",
+              "RelativeToolTip": "Backend_ChubbSeg\\Controllers\\SegurosController.cs",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAAAMEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T16:13:49.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "ICobranzasApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\ICobranzasApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Interfaces\\ICobranzasApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\ICobranzasApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Interfaces\\ICobranzasApplication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T16:09:35.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "RolesPermisosResponseDTO.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\RolesPermisosResponseDTO.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\DTOS\\RolesPermisosResponseDTO.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\RolesPermisosResponseDTO.cs",
+              "RelativeToolTip": "Chubbseg.Application\\DTOS\\RolesPermisosResponseDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T01:37:20.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "IRolesPermisosApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\IRolesPermisosApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Interfaces\\IRolesPermisosApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\IRolesPermisosApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Interfaces\\IRolesPermisosApplication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T02:10:07.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ISegurosApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\ISegurosApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Interfaces\\ISegurosApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\ISegurosApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Interfaces\\ISegurosApplication.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAADwvxAAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T16:09:37.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "AseguradosController.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\AseguradosController.cs",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\Controllers\\AseguradosController.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\AseguradosController.cs",
+              "RelativeToolTip": "Backend_ChubbSeg\\Controllers\\AseguradosController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAwwBQAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T17:22:34.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "IPermisosRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\IPermisosRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Interfaces\\IPermisosRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\IPermisosRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Interfaces\\IPermisosRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T03:39:08.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ICobranzasRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\ICobranzasRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Interfaces\\ICobranzasRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\ICobranzasRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Interfaces\\ICobranzasRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T03:39:31.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\AuthControllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\Controllers\\AuthControllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\AuthControllers\\LoginController.cs",
+              "RelativeToolTip": "Backend_ChubbSeg\\Controllers\\AuthControllers\\LoginController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T03:01:13.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ISegurosRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\ISegurosRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Interfaces\\ISegurosRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\ISegurosRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Interfaces\\ISegurosRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:50:29.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PermisosController.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\PermisosController\\PermisosController.cs",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\Controllers\\PermisosController\\PermisosController.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Controllers\\PermisosController\\PermisosController.cs",
+              "RelativeToolTip": "Backend_ChubbSeg\\Controllers\\PermisosController\\PermisosController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAgwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T01:46:09.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "IAuthRepository.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\IAuthRepository.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Interfaces\\IAuthRepository.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Interfaces\\IAuthRepository.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Interfaces\\IAuthRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T02:58:04.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "SegurosMapping.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Mappers\\SegurosMapping.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Mappers\\SegurosMapping.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Mappers\\SegurosMapping.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Mappers\\SegurosMapping.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwCUAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T17:24:52.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "RolesPermisos.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\RolesPermisos.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Domain\\Entidades\\RolesPermisos.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\RolesPermisos.cs",
+              "RelativeToolTip": "Chubbseg.Domain\\Entidades\\RolesPermisos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T01:22:18.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "InjectionExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Extensions\\InjectionExtensions.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Extensions\\InjectionExtensions.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Extensions\\InjectionExtensions.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Extensions\\InjectionExtensions.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwB4AAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T16:15:52.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "InjectionExtension.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Extension\\InjectionExtension.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Extension\\InjectionExtension.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Extension\\InjectionExtension.cs",
+              "RelativeToolTip": "Chubbseg.Infrastructure\\Extension\\InjectionExtension.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T16:16:43.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Seguros.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\Seguros.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Domain\\Entidades\\Seguros.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\Seguros.cs",
+              "RelativeToolTip": "Chubbseg.Domain\\Entidades\\Seguros.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAqwAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T04:02:19.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ICargarExcel.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\ICargarExcel.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Interfaces\\ICargarExcel.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\ICargarExcel.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Interfaces\\ICargarExcel.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAgwA0AAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T22:44:47.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "IAseguradosApplication.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\IAseguradosApplication.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\Interfaces\\IAseguradosApplication.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Interfaces\\IAseguradosApplication.cs",
+              "RelativeToolTip": "Chubbseg.Application\\Interfaces\\IAseguradosApplication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T17:22:27.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "AseguramientoRequestDTO.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\AseguramientoRequestDTO.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Application\\DTOS\\AseguramientoRequestDTO.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\AseguramientoRequestDTO.cs",
+              "RelativeToolTip": "Chubbseg.Application\\DTOS\\AseguramientoRequestDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T17:21:25.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Cobranzas.cs",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\Cobranzas.cs",
+              "RelativeDocumentMoniker": "Chubbseg.Domain\\Entidades\\Cobranzas.cs",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\Cobranzas.cs",
+              "RelativeToolTip": "Chubbseg.Domain\\Entidades\\Cobranzas.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAowBAAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:51:12.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
               "Title": "Asegurados.cs",
               "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\Asegurados.cs",
               "RelativeDocumentMoniker": "Chubbseg.Domain\\Entidades\\Asegurados.cs",
@@ -117,102 +798,49 @@
               "RelativeToolTip": "Chubbseg.Domain\\Entidades\\Asegurados.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T04:02:27.192Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-07T04:02:27.192Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Aseguramiento.cs",
-              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\Aseguramiento.cs",
-              "RelativeDocumentMoniker": "Chubbseg.Domain\\Entidades\\Aseguramiento.cs",
-              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\Aseguramiento.cs",
-              "RelativeToolTip": "Chubbseg.Domain\\Entidades\\Aseguramiento.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T04:02:22.603Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Seguros.cs",
-              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\Seguros.cs",
-              "RelativeDocumentMoniker": "Chubbseg.Domain\\Entidades\\Seguros.cs",
-              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Domain\\Entidades\\Seguros.cs",
-              "RelativeToolTip": "Chubbseg.Domain\\Entidades\\Seguros.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T04:02:19.32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SegurosResponseDTO.cs",
-              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\SegurosResponseDTO.cs",
-              "RelativeDocumentMoniker": "Chubbseg.Application\\DTOS\\SegurosResponseDTO.cs",
-              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\DTOS\\SegurosResponseDTO.cs",
-              "RelativeToolTip": "Chubbseg.Application\\DTOS\\SegurosResponseDTO.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAA0wCcAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T04:01:22.086Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SegurosRepository.cs",
-              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\SegurosRepository.cs",
-              "RelativeDocumentMoniker": "Chubbseg.Infrastructure\\Repositories\\SegurosRepository.cs",
-              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Repositories\\SegurosRepository.cs",
-              "RelativeToolTip": "Chubbseg.Infrastructure\\Repositories\\SegurosRepository.cs",
-              "ViewState": "AgIAAA0BAAAAAAAAAAAAAB4BAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T04:01:09.904Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Backend_ChubbSeg",
-              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Backend_ChubbSeg.csproj",
-              "RelativeDocumentMoniker": "Backend_ChubbSeg\\Backend_ChubbSeg.csproj",
-              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Backend_ChubbSeg.csproj",
-              "RelativeToolTip": "Backend_ChubbSeg\\Backend_ChubbSeg.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-07T03:58:23.351Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 45,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Program.cs",
               "RelativeDocumentMoniker": "Backend_ChubbSeg\\Program.cs",
               "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Program.cs",
               "RelativeToolTip": "Backend_ChubbSeg\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAAgwBgAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-01T07:41:24.626Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 44,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\appsettings.json",
               "RelativeDocumentMoniker": "Backend_ChubbSeg\\appsettings.json",
               "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\appsettings.json",
               "RelativeToolTip": "Backend_ChubbSeg\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-01T07:40:21.313Z"
+              "WhenOpened": "2025-12-01T07:40:21.313Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 47,
+              "Title": "Backend_ChubbSeg.csproj",
+              "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Backend_ChubbSeg.csproj",
+              "RelativeDocumentMoniker": "Backend_ChubbSeg\\Backend_ChubbSeg.csproj",
+              "ToolTip": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\Backend_ChubbSeg.csproj",
+              "RelativeToolTip": "Backend_ChubbSeg\\Backend_ChubbSeg.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-07T03:58:23.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Backend_ChubbSeg\\appsettings.Development.json",
               "RelativeDocumentMoniker": "Backend_ChubbSeg\\appsettings.Development.json",

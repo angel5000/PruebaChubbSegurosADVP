@@ -74,7 +74,17 @@
         visible: true,
         download: true,
       },
-    
+      {
+        label: "Estado",
+        property: "estado",
+        type: "badge",
+        csslabel: [""],
+        cssProperty: [""],
+        sticky: false,
+        sort: true,
+        visible: true,
+        download: true,
+      },
       {
         label:"",
         csslabel:[],
@@ -86,7 +96,7 @@
     tooltip:"eliminar",
     sticky:false,
     sort:false,
-    visible:true,
+    visible:Permisos.eliminar,
     download:false
     }
     ];

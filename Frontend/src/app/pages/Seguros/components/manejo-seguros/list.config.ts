@@ -105,7 +105,7 @@ const searchOptions: SearchOptions[] =[
     action:"edit",
     sticky:false,
     sort:false,
-    visible:true,
+    visible:Permisos.editar,
     download:false
     
     },
@@ -117,7 +117,7 @@ const searchOptions: SearchOptions[] =[
       cssSubProperty: ["bi bi-eye fs-5"],
       type: "icon",
       action: "ver",
-      visible: true,
+      visible: Permisos.consultar,
       tooltip: "ver Asegurados",
       sticky: false,
       sort: false,
@@ -134,7 +134,7 @@ const searchOptions: SearchOptions[] =[
     tooltip:"eliminar",
     sticky:false,
     sort:false,
-    visible:true,
+    visible:Permisos.eliminar,
     download:false
     
     }
@@ -150,9 +150,38 @@ const filters={
     refresh:false
 }
 
-const getInputs: string="";
+const Permisos={
+  eliminar:false,
+  editar:false,
+  consultar:false,
+  agregar:false
+  };
 
+const getInputs: string="";
+export class actualizarPermiso {
+  PermisoEliminar(valor: boolean) {
+    Permisos.eliminar = valor;
+    ComponentSettings.tableColumns = getTableColumns();
+  }
+
+  PermisoEditar(valor: boolean) {
+    Permisos.editar = valor;
+    ComponentSettings.tableColumns = getTableColumns();
+  }
+
+  PermisoConsultar(valor: boolean) {
+    Permisos.consultar = valor;
+    ComponentSettings.tableColumns = getTableColumns();
+  }
+
+  PermisoAgregar(valor: boolean) {
+    Permisos.agregar = valor;
+    ComponentSettings.tableColumns = getTableColumns();
+  }
+
+}
 export const ComponentSettings={
+    Permisos:Permisos,
     tableColumns:getTableColumns(),
     getInputs,
     filters:filters,
