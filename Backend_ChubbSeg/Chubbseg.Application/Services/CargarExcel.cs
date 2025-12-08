@@ -7,6 +7,7 @@ using Chubbseg.Infrastructure.FileExcel;
 using Chubbseg.Infrastructure.FileUpload;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
+using System.Globalization;
 namespace Chubbseg.Application.Services
 {
     public class CargarExcel : ICargarExcel
@@ -55,7 +56,8 @@ namespace Chubbseg.Application.Services
                 BaseResponse<IEnumerable<SegurosResponseDTO>> 
                 segurosResponse = await _seguros.ListaSeguros();
                 IEnumerable<SegurosResponseDTO> seguros = segurosResponse.Data;
-
+                BaseResponse<bool> resp = null;
+                BaseResponse<bool> respaseg = null;
                 foreach (AseguradosRequestDTO usuario in usuariosMapeados)
                 {
                     if (string.IsNullOrWhiteSpace(usuario.CODSEGURO))
@@ -65,7 +67,7 @@ namespace Chubbseg.Application.Services
                     }
 
                     // Registrar el usuario (Asegurado)
-                    BaseResponse<bool> resp = await _asegurados.RegistrarAsegurado(usuario);
+                    resp = await _asegurados.RegistrarAsegurado(usuario);
                     if (!resp.IsSucces)
                     {
                         response.Messagemultiple.Add(resp.Message);
@@ -94,17 +96,34 @@ namespace Chubbseg.Application.Services
                             CODSEGURO = seguroAsignado.CODSEGURO
                         };
 
-                        BaseResponse<bool> respaseg = await _asegurmiento.RegistrarAseguramiento(aseguramiento);
+                         respaseg = await _asegurmiento.RegistrarAseguramiento(aseguramiento);
                         if (!respaseg.IsSucces)
                         {
-                            response.Messagemultiple.Add(respaseg.Message);
+                            if (!response.Messagemultiple.Contains(respaseg.Message))
+                            {
+                                response.Messagemultiple.Add(respaseg.Message);
+                            }
+
                         }
                     }
                 }
+               
+                if (!resp.IsSucces)
+                {
+                    response.Data = false;
+                    response.IsSucces = false;
+                    response.Message = resp.Message;
+                }
+                else if (respaseg.IsSucces )
+                {
+                    response.Data = true;
+                    response.IsSucces = true;
+                    response.Message = "Carga masiva de seguros finalizada.";
+                }
+                {
 
-                response.Data = true;
-                response.IsSucces = true;
-                response.Message = "Proceso de carga masiva finalizado. Verifique los mensajes de error si los hubo.";
+                }
+              
             }
             catch (SqlException ex)
             {
@@ -117,44 +136,51 @@ namespace Chubbseg.Application.Services
             return response;
         }
 
-        public async Task<BaseResponse<bool>> RegistMasvSeguros<T>(IFormFile archivo) where T : class, new()
+        public async Task<BaseResponse<bool>> RegistMasvSeguros<T>(IFormFile archivo, string Usuarios, string ip) where T : class, new()
         {
             BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                string extension = Path.GetExtension(archivo.FileName).ToLower();
-                List<T> listaCargada = new List<T>();
-
-                if (extension == ".xlsx")
-                {
-                    listaCargada = cargaexcel.SubirExcel<T>(archivo);
-                }
-                else if (extension == ".txt")
-                {
-                    listaCargada = cargatxt.ImportarTxt<T>(archivo);
-                }
-                else
-                {
-                    response.Message = "Formato no soportado. Use .xlsx o .txt";
-                    return response;
-                }
-
-                List<SegurosRequestDTO> segurosMapeados = listaCargada.Cast<SegurosRequestDTO>().ToList();
-
-                foreach (SegurosRequestDTO seguroDto in segurosMapeados)
-                {
-                    // Nota: Aquí se asume que _seguros.RegistrarSeguro espera un SegurosRequestDTO
-                    BaseResponse<bool> resp = await _seguros.RegistrarSeguro(seguroDto);
-
-                    if (!resp.IsSucces)
+                    string extension = Path.GetExtension(archivo.FileName).ToLower();
+                    List<T> listaCargada = new List<T>();
+                    BaseResponse<bool> resp = null;
+                    if (extension == ".xlsx")
                     {
-                        response.Messagemultiple.Add($"Error al registrar seguro {seguroDto.CODSEGURO}: {resp.Message}");
+                        listaCargada = cargaexcel.SubirExcel<T>(archivo);
                     }
+                    else if (extension == ".txt")
+                    {
+                        listaCargada = cargatxt.ImportarTxt<T>(archivo);
+                    }
+                    else
+                    {
+                        response.Message = "Formato no soportado. Use .xlsx o .txt";
+                        return response;
+                    }
+
+                    List<SegurosRequestDTO> segurosMapeados = listaCargada.Cast<SegurosRequestDTO>().ToList();
+
+                    foreach (SegurosRequestDTO seguroDto in segurosMapeados)
+                    {
+                  
+
+                    seguroDto.UsuarioIP = ip;
+                        seguroDto.USRCreacion = Usuarios;
+                       resp = await _seguros.RegistrarSeguro(seguroDto);
+
+                        if (!resp.IsSucces)
+                        {
+                            response.Messagemultiple.Add($"Error al registrar seguro {seguroDto.CODSEGURO}: {resp.Message}");
+                        }
+                    
+                }
+                if (resp.IsSucces)
+                {
+                    response.Data = true;
+                    response.IsSucces = true;
+                    response.Message = "Carga masiva de seguros finalizada.";
                 }
 
-                response.Data = true;
-                response.IsSucces = true;
-                response.Message = "Carga masiva de seguros finalizada.";
             }
             catch (SqlException ex)
             {
@@ -168,5 +194,20 @@ namespace Chubbseg.Application.Services
             }
             return response;
         }
+        private decimal ConvertirDecimalSeguro(string valor)
+        {
+            if (string.IsNullOrWhiteSpace(valor))
+                return 0;
+
+            valor = valor.Trim();
+
+            // Si el número usa coma decimal
+            if (valor.Contains(",") && !valor.Contains("."))
+                return decimal.Parse(valor, new CultureInfo("es-ES"));
+
+            // Si usa punto decimal
+            return decimal.Parse(valor, CultureInfo.InvariantCulture);
+        }
+
     }
-    }
+}

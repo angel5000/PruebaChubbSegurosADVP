@@ -454,6 +454,22 @@
         "tags": [
           "Seguros"
         ],
+        "parameters": [
+          {
+            "name": "usuario",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -684,13 +700,13 @@
             "type": "string",
             "nullable": true
           },
-          "usuarioIP": {
-            "type": "string",
-            "nullable": true
-          },
           "estado": {
             "type": "integer",
             "format": "int32"
+          },
+          "usuarioIP": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

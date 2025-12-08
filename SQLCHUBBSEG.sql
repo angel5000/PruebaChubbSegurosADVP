@@ -1,4 +1,9 @@
-CREATE DATABASE chubbseguros; --crea la base da tos
+--borrar la base de datos antigua para usarla en la nueva actualizacion
+GO
+DROP DATABASE chubbseguros;
+GO
+ --crea la base datos
+CREATE DATABASE chubbseguros;
 GO
 
 USE chubbseguros;--usa la base datos
@@ -70,7 +75,7 @@ VALUES
  GETDATE(), 'SYSTEM', NULL, NULL, '127.0.0.1', 1);
  select * from ASEGURADOS
 
-
+ DELETE FROM ASEGURADOS
 CREATE TABLE USRASEGURADOS (
     IDUSRSEGUROS INT IDENTITY(1,1) PRIMARY KEY,
     CEDULAFK VARCHAR(10) NOT NULL,
@@ -110,7 +115,7 @@ VALUES
 (102,'CLIENTE', 'Accede a su portal para ver sus pólizas y pagos'),
 (103,'AUDITOR_INTERNO', 'Revisa trazabilidad, controles y operaciones internas')
 
-
+select * from Usuarios
 
 CREATE TABLE Usuarios (
     IdUsuario INT IDENTITY(1,1) PRIMARY KEY,
@@ -126,17 +131,6 @@ CREATE TABLE Usuarios (
 
 
 
-DECLARE @Password NVARCHAR(200) = '123456';
-DECLARE @Salt VARBINARY(64) = CRYPT_GEN_RANDOM(64);
-
--- HASH = HASH(SALT + PASSWORD)
-DECLARE @Hash VARBINARY(64);
-SET @Hash = HASHBYTES('SHA2_512', @Salt + CONVERT(VARBINARY(200), @Password));
-
-UPDATE Usuarios
-SET PasswordSalt = @Salt,
-    PasswordHash = @Hash
-WHERE IdUsuario = 3;
 
 
 INSERT INTO Usuarios (Cedula, NombreUsuario, Correo, PasswordHash, PasswordSalt, Estado)
@@ -162,10 +156,10 @@ CREATE TABLE UsuarioRoles (
 
 
 INSERT INTO UsuarioRoles (IdUsuario, IdRol)
-VALUES (2, 100);
+VALUES (1, 100);
 
 INSERT INTO UsuarioRoles (IdUsuario, IdRol)
-VALUES (3, 101);
+VALUES (2, 101);
 -- Índices recomendados:
 CREATE INDEX IDX_UsuarioRoles_IdUsuario ON UsuarioRoles(IdUsuario);
 CREATE INDEX IDX_UsuarioRoles_IdRol ON UsuarioRoles(IdRol);
@@ -237,25 +231,6 @@ CREATE TABLE COBRANZAS (
 );
 
 
-CREATE TRIGGER TRG_GENERAR_COBRANZA
-ON USRASEGURADOS
-AFTER INSERT
-AS
-BEGIN
-    INSERT INTO COBRANZAS (
-        IDUSRSEGUROSFK, 
-        FECHA_VENCIMIENTO, 
-        MONTO_ESPERADO, 
-        USRCreacion
-    )
-    SELECT 
-        i.IDUSRSEGUROS,
-        DATEADD(YEAR, 1, i.FECHACONTRATASEGURO), -- Ejemplo: Vence en 1 año
-        s.PRIMA, -- Sacamos el precio de la tabla SEGUROS
-        i.USRCreacion
-    FROM inserted i
-    INNER JOIN SEGUROS s ON i.CODSEGUROFK = s.CODSEGURO
-END;
 
 
 CREATE TABLE Permisos (
@@ -294,3 +269,37 @@ WHERE NombrePermiso IN ('CONSULTAR');
 
 
 
+CREATE TRIGGER TRG_GENERAR_COBRANZA
+ON USRASEGURADOS
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO COBRANZAS (
+        IDUSRSEGUROSFK, 
+        FECHA_VENCIMIENTO, 
+        MONTO_ESPERADO, 
+        USRCreacion
+    )
+    SELECT 
+        i.IDUSRSEGUROS,
+        DATEADD(YEAR, 1, i.FECHACONTRATASEGURO), -- Ejemplo: Vence en 1 año
+        s.PRIMA, -- Sacamos el precio de la tabla SEGUROS
+        i.USRCreacion
+    FROM inserted i
+    INNER JOIN SEGUROS s ON i.CODSEGUROFK = s.CODSEGURO
+END;
+
+---------CREAR AQUI LA CONTRASEÑA AL USARIO EN BASE AL ID-----
+SELECT * FROM USUARIO;
+
+DECLARE @Password NVARCHAR(200) = '123456';--CONTRASEÑA
+DECLARE @Salt VARBINARY(64) = CRYPT_GEN_RANDOM(64);
+
+-- HASH = HASH(SALT + PASSWORD)
+DECLARE @Hash VARBINARY(64);
+SET @Hash = HASHBYTES('SHA2_512', @Salt + CONVERT(VARBINARY(200), @Password));
+
+UPDATE Usuarios
+SET PasswordSalt = @Salt,
+    PasswordHash = @Hash
+WHERE IdUsuario = 4;--ID DEL USUARIO

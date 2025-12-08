@@ -3,6 +3,7 @@ using Chubbseg.Application.DTOS;
 using Chubbseg.Application.Interfaces;
 using Chubbseg.Domain.Entidades;
 using Chubbseg.Infrastructure.Interfaces;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,6 +92,12 @@ namespace Chubbseg.Application.Services
                     response.IsSucces = false;
                     response.Message = "No se pudo registrar el aseguramiento.";
                 }
+            }
+            catch (SqlException ex)
+            {
+                response.Data = false;
+                response.IsSucces = false;
+                response.Message = ex.Message;
             }
             catch (Exception ex)
             {

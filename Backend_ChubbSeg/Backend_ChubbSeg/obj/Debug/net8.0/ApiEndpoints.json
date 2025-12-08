@@ -300,6 +300,16 @@
         "Name": "archivo",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      },
+      {
+        "Name": "usuario",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ip",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

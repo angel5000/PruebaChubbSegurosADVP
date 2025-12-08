@@ -10,3 +10,15 @@ C:\Users\angeldvvp\Desktop\prueba_chubb_AngelVergaraParedes_Viamatica\Backend_Ch
 C:\Users\angeldvvp\Desktop\prueba_chubb_AngelVergaraParedes_Viamatica\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\refint\Chubbseg.Utilities.dll
 C:\Users\angeldvvp\Desktop\prueba_chubb_AngelVergaraParedes_Viamatica\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\Chubbseg.Utilities.pdb
 C:\Users\angeldvvp\Desktop\prueba_chubb_AngelVergaraParedes_Viamatica\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\ref\Chubbseg.Utilities.dll
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\bin\Debug\net8.0\Chubbseg.Utilities.deps.json
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\bin\Debug\net8.0\Chubbseg.Utilities.dll
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\bin\Debug\net8.0\Chubbseg.Utilities.pdb
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\Chubbseg.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\Chubbseg.Utilities.AssemblyInfoInputs.cache
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\Chubbseg.Utilities.AssemblyInfo.cs
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\Chubbseg.Utilities.csproj.CoreCompileInputs.cache
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\Chubbseg.Utilities.sourcelink.json
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\Chubbseg.Utilities.dll
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\refint\Chubbseg.Utilities.dll
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\Chubbseg.Utilities.pdb
+C:\Users\59397\OneDrive\Documentos\PruebaChubbSegurosADVP\Backend_ChubbSeg\Chubbseg.Utilities\obj\Debug\net8.0\ref\Chubbseg.Utilities.dll

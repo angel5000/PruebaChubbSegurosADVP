@@ -81,14 +81,19 @@ export class SegurosService {
       );
   }
 
-  RegistroMasivoSeguros(file: File): Observable<BaseResponse> {
+  RegistroMasivoSeguros(file: File, usuario:string, ip:string): Observable<BaseResponse> {
     const token = localStorage.getItem("token")?.replace(/"/g, '');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    const formData: FormData = new FormData();
-    formData.append('archivo', file, file.name);
-    return this.http.post<BaseResponse>(`${env.apiseguros}${end.REGISTRARSEGUROMASIVO}`, formData, { headers });
+      const formData: FormData = new FormData();
+  formData.append('archivo', file, file.name);
+
+  return this.http.post<BaseResponse>(
+    `${env.apiseguros}${end.REGISTRARSEGUROMASIVO}?usuario=${usuario}&ip=${ip}`,
+    formData,
+    { headers }
+  );
   }
 
 }

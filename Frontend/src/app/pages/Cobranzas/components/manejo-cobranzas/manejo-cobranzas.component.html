@@ -131,7 +131,9 @@
                         <span *ngIf="item.estadO_COBRANZA === 'PENDIENTE'" class="badge badge-warning">
                             PENDIENTE
                         </span>
-  
+   <span *ngIf="item.estadO_CALCULADO === 'PAGADO'" class="badge badge-success">
+                            PAGADO
+                        </span>
                     </td>
     
                     <td class="py-4 text-right flex justify-end gap-2">

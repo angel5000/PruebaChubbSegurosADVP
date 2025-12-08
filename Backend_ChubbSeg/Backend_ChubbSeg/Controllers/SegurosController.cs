@@ -144,12 +144,13 @@ namespace Backend_ChubbSeg.Controllers
         [HttpPost("RegistrarSegurosMasivo")]
         [Consumes("multipart/form-data")]
 
-        public async Task<IActionResult> RegistrarSegurosmasivo(IFormFile archivo, [FromServices] ICargarExcel subirexcel)
+        public async Task<IActionResult> RegistrarSegurosmasivo(IFormFile archivo, [FromServices] ICargarExcel subirexcel,[FromQuery] string usuario,
+        [FromQuery] string ip)
         {
             BaseResponse<bool> response = new BaseResponse<bool>();
             try
             {
-                BaseResponse<bool> result = await CARGAexcel.RegistMasvSeguros<SegurosRequestDTO>(archivo);
+                BaseResponse<bool> result = await CARGAexcel.RegistMasvSeguros<SegurosRequestDTO>(archivo, usuario, ip);
                 response = result;
             }
             catch (SqlException ex)

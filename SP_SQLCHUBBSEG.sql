@@ -1,9 +1,9 @@
 USE chubbseguros;--usa la base datos
 
 --CREACION DE SP-----
-
+EXEC sp_helptext 'REGASEGURAMIENTO'
 exec CONSULTASEGUROS
-CREATE PROCEDURE CONSULTASEGUROS
+CREATE OR ALTER PROCEDURE CONSULTASEGUROS
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -28,7 +28,7 @@ GO
 
 
 
-CREATE PROCEDURE CONSULSEGID
+CREATE OR ALTER PROCEDURE CONSULSEGID
 (
     @IDSEGURO  INT
 )
@@ -58,7 +58,7 @@ GO
 ------------
 -------------
 
-CREATE PROCEDURE CONSULTAASEGURADOS
+CREATE OR ALTER PROCEDURE CONSULTAASEGURADOS
 AS
 BEGIN
  SET NOCOUNT ON;
@@ -75,7 +75,7 @@ EXEC CONSULTAASEGURADOS;
 
 --------------
 ----------------
-CREATE PROCEDURE REGITSSEGUROS(
+CREATE OR ALTER PROCEDURE REGITSSEGUROS(
     @NMBRSEGURO        VARCHAR(75),
     @CODSEGURO         VARCHAR(10),
     @SUMASEGURADA      DECIMAL(10,2),
@@ -144,7 +144,7 @@ GO
 -----------------------------------
 
 
-CREATE PROCEDURE EDITARSEGUROS
+CREATE OR ALTER PROCEDURE EDITARSEGUROS
 (
     @IDSEGURO       INT,
     @NMBRSEGURO     VARCHAR(75),
@@ -275,7 +275,7 @@ END;
 		--ASEGURADOS--
 ------------------------------------
 
-CREATE PROCEDURE CONSULASGURADOSEGID
+CREATE OR ALTER PROCEDURE CONSULASGURADOSEGID
 (
     @IDASEGURADOS  INT
 )
@@ -294,7 +294,7 @@ BEGIN
 GO
 
 
-CREATE PROCEDURE REGSTASEGURADOS(
+CREATE OR ALTER PROCEDURE REGSTASEGURADOS(
     @CEDULA        VARCHAR(10),
     @NMBRCOMPLETO  VARCHAR(75),
     @TELEFONO      VARCHAR(10),
@@ -338,7 +338,7 @@ END
 	RETURN 1;
 END;
 
-CREATE PROCEDURE EDITARASEGURADOS
+CREATE OR ALTER PROCEDURE EDITARASEGURADOS
 (
     @IDASEGURADOS       INT,
     @CEDULA        VARCHAR(10),
@@ -373,7 +373,7 @@ BEGIN
 END;
 
 
-CREATE PROCEDURE ELIMINARASEGURADO(
+CREATE OR ALTER PROCEDURE ELIMINARASEGURADO(
 		@IDASEGURADOS INT
 )
 AS 
@@ -396,7 +396,7 @@ END;
 ----------------------------
 
 
-CREATE PROCEDURE CONSULTASEGURAMIENTO
+CREATE OR ALTER PROCEDURE CONSULTASEGURAMIENTO
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -459,7 +459,114 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE SEGUR0SDISPO
+
+
+CREATE OR ALTER PROCEDURE REGASEGURAMIENTO(  
+  @CEDULA VARCHAR(10),  
+  @CODSEGURO VARCHAR(10)   
+)  
+AS  
+BEGIN  
+    SET NOCOUNT ON;  
+
+    DECLARE 
+        @NOMBREASEG VARCHAR(75),
+        @NOMBREASEG_SUB VARCHAR(15),
+        @NOMBRESEGURO VARCHAR(75),
+        @NOMBRESEGURO_SUB VARCHAR(15),
+        @EDADASEG INT,
+        @EDADMIN INT,
+        @EDADMAX INT;
+
+    ------------------------------------------
+    -- Validar asegurado
+    ------------------------------------------
+    IF NOT EXISTS (SELECT 1 FROM ASEGURADOS WHERE CEDULA = @CEDULA)  
+    BEGIN  
+        RAISERROR('El asegurado con cédula %s no existe.', 16, 1, @CEDULA);  
+        RETURN -1;  
+    END  
+
+    SELECT 
+        @NOMBREASEG = NMBRCOMPLETO,
+        @EDADASEG   = EDAD
+    FROM ASEGURADOS 
+    WHERE CEDULA = @CEDULA;
+
+    -- Substring del nombre
+    SET @NOMBREASEG_SUB = SUBSTRING(@NOMBREASEG, 1, 15);
+
+    ------------------------------------------
+    -- Validar seguro
+    ------------------------------------------
+    IF NOT EXISTS (SELECT 1 FROM SEGUROS WHERE CODSEGURO = @CODSEGURO)  
+    BEGIN  
+        RAISERROR('El seguro con código %s no existe.', 16, 1, @CODSEGURO);  
+        RETURN -2;  
+    END  
+
+    SELECT
+        @NOMBRESEGURO = NMBRSEGURO,
+        @EDADMIN      = EDADMIN,
+        @EDADMAX      = EDADMAX
+    FROM SEGUROS
+    WHERE CODSEGURO = @CODSEGURO;
+
+    -- Substring del nombre del seguro
+    SET @NOMBRESEGURO_SUB = SUBSTRING(@NOMBRESEGURO, 1, 15);
+
+    ------------------------------------------
+    -- Validar rango de edad
+    ------------------------------------------
+    IF @EDADASEG < @EDADMIN OR @EDADASEG > @EDADMAX
+    BEGIN
+        RAISERROR(
+            'El asegurado %s no cumple la edad requerida para el seguro %s.',
+            16, 1,
+            @NOMBREASEG_SUB,
+            @NOMBRESEGURO_SUB  
+        );
+        RETURN -4;
+    END
+
+    ------------------------------------------
+    -- Validar seguro ya asignado
+    ------------------------------------------
+    IF EXISTS (
+        SELECT 1
+        FROM USRASEGURADOS
+        WHERE CEDULAFK = @CEDULA
+          AND CODSEGUROFK = @CODSEGURO
+    )
+    BEGIN
+        RAISERROR(
+            'El asegurado %s ya tiene registrado el seguro %s.',
+            16, 1,
+            @NOMBREASEG_SUB,
+            @NOMBRESEGURO_SUB
+        );  
+        RETURN -3;  
+    END  
+
+    ------------------------------------------
+    -- Registrar seguro
+    ------------------------------------------
+    INSERT INTO USRASEGURADOS (  
+        CEDULAFK,  
+        CODSEGUROFK,  
+        FECHACONTRATASEGURO  
+    )  
+    VALUES (  
+        @CEDULA,  
+        @CODSEGURO,  
+        GETDATE()  
+    );  
+
+    RETURN 1;  
+END;
+
+
+CREATE OR ALTER PROCEDURE SEGUR0SDISPO
     @EDAD INT
 AS
 BEGIN
@@ -493,7 +600,7 @@ END
 GO
 
 
-CREATE PROCEDURE ConsulAseguradosPorSeguros
+CREATE OR ALTER PROCEDURE ConsulAseguradosPorSeguros
     @IDSEGURO INT = NULL 
 AS
 BEGIN
@@ -544,7 +651,7 @@ GO
 ------------LOGIN---------------
 ----------------------------------------
 
-CREATE PROCEDURE LoginUsuario
+CREATE OR ALTER PROCEDURE LoginUsuario
     @Credenciales       VARCHAR(100), 
     @Contraseña         NVARCHAR(200)
 AS
@@ -627,7 +734,7 @@ EXEC @Resultado = LoginUsuario
 SELECT @Resultado AS Resultado;
 
 
-CREATE PROCEDURE COBRANZASTOTALES
+CREATE OR ALTER PROCEDURE COBRANZASTOTALES
 
 AS
 BEGIN
@@ -661,7 +768,7 @@ GO
 ---------------
 ---------------
 
-CREATE PROCEDURE CONSULTARPERMISOS
+CREATE OR ALTER PROCEDURE CONSULTARPERMISOS
 (
     @IDROL  INT
 )
@@ -680,8 +787,7 @@ END;
 GO
 
 
-SELECT * FROM USRASEGURADOS
-CREATE PROCEDURE CANCELAR_POLIZA
+CREATE OR ALTER PROCEDURE CANCELAR_POLIZA
     @IDUSRSEGUROS INT,
     @USUARIO_ANULA VARCHAR(50)
 AS
@@ -715,7 +821,8 @@ BEGIN
     END CATCH
 END;
 
-CREATE PROCEDURE ELIMINARASEGURAMIENTO
+
+CREATE OR ALTER PROCEDURE ELIMINARASEGURAMIENTO
     @IDUSRSEGUROS INT,
     @USUARIO_EJECUTA VARCHAR(50) 
 AS 
@@ -785,3 +892,4 @@ BEGIN
         RETURN -99;
     END CATCH
 END;
+

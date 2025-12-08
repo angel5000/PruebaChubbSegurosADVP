@@ -1,4 +1,5 @@
 ﻿using Chubbseg.Application.DTOS;
+using Chubbseg.Domain.Entidades;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,6 @@ namespace Chubbseg.Application.Interfaces
     public interface ICargarExcel
     {
         Task<BaseResponse<bool>> ProcesarArchivo<T> (IFormFile archivo) where T : class, new();
-        Task<BaseResponse<bool>> RegistMasvSeguros<T>(IFormFile archivo) where T : class, new();
+        Task<BaseResponse<bool>> RegistMasvSeguros<T>(IFormFile archivo, string usuario, string ip) where T : class, new();
     }
 }

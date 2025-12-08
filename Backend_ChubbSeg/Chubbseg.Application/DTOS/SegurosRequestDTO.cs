@@ -28,8 +28,21 @@ namespace Chubbseg.Application.DTOS
         public int EDADMIN { get; set; }
         public int EDADMAX { get; set; }
         public string USRCreacion { get; set; }
-        public string? UsuarioIP { get; set; } = null!;
         public int Estado { get; set; }
+        public string? UsuarioIP { get; set; } = null!;
+        
+    }
+    public class SegurosRequestexcelDTO
+    {
+        public string NMBRSEGURO { get; set; }
+        public string CODSEGURO { get; set; }
+        public decimal SUMASEGURADA { get; set; }
+        public decimal PRIMA { get; set; }
+        public int EDADMIN { get; set; }
+        public int EDADMAX { get; set; }
+        public string USRCreacion { get; set; }
+        public int Estado { get; set; }
+
     }
 
     public class SegurosEditRequestDTO

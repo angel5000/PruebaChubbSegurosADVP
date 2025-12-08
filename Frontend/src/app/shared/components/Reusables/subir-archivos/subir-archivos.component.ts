@@ -5,6 +5,8 @@ import { AseguradosService } from '../../../../pages/Asegurados/components/servi
 import Swal from 'sweetalert2';
 import { SegurosService } from '../../../../pages/Seguros/Servicios/seguros.service';
 import { ModalErrorsComponent } from './modal-errors/modal-errors.component';
+import { firstValueFrom } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 declare var bootstrap: any;
 
 @Component({
@@ -26,12 +28,13 @@ export class SubirArchivosComponent implements OnInit {
   erroresMultiples: string[] = [];
   @ViewChild(ModalErrorsComponent) modalErrores!: ModalErrorsComponent;
 errores: any;
+  usuario: string;
 
   constructor(public aseguradosserv: AseguradosService, private toastr: ToastrService,
-    public segurosserv:SegurosService,) { }
+    public segurosserv:SegurosService,private http: HttpClient) { }
   ngOnInit(): void {
     this.component = ComponentSettings
-
+ this.usuario = (localStorage.getItem('usuario') ?? '').replace(/"/g, '');
   }
 
   onFileChange(event: any): void {
@@ -64,8 +67,21 @@ errores: any;
     this.formatGetInputs()
   }
 
-  upload(fileInput: HTMLInputElement) {
+async getClientIp(): Promise<string> {
+  try {
 
+    const data = await firstValueFrom(
+      this.http.get<{ ip: string }>('https://api.ipify.org?format=json')
+    );
+    return data.ip;
+  } catch (error) {
+    console.warn('No se pudo obtener la IP, usando default');
+    return '0.0.0.0'; 
+  }
+}
+
+  async upload(fileInput: HTMLInputElement) {
+    const ipuser = await this.getClientIp();
     Swal.fire({
       title: `Se iniciara un registro masivo de datos`,
       text: "¿Desea continuar?",
@@ -82,7 +98,7 @@ errores: any;
       if (result.isConfirmed) {
         if (this.selectedFile) {
           if(this.bandeja=='seguros'){
-            this.segurosserv.RegistroMasivoSeguros(this.selectedFile).subscribe(
+            this.segurosserv.RegistroMasivoSeguros(this.selectedFile,  this.usuario,ipuser).subscribe(
               (response) => {
                 if (response.isSucces) {
                   this.showSuccess(response.message)
@@ -95,6 +111,7 @@ errores: any;
                 } else {
                   this.toastr.warning(`Se encontraron ${response.messagemultiple.length} inconveniente/es. Revisa el archivo.`);
                   this.erroresMultiples = response.messagemultiple;
+                  this.setGetInputsProviders(true)
                   setTimeout(() => {
                     this.modalErrores.open();
                   }, 0);
@@ -116,6 +133,7 @@ errores: any;
                 } else {
                   this.toastr.warning(`Se encontraron ${response.messagemultiple.length} inconveniente/es. Revisa el archivo.`);
                   this.erroresMultiples = response.messagemultiple;
+                  this.setGetInputsProviders(true)
                   setTimeout(() => {
                     this.modalErrores.open();
                   }, 0);

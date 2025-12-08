@@ -2507,23 +2507,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\angeldvvp\\.nuget\\packages\\": {},
+    "C:\\Users\\59397\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Chubbseg.Application.csproj",
+      "projectUniqueName": "C:\\Users\\59397\\OneDrive\\Documentos\\PruebaChubbSegurosADVP\\Backend_ChubbSeg\\Chubbseg.Application\\Chubbseg.Application.csproj",
       "projectName": "Chubbseg.Application",
-      "projectPath": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\Chubbseg.Application.csproj",
-      "packagesPath": "C:\\Users\\angeldvvp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Application\\obj\\",
+      "projectPath": "C:\\Users\\59397\\OneDrive\\Documentos\\PruebaChubbSegurosADVP\\Backend_ChubbSeg\\Chubbseg.Application\\Chubbseg.Application.csproj",
+      "packagesPath": "C:\\Users\\59397\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\59397\\OneDrive\\Documentos\\PruebaChubbSegurosADVP\\Backend_ChubbSeg\\Chubbseg.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\angeldvvp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\59397\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2532,15 +2532,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\angeldvvp\\Desktop\\prueba_chubb_AngelVergaraParedes_Viamatica\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj"
+            "C:\\Users\\59397\\OneDrive\\Documentos\\PruebaChubbSegurosADVP\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\59397\\OneDrive\\Documentos\\PruebaChubbSegurosADVP\\Backend_ChubbSeg\\Chubbseg.Infrastructure\\Chubbseg.Infrastructure.csproj"
             }
           }
         }
@@ -2555,7 +2554,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -2582,7 +2581,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -51,6 +51,11 @@ mostrar: boolean = false;
     });
     if (this.data.accion == 'edit') {
       this.form.get('cedula')?.disable();
+    }else if(this.data.accion==='agregar'){
+this.form.get('edad')?.disable();
+this.form.get('telefono')?.disable();
+this.form.get('nmbrcompleto')?.disable();
+this.form.get('cedula')?.disable();
     }
   }
 
@@ -152,7 +157,7 @@ mostrar: boolean = false;
   }
 
   EjecutarRegistroAseguramiento() {
-    const form = this.form.value;
+    const form = this.form.getRawValue();
     const request: Aseguramiento = {
       cedula: form.cedula,
       codseguro: form.segdisponibles

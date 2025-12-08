@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "yCLfcNyE07evAodS16LViq9OtS+DEfJNpjJyPDrLo+8=",
-  "Source": "Backend_ChubbSeg",
-  "BasePath": "_content/Backend_ChubbSeg",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"iK1ELYuFCUYLyG8vAkVgfXYrYZuVQUhfWlLnF7oDQYo=","Source":"Backend_ChubbSeg","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

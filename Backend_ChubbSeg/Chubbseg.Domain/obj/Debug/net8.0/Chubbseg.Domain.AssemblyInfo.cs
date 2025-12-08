@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Chubbseg.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ef28d870b223ae013320360953fef554ffbce2e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bb169182c8ebaede1c25750e1e86e5c9a223e49")]
 [assembly: System.Reflection.AssemblyProductAttribute("Chubbseg.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Chubbseg.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
